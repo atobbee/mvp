@@ -802,18 +802,21 @@
           <a href="#send" data-go="send">Send a Package</a>
           <a href="#drive" data-go="drive">Drive &amp; Earn</a>
           <a href="#host" data-go="host">Business Pickup</a>
-          <a href="demo.html" data-demo>Try the Demo</a>
+          <a href="demo.html#route" data-demo>Publish a Route</a>
         </div>
         <div class="pf-col">
           <h4>Company</h4>
-          <a href="demo.html" data-demo>Trust &amp; Safety</a>
+          <a href="demo.html#trust" data-demo>Trust &amp; Safety</a>
+          <a href="demo.html#admin" data-demo>Admin</a>
           <a href="#" data-go="home">How It Works</a>
-          <a href="#join" data-go="join">Early Access</a>
-          <a href="mailto:YOUR-ADDRESS@gmail.com">Contact</a>
+          <a href="#" class="pf-soon" title="Coming soon">Roadmap</a>
         </div>
         <div class="pf-col">
           <h4>Legal</h4>
+          <a href="#" class="pf-soon" title="Coming soon">Terms of Service</a>
           <a href="privacy.html">Privacy Policy</a>
+          <a href="#" class="pf-soon" title="Coming soon">Cookie Settings</a>
+          <a href="#" class="pf-soon" title="Coming soon">Liability Notice</a>
         </div>
       </div>
     </div>
@@ -896,10 +899,11 @@
   function closeModal(){ modal.hidden = true; if (lastFocus) lastFocus.focus(); }
   document.addEventListener('click', function(e){
     var d = e.target.closest('[data-demo]');
-    if (d){ e.preventDefault(); openModal(); return; }
+    if (d){ e.preventDefault(); document.getElementById('demoGo').setAttribute('href', d.getAttribute('href') || 'demo.html'); openModal(); return; }
     if (e.target === modal || e.target.id === 'demoCancel') closeModal();
   });
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !modal.hidden) closeModal(); });
+  document.addEventListener('click', function(e){ if (e.target.closest('.pf-soon')) e.preventDefault(); });
 })();
 </script>
 
