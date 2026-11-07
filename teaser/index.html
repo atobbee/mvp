@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f1b2e">
+<link rel="icon" href="assets/logo-mark.svg" type="image/svg+xml">
+<title>AtoBbee · A to B. Every time.</title>
+<meta name="description" content="AtoBbee connects packages with people already travelling in the right direction. Starting on the Breda–Rotterdam corridor. Join the waitlist.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  /* Layout: one bold orbit hero, then short visual sections; Send / Drive / Host / Join as their own views */
+  :root{
+    --navy:#0f1b2e; --navy-2:#16233a; --navy-3:#1e2d47;
+    --gold:#d9c58c; --gold-hi:#e8d7a3; --gold-deep:#b8a46a; --stripe:#8e8762;
+    --paper:#ece7dc; --mist:#9aa3b5; --dim:#6b7489;
+    --grid:rgba(236,231,220,.05); --line:rgba(236,231,220,.12); --glow:rgba(217,197,140,.18);
+    --bad:#f2a99a;
+    --font:"Inter","Helvetica Neue",Arial,sans-serif;
+    color-scheme:dark;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;color:var(--paper);font:400 17px/1.5 var(--font);
+    background:
+      radial-gradient(1000px 640px at 50% -80px, #1b2b44 0%, transparent 70%),
+      linear-gradient(var(--grid) 1px, transparent 1px) 0 0/240px 240px,
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px) 0 0/240px 240px,
+      var(--navy);
+    min-height:100vh;
+  }
+  body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top, 0px);z-index:30;background:var(--navy)}
+  a{color:inherit}
+  :focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:8px}
+  h1,h2,h3{margin:0;line-height:1.02;text-wrap:balance}
+  p{margin:0}
+  .wrap{max-width:1120px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+  .caps{font-size:12px;font-weight:600;letter-spacing:.34em;text-transform:uppercase;color:var(--gold)}
+  .wordmark{font-weight:800;letter-spacing:.22em;text-transform:uppercase}
+
+  /* Preview strip */
+  .preview-bar{background:var(--gold);color:var(--navy);text-align:center;font-size:13px;font-weight:600;padding-block:7px}
+
+  /* Nav */
+  .nav{position:sticky;top:env(safe-area-inset-top, 0px);z-index:20;background:rgba(15,27,46,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .nav .wrap{display:flex;align-items:center;gap:28px;height:66px}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+  .brand img{width:34px;height:34px;display:block}
+  .brand .wordmark{font-size:15px}
+  .links{display:flex;gap:6px;flex:1}
+  .links a{text-decoration:none;color:var(--mist);font-weight:500;font-size:15px;padding:8px 12px;border-radius:999px}
+  .links a:hover{color:var(--paper)}
+  .links a[aria-current="page"]{color:var(--gold);background:rgba(217,197,140,.1)}
+  @media (max-width:760px){.links{display:none}.nav .wrap{justify-content:space-between}}
+
+  /* Buttons */
+  .btn{display:inline-flex;align-items:center;gap:10px;border:1px solid transparent;border-radius:999px;padding:15px 26px;font:inherit;font-size:16px;font-weight:700;cursor:pointer;text-decoration:none;background:var(--gold);color:var(--navy);transition:transform .15s, background .15s}
+  .btn:hover{background:var(--gold-hi);transform:translateY(-1px)}
+  .btn.ghost{background:transparent;color:var(--paper);border-color:var(--line)}
+  .btn.ghost:hover{border-color:var(--gold);color:var(--gold)}
+  .btn.sm{padding:9px 18px;font-size:14px}
+  .btn svg{width:18px;height:18px}
+
+  /* Views */
+  .view{display:none}
+  .view.on{display:block;animation:fade .45s ease}
+  @keyframes fade{from{transform:translateY(10px)}to{transform:none}}
+
+  /* ---------- HOME ---------- */
+  .hero{text-align:center;padding-block:40px 24px}
+  .orbit{width:min(640px,100%);height:auto;display:block;margin:0 auto -6px}
+  .orbit .ring{fill:none;stroke:var(--gold);stroke-opacity:.45;stroke-width:2}
+  .orbit .ring-outer{fill:none;stroke:var(--paper);stroke-opacity:.07}
+  .orbit .route{stroke:var(--gold);stroke-opacity:.4;stroke-width:2;stroke-dasharray:8 9}
+  .orbit .trail{stroke:var(--gold);stroke-width:3;stroke-linecap:round}
+  .orbit .pulse{fill:none;stroke:var(--gold);stroke-width:1.5;transform-box:fill-box;transform-origin:center;animation:pulse 2.6s ease-out infinite}
+  .orbit .pulse.p2{animation-delay:1.3s}
+  @keyframes pulse{from{transform:scale(1);opacity:.7}to{transform:scale(2.6);opacity:0}}
+  .bee-fly{animation:fly 6s cubic-bezier(.55,.05,.35,1) infinite}
+  .bee-fly .bob{animation:bob .5s ease-in-out infinite alternate}
+  .trail{animation:trail 6s cubic-bezier(.55,.05,.35,1) infinite}
+  @keyframes fly{0%{transform:translateX(-170px)}70%,100%{transform:translateX(150px)}}
+  @keyframes trail{0%{stroke-dashoffset:420}70%,100%{stroke-dashoffset:0}}
+  @keyframes bob{from{transform:translateY(-3px)}to{transform:translateY(3px)}}
+  .hero h1{font-size:clamp(46px,9vw,104px);font-weight:900;letter-spacing:-.045em;margin:6px auto 18px;max-width:10em}
+  .hero h1 em{font-style:normal;color:var(--gold)}
+  .hero .sub{font-size:clamp(18px,2.2vw,22px);color:var(--mist);margin:0 auto 30px;max-width:30em}
+  .hero .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .hero .caps{display:block}
+
+  /* Route strip */
+  .strip{padding-block:56px}
+  .route-steps{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;text-align:center}
+  .route-steps::before{content:"";position:absolute;top:36px;left:16.6%;right:16.6%;border-top:2px dashed var(--line)}
+  .route-steps li{list-style:none;position:relative}
+  .node{width:72px;height:72px;border-radius:50%;margin:0 auto 18px;display:grid;place-items:center;font-weight:800;font-size:22px;background:var(--navy);border:2px solid var(--gold);color:var(--gold);position:relative}
+  .node.mid{border-style:dashed}
+  .node.b{background:var(--gold);color:var(--navy);box-shadow:0 0 0 10px var(--glow)}
+  .node svg{width:28px;height:28px}
+  .route-steps h3{font-size:clamp(22px,3vw,30px);font-weight:800;letter-spacing:-.02em}
+  .route-steps p{color:var(--mist);margin-top:6px;font-size:15px}
+  .route-steps ol{margin:0;padding:0}
+
+  /* Tiles */
+  .tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding-block:8px 56px}
+  .tile{position:relative;display:flex;flex-direction:column;justify-content:space-between;min-height:340px;padding:28px;border-radius:24px;background:var(--navy-2);border:1px solid var(--line);text-decoration:none;overflow:hidden;transition:border-color .2s, transform .2s}
+  .tile:hover{border-color:rgba(217,197,140,.55);transform:translateY(-3px)}
+  .tile .art{height:150px;display:grid;place-items:center}
+  .tile .art svg{width:150px;height:150px}
+  .tile .caps{margin-bottom:10px}
+  .tile h3{font-size:clamp(28px,3.4vw,38px);font-weight:900;letter-spacing:-.03em}
+  .tile .go{margin-top:18px;display:inline-flex;align-items:center;gap:8px;font-weight:700;color:var(--gold)}
+  .tile .go svg{width:18px;height:18px;transition:transform .2s}
+  .tile:hover .go svg{transform:translateX(4px)}
+
+  /* Corridor */
+  .corridor{padding-block:16px 64px}
+  .corridor-card{border-radius:28px;background:linear-gradient(135deg,var(--navy-3),var(--navy-2));border:1px solid rgba(217,197,140,.3);padding:36px;display:grid;grid-template-columns:1fr 1.3fr;gap:24px;align-items:center;overflow:hidden}
+  .corridor-card h2{font-size:clamp(34px,5vw,60px);font-weight:900;letter-spacing:-.04em;margin:10px 0 12px}
+  .corridor-card p{color:var(--mist);max-width:26em}
+  .map{width:100%;height:auto;display:block}
+  .map .road{fill:none;stroke:var(--gold);stroke-width:5;stroke-linecap:round;stroke-dasharray:1 14}
+  .map .road-solid{fill:none;stroke:rgba(217,197,140,.18);stroke-width:14;stroke-linecap:round}
+  .map .city{font:700 18px var(--font);fill:var(--paper)}
+  .map .tag{font:600 12px var(--font);letter-spacing:.24em;fill:var(--gold)}
+  .map .shield{fill:var(--navy);stroke:var(--gold);stroke-width:2}
+  .map .shield-t{font:800 15px var(--font);fill:var(--gold)}
+
+  /* Big CTA */
+  .final{text-align:center;padding-block:40px 80px}
+  .final h2{font-size:clamp(40px,7vw,84px);font-weight:900;letter-spacing:-.045em;margin:12px 0 24px}
+
+  /* ---------- AUDIENCE PAGES ---------- */
+  .page{padding-block:56px 72px}
+  .split{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center}
+  .page h1{font-size:clamp(46px,8vw,96px);font-weight:900;letter-spacing:-.045em;margin:14px 0 20px}
+  .page h1 em{font-style:normal;color:var(--gold)}
+  .page .sub{font-size:20px;color:var(--mist);max-width:24em;margin-bottom:28px}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px;padding:0;list-style:none}
+  .chips li{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:999px;border:1px solid var(--line);background:var(--navy-2);font-weight:600;font-size:15px}
+  .chips li::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px var(--glow)}
+  .back{display:inline-flex;align-items:center;gap:8px;color:var(--mist);text-decoration:none;font-size:14px;font-weight:600;margin-top:28px}
+  .back:hover{color:var(--gold)}
+
+  .visual{position:relative;border-radius:28px;background:radial-gradient(circle at 50% 40%, #22334f, var(--navy-2) 70%);border:1px solid var(--line);padding:36px;min-height:420px;display:grid;place-items:center;overflow:hidden}
+  .visual::after{content:"";position:absolute;inset:auto -20% -60% -20%;height:70%;background:radial-gradient(closest-side, var(--glow), transparent);pointer-events:none}
+
+  /* PIN visual */
+  .pin-card{position:relative;z-index:1;width:min(320px,100%);background:var(--navy);border:1px solid rgba(217,197,140,.35);border-radius:22px;padding:26px;text-align:center;box-shadow:0 30px 60px rgba(0,0,0,.35)}
+  .pin-card .caps{display:block;margin-bottom:16px}
+  .digits{display:flex;justify-content:center;gap:10px;margin-bottom:18px}
+  .digits span{width:56px;height:68px;border-radius:14px;background:var(--navy-3);display:grid;place-items:center;font-size:34px;font-weight:800;color:var(--gold);font-variant-numeric:tabular-nums;animation:pop .5s ease both}
+  .digits span:nth-child(2){animation-delay:.12s}.digits span:nth-child(3){animation-delay:.24s}.digits span:nth-child(4){animation-delay:.36s}
+  @keyframes pop{from{transform:translateY(10px) scale(.9);opacity:.3}to{transform:none;opacity:1}}
+  .lock{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--mist)}
+  .lock svg{width:16px;height:16px;color:var(--gold)}
+  .route-mini{display:flex;align-items:center;gap:8px;justify-content:center;margin-top:18px;font-size:13px;font-weight:700;color:var(--paper)}
+  .route-mini i{flex:0 0 60px;border-top:2px dashed var(--gold-deep)}
+
+  /* Earnings visual */
+  .earn{position:relative;z-index:1;width:min(340px,100%);text-align:center}
+  .earn .big{font-size:clamp(64px,9vw,104px);font-weight:900;letter-spacing:-.05em;color:var(--gold);line-height:1;font-variant-numeric:tabular-nums}
+  .earn .big small{font-size:.42em;letter-spacing:-.02em;color:var(--paper);vertical-align:top;margin-right:4px}
+  .earn .lbl{color:var(--mist);margin:10px 0 24px;font-weight:500}
+  .bar{height:16px;border-radius:999px;background:var(--navy-3);overflow:hidden;display:flex}
+  .bar b{display:block;background:var(--gold);width:92%;animation:grow 1.1s ease both}
+  .bar s{display:block;flex:1;background:var(--stripe)}
+  @keyframes grow{from{width:0}}
+  .legend{display:flex;justify-content:space-between;margin-top:10px;font-size:13px;color:var(--mist);font-variant-numeric:tabular-nums}
+  .legend b{color:var(--paper)}
+  .note{font-size:12px;color:var(--dim);margin-top:16px}
+
+  /* Shop visual */
+  .shop{position:relative;z-index:1;width:min(340px,100%)}
+  .shop svg{width:100%;height:auto;display:block}
+  .bubble{position:absolute;top:6%;right:-2%;background:var(--gold);color:var(--navy);font-weight:800;font-size:15px;padding:10px 14px;border-radius:16px 16px 4px 16px;box-shadow:0 12px 30px rgba(0,0,0,.35);animation:pop .6s .3s ease both}
+
+  /* ---------- JOIN ---------- */
+  .join{padding-block:56px 80px}
+  .join-card{max-width:620px;margin:0 auto;text-align:center}
+  .join-card h1{font-size:clamp(44px,7vw,80px);font-weight:900;letter-spacing:-.045em;margin:14px 0 14px}
+  .join-card .sub{color:var(--mist);font-size:19px;margin-bottom:32px}
+  form{display:grid;gap:18px;text-align:left;background:var(--navy-2);border:1px solid rgba(217,197,140,.3);border-radius:24px;padding:28px}
+  .email-row{display:flex;gap:10px;flex-wrap:wrap}
+  .email-row input{flex:1 1 220px;min-width:0;padding:15px 18px;border:1px solid var(--line);border-radius:999px;font:inherit;background:var(--navy);color:var(--paper)}
+  .email-row input::placeholder{color:var(--dim)}
+  .email-row input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px var(--glow)}
+  fieldset{border:0;padding:0;margin:0;min-width:0}
+  legend{font-weight:600;font-size:14px;color:var(--mist);margin-bottom:10px;padding:0}
+  .roles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .roles input{position:absolute;opacity:0;pointer-events:none}
+  .roles label{position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px 8px;border:1px solid var(--line);border-radius:16px;cursor:pointer;font-weight:600;font-size:14px;text-align:center;transition:border-color .15s, background .15s}
+  .roles label svg{width:28px;height:28px;color:var(--gold)}
+  .roles label:hover{border-color:var(--gold-deep)}
+  .roles input:checked + label{background:var(--gold);border-color:var(--gold);color:var(--navy)}
+  .roles input:checked + label svg{color:var(--navy)}
+  .roles label::after{content:"";position:absolute;top:10px;right:10px;width:16px;height:16px;border-radius:5px;border:1.5px solid var(--line)}
+  .roles input:checked + label::after{border-color:var(--navy);background:var(--navy) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5' fill='none' stroke='%23d9c58c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat}
+  .roles input:focus-visible + label{outline:2px solid var(--gold);outline-offset:2px}
+  .check{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--mist)}
+  .check input{margin-top:3px;width:18px;height:18px;accent-color:var(--gold);flex:none}
+  .msg{font-weight:600;min-height:1.4em;font-size:15px;color:var(--bad)}
+  .done{display:none;text-align:center;padding:24px 8px}
+  .done.on{display:block;animation:fade .5s ease}
+  .done svg{width:160px;height:auto;margin:0 auto 8px;display:block}
+  .done h2{font-size:36px;font-weight:900;letter-spacing:-.03em;margin-bottom:8px}
+  .done p{color:var(--mist)}
+
+  /* Footer */
+  footer{border-top:1px solid var(--line);padding-block:40px 32px;text-align:center}
+  footer .wordmark{font-size:clamp(26px,4.5vw,40px);letter-spacing:.24em;display:block;margin-bottom:10px}
+  footer .caps{display:block}
+  footer .dim{color:var(--dim);font-size:11px;margin-top:8px;letter-spacing:.28em}
+  footer .fine{font-size:12.5px;color:var(--dim);margin-top:20px}
+
+  @media (max-width:860px){
+    .tiles,.split,.corridor-card{grid-template-columns:1fr}
+    .tile{min-height:0}
+    .route-steps{grid-template-columns:1fr;gap:28px}
+    .route-steps::before{display:none}
+    .visual{min-height:340px;padding:24px}
+    .corridor-card{padding:26px}
+  }
+  @media (max-width:420px){ .roles{grid-template-columns:1fr} .digits span{width:48px;height:60px;font-size:28px} }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation:none!important;transition:none!important}
+    .bee-fly{transform:translateX(0)}
+    .trail{stroke-dashoffset:0}
+  }
+</style>
+</head>
+<body>
+
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#" data-go="home"><img alt="" src="assets/logo-mark.svg"><span class="wordmark">AtoBbee</span></a>
+    <nav class="links" aria-label="Pages">
+      <a href="#send" data-go="send">Send</a>
+      <a href="#drive" data-go="drive">Drive</a>
+      <a href="#host" data-go="host">Pickup points</a>
+    </nav>
+    <a class="btn sm" href="#join" data-go="join">Get early access</a>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ HOME ============ -->
+<section class="view" id="v-home" aria-label="Home">
+  <div class="wrap">
+    <div class="hero">
+      <svg class="orbit" viewBox="0 0 640 360" role="img" aria-label="A bee flying from A to B">
+        <defs>
+          <linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#e8d7a3"/><stop offset="1" stop-color="#c9b475"/></linearGradient>
+        </defs>
+        <circle class="ring-outer" cx="320" cy="180" r="172"/>
+        <circle class="ring" cx="320" cy="180" r="160"/>
+        <line class="route" x1="102" y1="180" x2="538" y2="180"/>
+        <line class="trail" x1="102" y1="180" x2="522" y2="180" stroke-dasharray="420" stroke-dashoffset="420"/>
+        <circle cx="84" cy="180" r="18" fill="#0f1b2e" stroke="#d9c58c" stroke-width="2.5"/>
+        <text x="84" y="186" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-weight="800" font-size="17" fill="#d9c58c">A</text>
+        <circle class="pulse" cx="556" cy="180" r="18"/>
+        <circle class="pulse p2" cx="556" cy="180" r="18"/>
+        <circle cx="556" cy="180" r="18" fill="#d9c58c"/>
+        <text x="556" y="186" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-weight="800" font-size="17" fill="#0f1b2e">B</text>
+        <g class="bee-fly"><g class="bob">
+          <g transform="translate(320 180) scale(.78) translate(-272 -210)">
+            <ellipse cx="262" cy="182" rx="44" ry="22" fill="#ece7dc" fill-opacity=".16" stroke="#ece7dc" stroke-opacity=".28" stroke-width="1.5" transform="rotate(-8 262 182)"/>
+            <ellipse cx="270" cy="240" rx="37" ry="17" fill="#ece7dc" fill-opacity=".1" stroke="#ece7dc" stroke-opacity=".2" stroke-width="1.5" transform="rotate(6 270 240)"/>
+            <path d="M192 210 l-16 -10 v20 z" fill="url(#g1)"/>
+            <ellipse cx="272" cy="210" rx="82" ry="34" fill="url(#g1)"/>
+            <rect x="248" y="177" width="16" height="66" fill="#8e8762" fill-opacity=".85"/>
+            <rect x="280" y="177" width="16" height="66" fill="#8e8762" fill-opacity=".85"/>
+            <rect x="310" y="180" width="10" height="60" fill="#8e8762" fill-opacity=".55"/>
+            <path d="M352 180 l40 30 -40 30 z" fill="url(#g1)"/>
+            <circle cx="338" cy="204" r="6.5" fill="#0f1b2e"/><circle cx="340" cy="202" r="2" fill="#ece7dc"/>
+            <line x1="322" y1="178" x2="346" y2="146" stroke="#d9c58c" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="348" cy="143" r="6" fill="#d9c58c"/>
+          </g>
+        </g></g>
+      </svg>
+      <span class="caps">A to B · Every time</span>
+      <h1>Someone's already <em>going.</em></h1>
+      <p class="sub">Send your package with people already heading your way.</p>
+      <div class="row">
+        <a class="btn" href="#join" data-go="join">Get early access</a>
+        <a class="btn ghost" href="demo.html" id="demo-link">Peek at the demo</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap strip">
+    <ol class="route-steps">
+      <li><div class="node">A</div><h3>Post it.</h3><p>What, where, when.</p></li>
+      <li><div class="node mid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div><h3>Match it.</h3><p>A driver already on the way.</p></li>
+      <li><div class="node b">B</div><h3>Done.</h3><p>PIN handover. Delivered.</p></li>
+    </ol>
+  </div>
+
+  <div class="wrap tiles">
+    <a class="tile" href="#send" data-go="send">
+      <div class="art"><svg viewBox="0 0 160 160" fill="none"><path d="M80 22 136 50v60L80 138 24 110V50z" fill="#1e2d47" stroke="#d9c58c" stroke-width="3" stroke-linejoin="round"/><path d="M24 50 80 78l56-28M80 78v60" stroke="#d9c58c" stroke-width="3" stroke-linejoin="round"/><path d="M52 36l56 28v18" stroke="#b8a46a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="118" cy="30" r="14" fill="#d9c58c"/><text x="118" y="35" text-anchor="middle" font-family="Inter,Arial" font-weight="800" font-size="13" fill="#0f1b2e">B</text></svg></div>
+      <div><div class="caps">For senders</div><h3>Send it along.</h3><span class="go">See how <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+    </a>
+    <a class="tile" href="#drive" data-go="drive">
+      <div class="art"><svg viewBox="0 0 160 160" fill="none"><path d="M10 122h140" stroke="#d9c58c" stroke-opacity=".45" stroke-width="3" stroke-dasharray="6 9" stroke-linecap="round"/><path d="M30 104h100v-22l-12-26H44L30 82z" fill="#1e2d47" stroke="#d9c58c" stroke-width="3" stroke-linejoin="round"/><path d="M30 82h100M58 56v26M100 56v26" stroke="#d9c58c" stroke-width="3"/><circle cx="52" cy="106" r="11" fill="#0f1b2e" stroke="#d9c58c" stroke-width="3"/><circle cx="108" cy="106" r="11" fill="#0f1b2e" stroke="#d9c58c" stroke-width="3"/><rect x="66" y="30" width="28" height="22" rx="3" fill="#d9c58c"/><path d="M66 41h28" stroke="#8e8762" stroke-width="2"/></svg></div>
+      <div><div class="caps">For drivers</div><h3>Your trip, paid for.</h3><span class="go">See how <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+    </a>
+    <a class="tile" href="#host" data-go="host">
+      <div class="art"><svg viewBox="0 0 160 160" fill="none"><path d="M30 70v62h100V70" fill="#1e2d47" stroke="#d9c58c" stroke-width="3" stroke-linejoin="round"/><path d="M22 70l12-36h92l12 36z" fill="#16233a" stroke="#d9c58c" stroke-width="3" stroke-linejoin="round"/><path d="M22 70c0 9 8 14 16 14s16-5 16-14c0 9 8 14 16 14s16-5 16-14c0 9 8 14 16 14s16-5 16-14c0 9 6 14 14 14" stroke="#d9c58c" stroke-width="3"/><rect x="66" y="98" width="28" height="34" fill="#0f1b2e" stroke="#d9c58c" stroke-width="3"/><rect x="104" y="104" width="16" height="14" rx="2" fill="#d9c58c"/><rect x="108" y="92" width="14" height="12" rx="2" fill="#b8a46a"/></svg></div>
+      <div><div class="caps">For local shops</div><h3>Be the hub.</h3><span class="go">See how <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+    </a>
+  </div>
+
+  <div class="wrap corridor">
+    <div class="corridor-card">
+      <div>
+        <span class="caps">First stop</span>
+        <h2>Breda ⇄ Rotterdam.</h2>
+        <p>Launching on the A16 first. Then the rest of the Netherlands.</p>
+      </div>
+      <svg class="map" viewBox="0 0 520 300" role="img" aria-label="The A16 between Breda and Rotterdam">
+        <path class="road-solid" d="M70 250 C 170 230, 200 170, 270 150 S 400 80, 450 50"/>
+        <path class="road" d="M70 250 C 170 230, 200 170, 270 150 S 400 80, 450 50"/>
+        <rect class="shield" x="238" y="116" width="54" height="30" rx="7"/>
+        <text class="shield-t" x="265" y="137" text-anchor="middle">A16</text>
+        <circle cx="70" cy="250" r="16" fill="#0f1b2e" stroke="#d9c58c" stroke-width="3"/>
+        <text x="70" y="256" text-anchor="middle" font-family="Inter,Arial" font-weight="800" font-size="15" fill="#d9c58c">A</text>
+        <text class="city" x="104" y="256">Breda</text>
+        <circle cx="450" cy="50" r="30" fill="none" stroke="#d9c58c" stroke-opacity=".25"/>
+        <circle cx="450" cy="50" r="16" fill="#d9c58c"/>
+        <text x="450" y="56" text-anchor="middle" font-family="Inter,Arial" font-weight="800" font-size="15" fill="#0f1b2e">B</text>
+        <text class="city" x="414" y="104" text-anchor="end">Rotterdam</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="wrap final">
+    <span class="caps">Coming soon</span>
+    <h2>Be first in line.</h2>
+    <a class="btn" href="#join" data-go="join">Get early access</a>
+  </div>
+</section>
+
+<!-- ============ SEND ============ -->
+<section class="view" id="v-send" aria-label="For senders">
+  <div class="wrap page split">
+    <div>
+      <span class="caps">For senders</span>
+      <h1>Skip the courier. <em>Catch a ride.</em></h1>
+      <p class="sub">Someone's already driving there. Your package joins them.</p>
+      <ul class="chips">
+        <li>Price upfront</li>
+        <li>PIN-locked handover</li>
+        <li>Driver paid after delivery</li>
+      </ul>
+      <a class="btn" href="#join" data-go="join" data-role="sending">Join as a sender</a><br>
+      <a class="back" href="#" data-go="home">← Back to home</a>
+    </div>
+    <div class="visual">
+      <div class="pin-card">
+        <span class="caps">Pickup PIN</span>
+        <div class="digits"><span>7</span><span>4</span><span>2</span><span>9</span></div>
+        <span class="lock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Only you and your driver know it</span>
+        <div class="route-mini">Breda <i></i> Rotterdam</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DRIVE ============ -->
+<section class="view" id="v-drive" aria-label="For drivers">
+  <div class="wrap page split">
+    <div>
+      <span class="caps">For drivers</span>
+      <h1>Your trip. <em>Paid for.</em></h1>
+      <p class="sub">You're going anyway. Bring a package and earn on the way.</p>
+      <ul class="chips">
+        <li>Routes you already drive</li>
+        <li>You pick what fits</li>
+        <li>Paid after delivery</li>
+      </ul>
+      <a class="btn" href="#join" data-go="join" data-role="driving">Join as a driver</a><br>
+      <a class="back" href="#" data-go="home">← Back to home</a>
+    </div>
+    <div class="visual">
+      <div class="earn">
+        <div class="big"><small>€</small>18.40</div>
+        <p class="lbl">for a trip you were making anyway</p>
+        <div class="bar"><b></b><s></s></div>
+        <div class="legend"><span><b>You</b> €18.40</span><span>AtoBbee 8% · €1.60</span></div>
+        <p class="note">Example: a €20 delivery, Breda → Rotterdam. Pricing may change before launch.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOST ============ -->
+<section class="view" id="v-host" aria-label="For pickup points">
+  <div class="wrap page split">
+    <div>
+      <span class="caps">For local shops</span>
+      <h1>Your shop. <em>The local hub.</em></h1>
+      <p class="sub">Neighbours pick up their packages at your counter, and stay for a coffee.</p>
+      <ul class="chips">
+        <li>More foot traffic</li>
+        <li>Your hours, your limits</li>
+        <li>Pause anytime</li>
+      </ul>
+      <a class="btn" href="#join" data-go="join" data-role="pickup">Join as a pickup point</a><br>
+      <a class="back" href="#" data-go="home">← Back to home</a>
+    </div>
+    <div class="visual">
+      <div class="shop">
+        <span class="bubble">3 packages waiting</span>
+        <svg viewBox="0 0 320 280" fill="none" role="img" aria-label="A shopfront with packages">
+          <path d="M40 110v150h240V110" fill="#1e2d47" stroke="#d9c58c" stroke-width="3" stroke-linejoin="round"/>
+          <path d="M26 110l20-62h228l20 62z" fill="#16233a" stroke="#d9c58c" stroke-width="3" stroke-linejoin="round"/>
+          <path d="M26 110c0 14 12 22 26 22s26-8 26-22c0 14 12 22 26 22s26-8 26-22c0 14 12 22 26 22s26-8 26-22c0 14 12 22 26 22s26-8 26-22c0 14 12 22 26 22s26-8 26-22" stroke="#d9c58c" stroke-width="3"/>
+          <rect x="66" y="160" width="70" height="100" fill="#0f1b2e" stroke="#d9c58c" stroke-width="3"/>
+          <circle cx="124" cy="212" r="4" fill="#d9c58c"/>
+          <rect x="160" y="160" width="96" height="60" rx="4" fill="#0f1b2e" stroke="#d9c58c" stroke-width="2" stroke-opacity=".6"/>
+          <rect x="172" y="190" width="30" height="26" rx="3" fill="#d9c58c"/>
+          <rect x="206" y="196" width="22" height="20" rx="3" fill="#b8a46a"/>
+          <rect x="230" y="186" width="20" height="30" rx="3" fill="#8e8762"/>
+          <rect x="120" y="62" width="80" height="26" rx="13" fill="#0f1b2e" stroke="#d9c58c" stroke-width="2"/>
+          <text x="160" y="80" text-anchor="middle" font-family="Inter,Arial" font-weight="800" font-size="12" letter-spacing="2" fill="#d9c58c">PICKUP</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ JOIN ============ -->
+<section class="view" id="v-join" aria-label="Join the waitlist">
+  <div class="wrap join">
+    <div class="join-card">
+      <span class="caps">Early access</span>
+      <h1>Be first in line.</h1>
+      <p class="sub">Be the first to know when AtoBbee lands near you. Early testers get in first.</p>
+
+      <form id="form" action="signup.php" method="post" novalidate>
+        <div style="position:absolute;left:-9999px" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+        <fieldset>
+          <legend>I want to… <span style="color:var(--dim);font-weight:500">(pick all that fit)</span></legend>
+          <div class="roles">
+            <input type="checkbox" name="roles[]" id="r-send" value="sending"><label for="r-send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5 12 12l9-4.5M12 12v9"/></svg>Send</label>
+            <input type="checkbox" name="roles[]" id="r-drive" value="driving"><label for="r-drive"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 16h14v-4l-2-5H7l-2 5z"/><path d="M5 12h14"/><circle cx="8" cy="16.5" r="1.8"/><circle cx="16" cy="16.5" r="1.8"/></svg>Drive</label>
+            <input type="checkbox" name="roles[]" id="r-host" value="pickup"><label for="r-host"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 10v10h16V10"/><path d="M3 10l2-6h14l2 6z"/><path d="M10 20v-5h4v5"/></svg>Host pickups</label>
+          </div>
+        </fieldset>
+        <div class="email-row">
+          <input type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com" aria-label="Email address">
+          <button class="btn" type="submit">Get early access</button>
+        </div>
+        <label class="check"><input type="checkbox" id="consent" name="consent" value="yes"><span>Yes, send me AtoBbee news and early-access invites. Unsubscribe anytime. See the <a href="privacy.html" style="color:var(--paper)">privacy statement</a>.</span></label>
+        <p class="msg" id="msg" role="status" aria-live="polite"></p>
+      </form>
+
+      <div class="done" id="done">
+        <svg viewBox="0 0 240 120" aria-hidden="true">
+          <line x1="20" y1="60" x2="220" y2="60" stroke="#d9c58c" stroke-opacity=".4" stroke-width="2" stroke-dasharray="6 7"/>
+          <circle cx="20" cy="60" r="10" fill="#0f1b2e" stroke="#d9c58c" stroke-width="2"/>
+          <circle cx="220" cy="60" r="18" fill="none" stroke="#d9c58c" stroke-opacity=".3"/>
+          <circle cx="220" cy="60" r="10" fill="#d9c58c"/>
+          <g transform="translate(150 60) scale(.36) translate(-272 -210)">
+            <ellipse cx="262" cy="182" rx="44" ry="22" fill="#ece7dc" fill-opacity=".18"/>
+            <ellipse cx="272" cy="210" rx="82" ry="34" fill="#d9c58c"/>
+            <rect x="248" y="177" width="16" height="66" fill="#8e8762"/><rect x="280" y="177" width="16" height="66" fill="#8e8762"/>
+            <path d="M352 180 l40 30 -40 30 z" fill="#d9c58c"/><circle cx="338" cy="204" r="6.5" fill="#0f1b2e"/>
+          </g>
+        </svg>
+        <h2>You're on the list.</h2>
+        <p>You'll be the first to know.</p>
+        <a class="back" href="#" data-go="home">← Back to home</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="wordmark">AtoBbee</span>
+    <span class="caps">A to B · Every time</span>
+    <span class="caps dim">A Transportation Federation product</span>
+    <p class="fine"><a href="privacy.html">Privacy statement</a> · Contact: YOUR-ADDRESS@gmail.com</p>
+    <p class="fine">In development. Not yet a live service. Examples are illustrative.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var views = ['home','send','drive','host','join'];
+  function show(name, role){
+    if (views.indexOf(name) < 0) name = 'home';
+    views.forEach(function(v){ document.getElementById('v-' + v).classList.toggle('on', v === name); });
+    document.querySelectorAll('.links a').forEach(function(a){
+      if (a.dataset.go === name) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current');
+    });
+    if (role){ var r = document.querySelector('.roles input[value="' + role + '"]'); if (r) r.checked = true; }
+    window.scrollTo(0, 0);
+  }
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('[data-go]');
+    if (!a) return;
+    e.preventDefault();
+    var name = a.dataset.go;
+    try { history.replaceState(null, '', name === 'home' ? location.pathname : '#' + name); } catch(err){}
+    show(name, a.dataset.role);
+  });
+  window.addEventListener('hashchange', function(){ show(location.hash.slice(1) || 'home'); });
+  show(location.hash.slice(1) || 'home');
+
+  var form = document.getElementById('form'), msg = document.getElementById('msg'), done = document.getElementById('done');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if (!form.querySelector('input[name="roles[]"]:checked')) { msg.textContent = 'Pick at least one option.'; return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.value.trim())) { msg.textContent = "That email doesn't look quite right."; return; }
+    if (!form.consent.checked) { msg.textContent = 'Tick the box so we can email you.'; return; }
+    msg.textContent = '';
+    var btn = form.querySelector('button[type=submit]'); btn.disabled = true;
+    fetch(form.action, { method:'POST', body:new FormData(form), headers:{ 'Accept':'application/json' } })
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if (d.ok){ form.style.display = 'none'; done.classList.add('on'); }
+        else { msg.textContent = d.message; btn.disabled = false; }
+      })
+      .catch(function(){ msg.textContent = 'Something went wrong. Please try again in a moment.'; btn.disabled = false; });
+  });
+  var qs = new URLSearchParams(location.search);
+  if (qs.get('joined')) { show('join'); form.style.display = 'none'; done.classList.add('on'); }
+  if (qs.get('error')) { show('join'); msg.textContent = qs.get('error'); }
+})();
+</script>
+
+</body>
+</html>

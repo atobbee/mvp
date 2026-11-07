@@ -1,0 +1,7 @@
+# Nobody gets to download the database file from the web.
+<IfModule mod_authz_core.c>
+  Require all denied
+</IfModule>
+<IfModule !mod_authz_core.c>
+  Deny from all
+</IfModule>

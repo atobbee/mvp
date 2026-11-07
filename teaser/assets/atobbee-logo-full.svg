@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="AtoBbee — A to B · Every time">
+  <defs>
+    <linearGradient id="beeGold" x1="0" x2="1"><stop offset="0" stop-color="#e8d7a3"/><stop offset="1" stop-color="#c9b475"/></linearGradient>
+    <radialGradient id="glow" cx="50%" cy="40%" r="60%"><stop offset="0" stop-color="#1c2a3d"/><stop offset="1" stop-color="#0f1b2e"/></radialGradient>
+    <pattern id="grid" width="256" height="256" patternUnits="userSpaceOnUse"><path d="M256 0H0V256" fill="none" stroke="#ece7dc" stroke-opacity=".06"/></pattern>
+  </defs>
+  <rect width="1024" height="1024" fill="url(#glow)"/>
+  <rect width="1024" height="1024" fill="url(#grid)"/>
+  <g transform="translate(232 217)">
+    <circle cx="280" cy="210" r="272" fill="none" stroke="#ece7dc" stroke-opacity=".08"/>
+    <circle cx="280" cy="210" r="252" fill="none" stroke="#d9c58c" stroke-opacity=".45" stroke-width="3"/>
+    <line x1="48" y1="210" x2="174" y2="210" stroke="#d9c58c" stroke-opacity=".45" stroke-width="3" stroke-dasharray="12 10"/>
+    <line x1="396" y1="210" x2="500" y2="210" stroke="#d9c58c" stroke-opacity=".45" stroke-width="3" stroke-dasharray="12 10"/>
+    <circle cx="100" cy="210" r="5" fill="#d9c58c" fill-opacity=".45"/>
+    <circle cx="142" cy="210" r="7" fill="#d9c58c" fill-opacity=".6"/>
+    <circle cx="28" cy="210" r="17" fill="#0f1b2e" stroke="#d9c58c" stroke-width="3"/>
+    <text x="28" y="216" text-anchor="middle" font-family="Inter,Helvetica,Arial,sans-serif" font-weight="700" font-size="17" fill="#d9c58c">A</text>
+    <circle cx="532" cy="210" r="36" fill="none" stroke="#d9c58c" stroke-opacity=".2"/>
+    <circle cx="532" cy="210" r="26" fill="none" stroke="#d9c58c" stroke-opacity=".3"/>
+    <circle cx="532" cy="210" r="17" fill="#d9c58c"/>
+    <text x="532" y="216" text-anchor="middle" font-family="Inter,Helvetica,Arial,sans-serif" font-weight="700" font-size="17" fill="#0f1b2e">B</text>
+    <ellipse cx="262" cy="182" rx="44" ry="22" fill="#ece7dc" fill-opacity=".14" stroke="#ece7dc" stroke-opacity=".25" stroke-width="1.5" transform="rotate(-8 262 182)"/>
+    <ellipse cx="270" cy="240" rx="37" ry="17" fill="#ece7dc" fill-opacity=".1" stroke="#ece7dc" stroke-opacity=".2" stroke-width="1.5" transform="rotate(6 270 240)"/>
+    <path d="M192 210 l-16 -10 v20 z" fill="url(#beeGold)"/>
+    <ellipse cx="272" cy="210" rx="82" ry="34" fill="url(#beeGold)"/>
+    <rect x="248" y="177" width="16" height="66" fill="#8e8762" fill-opacity=".85"/>
+    <rect x="280" y="177" width="16" height="66" fill="#8e8762" fill-opacity=".85"/>
+    <rect x="310" y="180" width="10" height="60" fill="#8e8762" fill-opacity=".55"/>
+    <path d="M352 180 l40 30 -40 30 z" fill="url(#beeGold)"/>
+    <circle cx="338" cy="204" r="6.5" fill="#0f1b2e"/>
+    <circle cx="340" cy="202" r="2" fill="#ece7dc"/>
+    <line x1="322" y1="178" x2="346" y2="146" stroke="#d9c58c" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="348" cy="143" r="6" fill="#d9c58c"/>
+  </g>
+  <text x="512" y="835" text-anchor="middle" font-family="Inter,Helvetica,Arial,sans-serif" font-weight="800" font-size="118" letter-spacing="22" fill="#ece7dc">ATOBBEE</text>
+  <text x="512" y="895" text-anchor="middle" font-family="Inter,Helvetica,Arial,sans-serif" font-weight="500" font-size="22" letter-spacing="9" fill="#d9c58c">A TO B · EVERY TIME</text>
+  <text x="512" y="953" text-anchor="middle" font-family="Inter,Helvetica,Arial,sans-serif" font-weight="500" font-size="16" letter-spacing="6" fill="#6b7489">A TRANSPORTATION FEDERATION PRODUCT</text>
+</svg>

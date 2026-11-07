@@ -1,0 +1,10 @@
+# Always use https
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Block direct access to helper files and the database
+<FilesMatch "^(config|config\.example|db)\.php$|\.sqlite$">
+  Require all denied
+</FilesMatch>
+Options -Indexes
