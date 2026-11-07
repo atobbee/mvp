@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0D1B2A">
+<title>AtoBbee · Community-powered delivery</title>
+<meta name="description" content="AtoBbee connects packages with verified people and professional transporters already travelling in the right direction. Breda–Rotterdam first.">
+<link rel="icon" href="assets/logo-mark.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* AtoBbee design system: light ivory pages, navy bands, muted gold, Barlow (see brand/brand-guide.md) */
+  :root{
+    --navy:#0D1B2A; --navy-2:#122035; --navy-3:#1a3050; --navy-4:#24395a;
+    --ivory:#f5f3ee; --ivory-2:#ece8dd; --white:#ffffff;
+    --gold:#C8B87A; --gold-hi:#E8D49A; --gold-ink:#8a7536; --gold-soft:#f4ecd2;
+    --text:#1a2535; --text-mid:#4a5568; --text-soft:#718096;
+    --border:#ddd8cc; --on-navy:#ece7dc; --on-navy-mid:#a9b3c4;
+    --ok:#2FA36B; --ok-bg:#e3f5ea;
+    --shadow:0 2px 12px rgba(13,27,42,.08); --shadow-lg:0 10px 34px rgba(13,27,42,.14);
+    --font:"Barlow",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --cond:"Barlow Condensed","Arial Narrow",sans-serif;
+    color-scheme:light;
+  }
+  *{box-sizing:border-box}
+  [hidden]{display:none!important}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--ivory);color:var(--text);font:400 16px/1.6 var(--font)}
+  a{color:inherit}
+  :focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px}
+  h1,h2,h3{font-family:var(--cond);font-weight:700;line-height:1.08;margin:0;letter-spacing:-.005em;text-wrap:balance}
+  p{margin:0}
+  .wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+  .caps{font-family:var(--cond);font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-ink)}
+  .navy .caps{color:var(--gold)}
+  .tnum{font-variant-numeric:tabular-nums}
+  svg.i{width:24px;height:24px;flex:none}
+
+  /* Buttons */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 22px;border-radius:10px;border:1.5px solid transparent;background:var(--gold);color:var(--navy);font:600 15px var(--font);text-decoration:none;cursor:pointer;transition:background .15s,transform .15s}
+  .btn:hover{background:var(--gold-hi);transform:translateY(-1px)}
+  .btn.outline{background:transparent;border-color:var(--gold);color:var(--gold)}
+  .btn.outline:hover{background:var(--gold);color:var(--navy)}
+  .btn.ghost{background:transparent;border-color:var(--border);color:var(--text)}
+  .btn.ghost:hover{border-color:var(--gold-ink);color:var(--gold-ink)}
+  .btn.sm{padding:8px 15px;font-size:14px}
+  .btn.block{width:100%}
+  .link{display:inline-flex;align-items:center;gap:6px;font-weight:600;color:var(--gold-ink);text-decoration:none}
+  .link svg{width:16px;height:16px;transition:transform .2s}
+  .link:hover svg{transform:translateX(3px)}
+
+  /* Nav */
+  .nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--navy);box-shadow:0 2px 16px rgba(0,0,0,.25)}
+  body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--navy)}
+  .nav .wrap{display:flex;align-items:center;gap:8px;height:66px}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none;margin-right:auto}
+  .brand img{width:34px;height:34px}
+  .brand span{font-family:var(--cond);font-weight:700;font-size:23px;color:var(--gold);letter-spacing:.02em}
+  .nav-links{display:flex;align-items:center;gap:2px}
+  .nav-links a{color:rgba(255,255,255,.82);text-decoration:none;font-weight:500;font-size:15px;padding:7px 12px;border-radius:8px}
+  .nav-links a:hover{background:rgba(255,255,255,.08);color:#fff}
+  .nav-links .btn{margin-left:8px;color:var(--navy)}
+  .menu-btn{display:none;background:none;border:0;color:#fff;padding:8px;cursor:pointer}
+  .menu-btn svg{width:26px;height:26px}
+  .mobile-menu{background:var(--navy-2);padding-block:8px 14px}
+  .mobile-menu a{display:block;color:rgba(255,255,255,.88);text-decoration:none;padding:11px 0;font-weight:500;border-bottom:1px solid rgba(255,255,255,.06)}
+  .mobile-menu .btn{margin-top:12px;color:var(--navy)}
+  @media (max-width:900px){.nav-links{display:none}.menu-btn{display:block}}
+
+  /* Hero */
+  .hero{position:relative;overflow:hidden;color:var(--on-navy);padding-block:72px 0;
+    background:radial-gradient(ellipse 55% 80% at 72% 45%,rgba(200,184,122,.08),transparent),
+      linear-gradient(rgba(200,184,122,.045) 1px,transparent 1px) 0 0/48px 48px,
+      linear-gradient(90deg,rgba(200,184,122,.045) 1px,transparent 1px) 0 0/48px 48px,
+      linear-gradient(135deg,#0D1B2A 0%,#122035 60%,#1a3050 100%)}
+  .hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) 420px;gap:48px;align-items:center}
+  .tag{display:inline-flex;align-items:center;gap:8px;padding:5px 12px;border-radius:999px;background:rgba(200,184,122,.12);border:1px solid rgba(200,184,122,.28);font-family:var(--cond);font-weight:600;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+  .tag svg{width:16px;height:16px}
+  .hero h1{font-size:clamp(40px,5.4vw,64px);color:#fff;margin-bottom:18px}
+  .hero h1 em{font-style:normal;color:var(--gold);display:block}
+  .hero .lead{font-size:clamp(17px,1.6vw,19px);color:rgba(255,255,255,.78);max-width:34em;margin-bottom:28px}
+  .hero .row{display:flex;gap:12px;flex-wrap:wrap}
+  .quote{background:rgba(255,255,255,.06);border:1px solid rgba(200,184,122,.28);border-radius:16px;padding:24px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+  .quote h2{font-size:20px;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:16px}
+  .quote .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .f{display:grid;gap:6px;margin-bottom:12px}
+  .f label{font-family:var(--cond);font-weight:600;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+  .f input,.f select{width:100%;padding:11px 13px;border-radius:9px;border:1.5px solid rgba(200,184,122,.3);background:rgba(255,255,255,.08);color:#fff;font:inherit;font-size:15px}
+  .f input::placeholder{color:rgba(255,255,255,.4)}
+  .f select option{color:var(--text)}
+  .f input:focus,.f select:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(200,184,122,.2)}
+  /* Bee flight along the bottom of the hero */
+  .flight{display:block;width:100%;height:auto;margin-top:44px}
+  .flight .road{stroke:var(--gold);stroke-opacity:.35;stroke-width:2;stroke-dasharray:8 9}
+  .flight .trail{stroke:var(--gold);stroke-width:3;stroke-linecap:round;stroke-dasharray:1060;stroke-dashoffset:1060;animation:trail 7s cubic-bezier(.55,.05,.35,1) infinite}
+  .flight .bee{animation:fly 7s cubic-bezier(.55,.05,.35,1) infinite}
+  .flight .bob{animation:bob .5s ease-in-out infinite alternate}
+  .flight .pulse{fill:none;stroke:var(--gold);stroke-width:1.5;transform-box:fill-box;transform-origin:center;animation:pulse 2.6s ease-out infinite}
+  .flight .pulse.p2{animation-delay:1.3s}
+  @keyframes trail{0%{stroke-dashoffset:1060}72%,100%{stroke-dashoffset:0}}
+  @keyframes fly{0%{transform:translateX(0)}72%,100%{transform:translateX(1060px)}}
+  @keyframes bob{from{transform:translateY(-3px)}to{transform:translateY(3px)}}
+  @keyframes pulse{from{transform:scale(1);opacity:.7}to{transform:scale(2.6);opacity:0}}
+
+  /* Sections */
+  .section{padding-block:76px}
+  .section.alt{background:var(--ivory-2)}
+  .head{text-align:center;margin:0 auto 44px;max-width:640px}
+  .head .caps{display:block;margin-bottom:10px}
+  .head h2{font-size:clamp(30px,3.6vw,42px);color:var(--navy);margin-bottom:10px}
+  .head p{color:var(--text-mid);font-size:17px}
+  .grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+  .grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+  .card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:28px;box-shadow:var(--shadow)}
+  .card h3{font-size:22px;color:var(--navy);margin-bottom:8px}
+  .card p{color:var(--text-mid)}
+  .card.lift{transition:transform .2s,box-shadow .2s}
+  .card.lift:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+  .icon{width:52px;height:52px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,var(--navy),var(--navy-2));color:var(--gold);border:1px solid rgba(200,184,122,.25);margin-bottom:18px}
+  .icon svg{width:26px;height:26px}
+
+  /* How it works: A → B route */
+  .route{position:relative}
+  .route::before{content:"";position:absolute;top:26px;left:16.6%;right:16.6%;border-top:2px dashed #cbbf93}
+  .route .card{position:relative;text-align:center;padding-top:0;background:transparent;border:0;box-shadow:none}
+  .node{width:54px;height:54px;border-radius:50%;margin:0 auto 18px;display:grid;place-items:center;background:var(--white);border:2px solid var(--gold);color:var(--gold-ink);font-family:var(--cond);font-weight:700;font-size:22px;position:relative}
+  .node svg{width:24px;height:24px}
+  .node.mid{border-style:dashed}
+  .node.b{background:var(--gold);color:var(--navy);box-shadow:0 0 0 9px rgba(200,184,122,.25)}
+
+  /* Routes today */
+  .rt{display:grid;gap:14px}
+  .rt-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .rt-head b{font-family:var(--cond);font-size:22px;color:var(--navy)}
+  .who{display:flex;align-items:center;gap:12px}
+  .av{width:44px;height:44px;border-radius:50%;background:var(--ivory-2);color:var(--gold-ink);display:grid;place-items:center;font-weight:700;font-size:14px;flex:none}
+  .who b{display:block}
+  .who span{font-size:14px;color:var(--text-soft)}
+  .ring{--v:90;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--gold) calc(var(--v)*1%),#e8e3d6 0);position:relative;flex:none}
+  .ring::before{content:"";position:absolute;inset:5px;border-radius:50%;background:var(--white)}
+  .ring b{position:relative;font-size:12px;font-weight:700;color:var(--gold-ink)}
+  .rt-foot{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);padding-top:12px}
+  .rt-foot .p{font-family:var(--cond);font-size:22px;font-weight:700;color:var(--navy)}
+
+  /* Pricing */
+  .kv{display:grid;grid-template-columns:1fr auto;gap:12px 18px;margin:18px 0 14px}
+  .kv dt{color:var(--text-mid)} .kv dd{margin:0;text-align:right;font-variant-numeric:tabular-nums}
+  .kv .t{font-weight:700;color:var(--navy);border-top:1px solid var(--border);padding-top:12px}
+  .kv dd.t{color:var(--gold-ink);font-family:var(--cond);font-size:24px}
+  .split{height:14px;border-radius:999px;background:var(--ivory-2);overflow:hidden;display:flex;margin-top:8px}
+  .split b{width:92%;background:var(--gold)} .split s{flex:1;background:#8e8762}
+  .small{font-size:13px;color:var(--text-soft)}
+
+  /* Proof tiles */
+  .tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+  .tile{display:flex;gap:16px;align-items:flex-start}
+  .tile .icon{margin:0;width:46px;height:46px}
+  .tile h3{font-size:19px;margin-bottom:4px}
+  .tile p{font-size:15px}
+
+  /* Trust band */
+  .trust{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:40px;align-items:center}
+  .checks{list-style:none;padding:0;margin:22px 0 26px;display:grid;gap:12px}
+  .checks li{display:flex;gap:12px;align-items:flex-start;color:var(--text)}
+  .checks svg{width:22px;height:22px;color:var(--ok);flex:none;margin-top:1px}
+  .profile{text-align:center}
+  .profile .av{width:84px;height:84px;font-size:26px;margin:0 auto 12px;border:2px solid var(--gold)}
+  .badge{display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:999px;font-family:var(--cond);font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase;background:var(--ok-bg);color:#1f7a49;margin:10px 0 18px}
+  .badge svg{width:14px;height:14px}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--border);padding-top:16px}
+  .stats b{display:block;font-family:var(--cond);font-size:28px;color:var(--navy)}
+  .stats span{font-size:13px;color:var(--text-soft)}
+
+  /* Business */
+  .biz{display:grid;grid-template-columns:400px minmax(0,1fr);gap:48px;align-items:center}
+  .plan{background:linear-gradient(160deg,var(--navy),var(--navy-2));color:var(--on-navy);border-color:var(--navy)}
+  .plan h3{color:var(--gold);font-size:24px}
+  .plan .price{font-family:var(--cond);font-weight:700;font-size:54px;color:#fff;line-height:1;margin:14px 0 4px}
+  .plan .price small{font-size:20px;color:var(--on-navy-mid);font-weight:600}
+  .plan .per{color:var(--on-navy-mid);font-size:14px;margin-bottom:18px}
+  .plan ul{list-style:none;padding:0;margin:0 0 22px;display:grid;gap:10px}
+  .plan li{display:flex;gap:10px;align-items:center}
+  .plan li svg{width:18px;height:18px;color:var(--gold);flex:none}
+  .biz-copy h2{font-size:clamp(30px,3.6vw,42px);color:var(--navy);margin:10px 0 14px}
+  .biz-copy p{color:var(--text-mid);margin-bottom:12px;font-size:17px}
+
+  /* CTA band */
+  .cta{background:linear-gradient(135deg,#0D1B2A,#1a3050);color:var(--on-navy);text-align:center;padding-block:72px}
+  .cta h2{font-size:clamp(34px,4.6vw,54px);color:#fff;margin-bottom:12px}
+  .cta p{color:var(--on-navy-mid);font-size:18px;margin-bottom:26px}
+  .cta .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .cta .note{margin-top:22px;font-size:13px;color:#7a8699}
+
+  /* Footer */
+  footer{background:var(--navy);color:var(--on-navy-mid);padding-block:56px 32px;font-size:15px}
+  .foot{display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:32px}
+  .foot .brand span{font-size:24px}
+  .foot p{margin-top:12px;max-width:26em}
+  .foot h4{font-family:var(--cond);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:13px;color:var(--gold);margin:0 0 12px}
+  .foot ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+  .foot a{text-decoration:none;color:var(--on-navy-mid)}
+  .foot a:hover{color:#fff}
+  .fine{border-top:1px solid rgba(255,255,255,.08);margin-top:36px;padding-top:20px;display:grid;gap:8px;font-size:13px;color:#7a8699}
+
+  @media (max-width:980px){
+    .hero-grid,.trust,.biz{grid-template-columns:1fr}
+    .quote{max-width:520px}
+    .grid3,.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .route::before{display:none}
+    .foot{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:620px){
+    .hero{padding-top:44px}
+    .grid3,.grid2,.tiles,.quote .grid2{grid-template-columns:1fr}
+    .section{padding-block:56px}
+    .foot{grid-template-columns:1fr}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation:none!important;transition:none!important}
+    .flight .trail{stroke-dashoffset:0}
+    .flight .bee{transform:translateX(530px)}
+  }
+  .mode-btn{flex:none;width:38px;height:38px;border-radius:10px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.16);background:transparent;color:#C8B87A;cursor:pointer;transition:border-color .15s,background .15s}
+  .mode-btn:hover{border-color:#C8B87A;background:rgba(200,184,122,.1)}
+  .mode-btn svg{width:18px;height:18px}
+  .mode-btn .sun{display:none}
+  :root[data-mode="dark"] .mode-btn .sun{display:block}
+  :root[data-mode="dark"] .mode-btn .moon{display:none}
+  /* ===== Dark mode ===== */
+  :root[data-mode="dark"]{
+    --ivory:#0D1B2A; --ivory-2:#122035; --white:#16263d;
+    --text:#ece7dc; --text-mid:#a9b3c4; --text-soft:#7a8699;
+    --border:rgba(236,231,220,.14); --gold-ink:#C8B87A; --gold-soft:rgba(200,184,122,.14);
+    --ok-bg:rgba(143,212,168,.12); --shadow:none; --shadow-lg:0 10px 34px rgba(0,0,0,.35);
+    color-scheme:dark;
+  }
+  [data-mode="dark"] .head h2,[data-mode="dark"] .card h2,[data-mode="dark"] .card h3,[data-mode="dark"] .rt-head b,[data-mode="dark"] .rt-foot .p,
+  [data-mode="dark"] .kv .t,[data-mode="dark"] .stats b,[data-mode="dark"] .biz-copy h2,[data-mode="dark"] .section h2{color:#fff!important}
+  [data-mode="dark"] .route::before{border-color:#4d5a6e}
+  [data-mode="dark"] .ring{background:conic-gradient(var(--gold) calc(var(--v)*1%),#24395a 0)}
+  [data-mode="dark"] .badge{color:#8fd4a8}
+  [data-mode="dark"] .icon{border-color:rgba(200,184,122,.35)}
+  [data-mode="dark"] .nav{box-shadow:0 1px 0 var(--border)}
+  [data-mode="dark"] .plan{border-color:rgba(200,184,122,.35)}
+  [data-mode="dark"] footer{border-top:1px solid var(--border)}
+  .mobile-mode{display:none}
+  @media (max-width:900px){.mobile-mode{display:block}}
+</style>
+<script>
+/* Light / dark mode, remembered per visitor */
+(function(){
+  var K = 'atobbee-theme', root = document.documentElement, m = 'light';
+  try { m = localStorage.getItem(K) || 'light'; } catch(e){}
+  root.setAttribute('data-mode', m);
+  document.addEventListener('click', function(e){
+    var b = e.target.closest('[data-mode-toggle]'); if (!b) return;
+    m = root.getAttribute('data-mode') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-mode', m);
+    try { localStorage.setItem(K, m); } catch(e){}
+  });
+})();
+</script>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="assets/logo-mark.svg" alt=""><span>AtoBbee</span></a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="app.html#send">Send</a>
+      <a href="app.html#route">Drive</a>
+      <a href="#pickup">Pickup points</a>
+      <a href="app.html#trust">Trust &amp; Safety</a>
+      <a href="app.html#login">Log in</a>
+      <a class="btn sm" href="app.html#login">Get started</a>
+      <button type="button" class="mode-btn" style="margin-left:6px" data-mode-toggle aria-label="Switch light or dark mode" title="Light / dark"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></button>
+    </nav>
+    <span class="mobile-mode"><button type="button" class="mode-btn" data-mode-toggle aria-label="Switch light or dark mode" title="Light / dark"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></button></span>
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden>
+    <div class="wrap">
+      <a href="app.html#send">Send a package</a>
+      <a href="app.html#route">Drive &amp; earn</a>
+      <a href="#pickup">Pickup points</a>
+      <a href="app.html#trust">Trust &amp; Safety</a>
+      <a href="app.html#login">Log in</a>
+      <a class="btn block" href="app.html#login">Get started</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Netherlands · Breda–Rotterdam corridor</span>
+        <h1>Your package is going somewhere. <em>Someone already is too.</em></h1>
+        <p class="lead">AtoBbee connects packages with verified people and professional transporters already travelling in the right direction.</p>
+        <div class="row">
+          <a class="btn" href="app.html#send">Send a package</a>
+          <a class="btn outline" href="app.html#route">Earn on your route</a>
+        </div>
+      </div>
+
+      <form class="quote" id="quote" action="app.html#matches">
+        <h2>Quick quote</h2>
+        <div class="f"><label for="q-from">From</label><input id="q-from" name="from" type="text" placeholder="e.g. Breda" autocomplete="off"></div>
+        <div class="f"><label for="q-to">To</label><input id="q-to" name="to" type="text" placeholder="e.g. Rotterdam" autocomplete="off"></div>
+        <div class="grid2">
+          <div class="f"><label for="q-date">Date</label><input id="q-date" name="date" type="date"></div>
+          <div class="f"><label for="q-size">Package size</label>
+            <select id="q-size" name="size"><option>Envelope</option><option selected>Small parcel</option><option>Medium parcel</option><option>Large parcel</option><option>Custom</option></select></div>
+        </div>
+        <button class="btn block" type="submit">Find a driver
+          <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </form>
+    </div>
+
+    <svg class="flight" viewBox="0 0 1200 110" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+      <defs><linearGradient id="bg1" x1="0" x2="1"><stop offset="0" stop-color="#E8D49A"/><stop offset="1" stop-color="#C8B87A"/></linearGradient></defs>
+      <line class="road" x1="70" y1="60" x2="1130" y2="60"/>
+      <line class="trail" x1="70" y1="60" x2="1130" y2="60"/>
+      <circle cx="52" cy="60" r="18" fill="#0D1B2A" stroke="#C8B87A" stroke-width="2.5"/>
+      <text x="52" y="66" text-anchor="middle" font-family="Barlow Condensed,Arial" font-weight="700" font-size="18" fill="#C8B87A">A</text>
+      <circle class="pulse" cx="1148" cy="60" r="18"/><circle class="pulse p2" cx="1148" cy="60" r="18"/>
+      <circle cx="1148" cy="60" r="18" fill="#C8B87A"/>
+      <text x="1148" y="66" text-anchor="middle" font-family="Barlow Condensed,Arial" font-weight="700" font-size="18" fill="#0D1B2A">B</text>
+      <g class="bee"><g class="bob"><g transform="translate(60 60) scale(.42) translate(-272 -210)">
+        <ellipse cx="262" cy="182" rx="44" ry="22" fill="#ece7dc" fill-opacity=".18" stroke="#ece7dc" stroke-opacity=".3" stroke-width="2" transform="rotate(-8 262 182)"/>
+        <ellipse cx="270" cy="240" rx="37" ry="17" fill="#ece7dc" fill-opacity=".12" stroke="#ece7dc" stroke-opacity=".22" stroke-width="2" transform="rotate(6 270 240)"/>
+        <path d="M192 210 l-16 -10 v20 z" fill="url(#bg1)"/>
+        <ellipse cx="272" cy="210" rx="82" ry="34" fill="url(#bg1)"/>
+        <rect x="248" y="177" width="16" height="66" fill="#8e8762"/><rect x="280" y="177" width="16" height="66" fill="#8e8762"/><rect x="310" y="180" width="10" height="60" fill="#8e8762" fill-opacity=".6"/>
+        <path d="M352 180 l40 30 -40 30 z" fill="url(#bg1)"/>
+        <circle cx="338" cy="204" r="6.5" fill="#0D1B2A"/><circle cx="340" cy="202" r="2" fill="#ece7dc"/>
+        <line x1="322" y1="178" x2="346" y2="146" stroke="#C8B87A" stroke-width="4" stroke-linecap="round"/><circle cx="348" cy="143" r="7" fill="#C8B87A"/>
+      </g></g></g>
+    </svg>
+  </section>
+
+  <!-- How it works -->
+  <section class="section" id="how">
+    <div class="wrap">
+      <div class="head"><span class="caps">How AtoBbee works</span><h2>Three steps to a smarter delivery</h2></div>
+      <div class="grid3 route">
+        <div class="card"><div class="node">A</div><h3>Post your package</h3><p>Enter pickup and delivery details, choose your requirements and set a pickup time window. Takes under two minutes.</p></div>
+        <div class="card"><div class="node mid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div><h3>Match with a driver</h3><p>See verified drivers already travelling your route. Compare price, timing and trust profile, then choose.</p></div>
+        <div class="card"><div class="node b">B</div><h3>Track &amp; confirm</h3><p>PIN or QR confirmation at pickup, status updates and proof of delivery. Payment is released after a safe handover.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Communities -->
+  <section class="section alt" id="communities">
+    <div class="wrap">
+      <div class="head"><span class="caps">Who uses AtoBbee</span><h2>A platform built for three communities</h2></div>
+      <div class="grid3">
+        <div class="card lift">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5 12 12l9-4.5M12 12v9"/></svg></div>
+          <h3>Senders</h3><p>Send packages with verified drivers for a transparent fee: always 8%, minimum €1.50. No hidden charges.</p>
+          <p style="margin-top:18px"><a class="link" href="app.html#send">Send a package <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+        </div>
+        <div class="card lift">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 16h14v-4l-2-5H7l-2 5z"/><path d="M5 12h14"/><circle cx="8" cy="16.5" r="1.8"/><circle cx="16" cy="16.5" r="1.8"/></svg></div>
+          <h3>Drivers</h3><p>Earn on journeys you already make. Publish your route, accept matching packages and get paid after delivery.</p>
+          <p style="margin-top:18px"><a class="link" href="app.html#route">Publish a route <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+        </div>
+        <div class="card lift">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M4 10v10h16V10"/><path d="M3 10l2-6h14l2 6z"/><path d="M10 20v-5h4v5"/></svg></div>
+          <h3>Businesses</h3><p>Become an AtoBbee pickup point. Accept packages on behalf of customers for €0.99 a month.</p>
+          <p style="margin-top:18px"><a class="link" href="#pickup">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Active routes -->
+  <section class="section" id="routes">
+    <div class="wrap">
+      <div class="head"><span class="caps">Active routes today</span><h2>Drivers already on the road in your region</h2></div>
+      <div class="grid3">
+        <a class="card lift rt" href="app.html#matches" style="text-decoration:none">
+          <div class="rt-head"><b>Breda → Rotterdam</b><div class="ring" style="--v:94"><b>94%</b></div></div>
+          <div class="who"><div class="av">SV</div><div><b>Sophie V.</b><span>Tesla Model 3 · Today 15:00–17:00</span></div></div>
+          <div class="rt-foot"><span class="small">Route match</span><span class="p">From €20</span></div>
+        </a>
+        <a class="card lift rt" href="app.html#matches" style="text-decoration:none">
+          <div class="rt-head"><b>Tilburg → Antwerp</b><div class="ring" style="--v:88"><b>88%</b></div></div>
+          <div class="who"><div class="av">MT</div><div><b>Marco T.</b><span>VW Transporter · Today 16:30</span></div></div>
+          <div class="rt-foot"><span class="small">Route match</span><span class="p">From €28</span></div>
+        </a>
+        <a class="card lift rt" href="app.html#matches" style="text-decoration:none">
+          <div class="rt-head"><b>Eindhoven → Breda</b><div class="ring" style="--v:82"><b>82%</b></div></div>
+          <div class="who"><div class="av">LK</div><div><b>Lena K.</b><span>Cargo bike · Tomorrow 09:00</span></div></div>
+          <div class="rt-foot"><span class="small">Route match</span><span class="p">From €12</span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing + proof -->
+  <section class="section alt" id="pricing">
+    <div class="wrap grid2" style="align-items:start">
+      <div class="card">
+        <span class="caps">Transparent pricing, always</span>
+        <h2 style="font-size:32px;color:var(--navy);margin-top:8px">One simple commission</h2>
+        <p style="color:var(--text-mid);margin-top:6px">No hidden fees. Example delivery, Breda → Rotterdam:</p>
+        <dl class="kv">
+          <dt>Delivery price</dt><dd>€20.00</dd>
+          <dt>AtoBbee commission (8%)</dt><dd>− €1.60</dd>
+          <dt class="t">Driver earns</dt><dd class="t">€18.40</dd>
+        </dl>
+        <div class="split" aria-hidden="true"><b></b><s></s></div>
+        <p class="small" style="margin-top:12px">Minimum commission €1.50 · Payments via Stripe Connect</p>
+      </div>
+      <div>
+        <span class="caps">Proof of delivery</span>
+        <h2 style="font-size:32px;color:var(--navy);margin:8px 0 18px">Choose how sure you want to be</h2>
+        <div class="tiles" style="grid-template-columns:1fr 1fr">
+          <div class="tile"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM18 18h3v3h-3z"/></svg></div><div><h3>PIN &amp; QR</h3><p>A one-time code, confirmed by driver and recipient.</p></div></div>
+          <div class="tile"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M3 17c3-1 4-6 6-6s1 5 3 5 3-3 4-3 1 2 2 2M3 21h18"/></svg></div><div><h3>Signature</h3><p>Signed on screen at delivery, for valuable items.</p></div></div>
+          <div class="tile"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></div><div><h3>Photo proof</h3><p>A timestamped photo of the package in place.</p></div></div>
+          <div class="tile"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2.2"/><path d="M5.5 16c.6-1.6 2-2.4 3.5-2.4s2.9.8 3.5 2.4M14 10h4M14 13h3"/></svg></div><div><h3>ID &amp; age check</h3><p>Recipient ID or minimum age checked at the door.</p></div></div>
+          <div class="tile"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div><div><h3>Recipient only</h3><p>No neighbours. Only the named recipient.</p></div></div>
+          <div class="tile"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h8l-1 7a3 3 0 0 1-6 0zM12 13v6M9 21h6"/></svg></div><div><h3>Fragile &amp; upright</h3><p>Handling confirmed at pickup, with a photo.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust -->
+  <section class="section" id="trust">
+    <div class="wrap trust">
+      <div>
+        <span class="caps">Trust &amp; verification</span>
+        <h2 style="font-size:clamp(30px,3.6vw,42px);color:var(--navy);margin-top:10px">Built on transparency</h2>
+        <ul class="checks">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg>Identity-verified drivers and transporters</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg>Ratings based only on completed deliveries</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg>Secure split payments via Stripe Connect</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg>Timestamped proof of pickup and delivery</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg>24-hour dispute period before the driver is paid</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg>Admin review for serious incidents</li>
+        </ul>
+        <a class="btn ghost" href="app.html#trust">Learn about safety</a>
+      </div>
+      <div class="card profile">
+        <div class="av">SV</div>
+        <h3 style="font-size:24px">Sophie van den Berg</h3>
+        <p class="small">Private driver · Tesla Model 3</p>
+        <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>Identity verified</span>
+        <div class="stats"><div><b>4.9</b><span>Rating</span></div><div><b>127</b><span>Deliveries</span></div><div><b>98%</b><span>Reliability</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pickup points -->
+  <section class="section alt" id="pickup">
+    <div class="wrap biz">
+      <div class="card plan">
+        <div class="icon" style="background:rgba(200,184,122,.12)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M4 10v10h16V10"/><path d="M3 10l2-6h14l2 6z"/><path d="M10 20v-5h4v5"/></svg></div>
+        <h3>AtoBbee Business</h3>
+        <div class="price">€0.99<small> /month</small></div>
+        <div class="per">or €11.88 billed annually</div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>Business pickup point profile</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>Opening hours and daily capacity</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>QR package scanning</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>Dashboard with expected packages</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>Pause availability anytime</li>
+        </ul>
+        <a class="btn block" href="app.html#login">Get started</a>
+      </div>
+      <div class="biz-copy">
+        <span class="caps">Pickup points</span>
+        <h2>Turn your business into a hub</h2>
+        <p>Bakeries, corner shops, florists, co-working spaces: any local business can become an AtoBbee pickup and drop-off point. Customers collect when it suits them, and you gain foot traffic.</p>
+        <p>Free for senders to use. The subscription is paid by the business. Simple, transparent, community-first.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="wrap">
+      <span class="caps" style="color:var(--gold)">A to B · Every time</span>
+      <h2 style="margin-top:10px">Ready to send smarter?</h2>
+      <p>Join the community of senders and drivers making local transport work better.</p>
+      <div class="row"><a class="btn" href="app.html#send">Send a package</a><a class="btn outline" href="app.html#login">Create account</a></div>
+      <p class="note">No passenger transport</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="brand" href="index.html"><img src="assets/logo-mark.svg" alt=""><span>AtoBbee</span></a>
+        <p>A to B. Every time. Community-powered delivery for the Netherlands, starting on the Breda–Rotterdam corridor.</p>
+      </div>
+      <div><h4>Platform</h4><ul><li><a href="app.html#send">Send a package</a></li><li><a href="app.html#route">Drive &amp; earn</a></li><li><a href="#pickup">Business pickup</a></li><li><a href="app.html#route">Publish a route</a></li></ul></div>
+      <div><h4>Company</h4><ul><li><a href="app.html#trust">Trust &amp; safety</a></li><li><a href="#how">How it works</a></li><li><a href="app.html#admin">Admin</a></li></ul></div>
+      <div><h4>Legal</h4><ul><li><a href="#">Terms of service</a></li><li><a href="#">Privacy policy</a></li><li><a href="#">Cookie settings</a></li></ul></div>
+    </div>
+    <div class="fine">
+      <span>© 2026 AtoBbee · Netherlands · Payments facilitated by Stripe Connect</span>
+      <span>AtoBbee operates a marketplace connecting senders with independent transport providers. Insurance, liability and claims will be governed by the final platform terms and applicable law. All legal text requires professional review before launch.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Mobile menu
+  var btn = document.getElementById('menuBtn'), menu = document.getElementById('mobileMenu');
+  btn.addEventListener('click', function(){ var open = menu.hidden; menu.hidden = !open; btn.setAttribute('aria-expanded', open ? 'true' : 'false'); });
+  menu.addEventListener('click', function(e){ if (e.target.closest('a')) { menu.hidden = true; btn.setAttribute('aria-expanded','false'); } });
+
+  // Quick quote: default date today, then open the matches in the app
+  var d = document.getElementById('q-date');
+  try { d.value = new Date().toISOString().slice(0, 10); d.min = d.value; } catch(e){}
+  document.getElementById('quote').addEventListener('submit', function(e){
+    e.preventDefault();
+    location.href = 'app.html#matches';
+  });
+})();
+</script>
+</body>
+</html>

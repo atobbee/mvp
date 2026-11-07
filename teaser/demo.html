@@ -287,7 +287,8 @@
     .who-name{max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
     .top .wrap{flex-wrap:wrap;height:auto;padding-block:10px 0;row-gap:6px}
     .brand{order:1}
-    .who{order:2;margin-left:auto}
+    .mode-btn{order:2;margin-left:auto}
+    .who{order:2}
     .nav{order:3;flex:1 0 100%;margin-inline:-6px;padding-bottom:8px}
     .kvl{grid-template-columns:110px 1fr}
   }
@@ -366,7 +367,63 @@
   .stack .stat[style*="background:var(--navy)"]{background:#fbfaf6!important}
   .who-btn .av,.who-menu .av{background:#24395a;color:#C8B87A}
   .who-menu button[aria-checked="true"] .av{background:var(--gold-fill);color:var(--ink-navy)}
+
+  /* Stat card icons */
+  .stat{position:relative;padding-right:64px}
+  .stat-ic{position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:10px;display:grid;place-items:center;background:#f6efd9;color:#8a7536}
+  .stat-ic svg{width:19px;height:19px}
+  .stat-ic.warn{background:#fbe5e1;color:#c0392b}
+  .mode-btn{flex:none;width:38px;height:38px;border-radius:10px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.16);background:transparent;color:#C8B87A;cursor:pointer;transition:border-color .15s,background .15s}
+  .mode-btn:hover{border-color:#C8B87A;background:rgba(200,184,122,.1)}
+  .mode-btn svg{width:18px;height:18px}
+  .mode-btn .sun{display:none}
+  :root[data-mode="dark"] .mode-btn .sun{display:block}
+  :root[data-mode="dark"] .mode-btn .moon{display:none}
+  /* ===== Dark mode (shared tokens) ===== */
+  :root[data-mode="dark"]{
+    --navy:#0D1B2A; --navy-2:#122035; --navy-3:#1a2d44; --navy-4:#24395a;
+    --gold:#C8B87A; --gold-hi:#E8D49A; --gold-deep:#a0935f;
+    --paper:#ece7dc; --mist:#a9b3c4; --dim:#7a8699;
+    --line:rgba(236,231,220,.14); --glow:rgba(200,184,122,.18); --grid:rgba(200,184,122,.04);
+    --bad:#f2a99a; --ok:#8fd4a8; --shadow:none;
+    color-scheme:dark;
+  }
+  [data-mode="dark"] .top{box-shadow:0 1px 0 var(--line)}
+  [data-mode="dark"] .av{background:var(--navy-4);color:var(--gold)}
+  [data-mode="dark"] .badge{background:var(--navy-4);color:var(--paper)}
+  [data-mode="dark"] .badge.gold{background:rgba(200,184,122,.14);color:var(--gold)}
+  [data-mode="dark"] .badge.ok{background:rgba(143,212,168,.12);color:#8fd4a8}
+  [data-mode="dark"] .badge.warn{background:rgba(240,198,116,.12);color:#f0c674}
+  [data-mode="dark"] .badge.bad{background:rgba(242,169,154,.12);color:#f2a99a}
+  [data-mode="dark"] .ring{background:conic-gradient(var(--gold-fill) calc(var(--v)*1%),var(--navy-4) 0)}
+  [data-mode="dark"] .ring::before{background:var(--navy-2)}
+  [data-mode="dark"] input[type=text],[data-mode="dark"] input[type=number],[data-mode="dark"] input[type=date],[data-mode="dark"] input[type=email],[data-mode="dark"] input[type=password],[data-mode="dark"] select.in,[data-mode="dark"] textarea,
+  [data-mode="dark"] .sugg button,[data-mode="dark"] .qr,[data-mode="dark"] .ts-node,[data-mode="dark"] .ts-box,[data-mode="dark"] .join-roles label{background:var(--navy)}
+  [data-mode="dark"] .ts-journey{background:var(--navy-2)}
+  [data-mode="dark"] .note{background:var(--navy-3)}
+  [data-mode="dark"] .qr:hover{background:var(--navy-3)}
+  [data-mode="dark"] .sugg button.on,[data-mode="dark"] .ts-box.gold,[data-mode="dark"] .join-roles input:checked + label{background:rgba(200,184,122,.1)}
+  [data-mode="dark"] .ts-ban span{background:rgba(242,169,154,.12)}
+  [data-mode="dark"] .stat-ic{background:rgba(200,184,122,.14);color:var(--gold)}
+  [data-mode="dark"] .stat-ic.warn{background:rgba(242,169,154,.14);color:#f2a99a}
+  [data-mode="dark"] .panel.hi{border-color:rgba(200,184,122,.35)}
+  [data-mode="dark"] .stack .stat[style*="background:var(--navy)"]{background:var(--navy)!important}
+  [data-mode="dark"] .ts-stop.b .ts-node{background:var(--gold-fill)}
 </style>
+<script>
+/* Light / dark mode, remembered per visitor */
+(function(){
+  var K = 'atobbee-theme', root = document.documentElement, m = 'light';
+  try { m = localStorage.getItem(K) || 'light'; } catch(e){}
+  root.setAttribute('data-mode', m);
+  document.addEventListener('click', function(e){
+    var b = e.target.closest('[data-mode-toggle]'); if (!b) return;
+    m = root.getAttribute('data-mode') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-mode', m);
+    try { localStorage.setItem(K, m); } catch(e){}
+  });
+})();
+</script>
 </head>
 <body>
 
@@ -376,6 +433,7 @@
   <div class="wrap">
     <a class="brand" href="index.html" aria-label="AtoBbee home"><img alt="" src="assets/logo-mark.svg"><b>AtoBbee</b></a>
     <nav class="nav" id="nav" aria-label="Demo pages"></nav>
+    <button type="button" class="mode-btn" data-mode-toggle aria-label="Switch light or dark mode" title="Light / dark"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></button>
     <div class="who" id="who">
       <button type="button" class="who-btn" id="whoBtn" aria-haspopup="menu" aria-expanded="false" aria-label="View the demo as">
         <span class="av" id="whoAv">PV</span><span class="who-name" id="whoName">Pieter · Sender</span>
@@ -709,6 +767,31 @@
     function prow(t, s){ return '<div class="row spread" style="border-top:1px solid var(--line);padding-top:12px"><div><b>' + t + '</b><div class="small mist">' + s + '</div></div><div class="row"><button class="btn sm" data-toast="Payout released to the driver (demo).">Release</button><button class="btn ghost sm" data-toast="Sender refunded (demo).">Refund</button></div></div>'; }
   };
 
+
+  /* Line icons on stat cards, picked by their label */
+  var SI = {
+    truck:'<path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/>',
+    check:'<circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/>',
+    shield:'<path d="M12 3 4 6v6c0 4.5 3.4 8 8 9 4.6-1 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/>',
+    star:'<path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/>',
+    box:'<path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5 12 12l9-4.5M12 12v9"/>',
+    alert:'<path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17h.01"/>',
+    inbox:'<path d="M3 13h5l1.5 3h5L16 13h5"/><path d="M5 5h14l2 8v6H3v-6z"/>',
+    clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+    gauge:'<path d="M4 18a8 8 0 1 1 16 0"/><path d="m12 18 4-6"/>',
+    users:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.5 3.4-5.5 6.5-5.5s5.7 2 6.5 5.5"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14.8c2 .7 3.2 2.5 3.6 5.2"/>'
+  };
+  var SL = {'Active today':'truck','Completed':'check','Reliability':'shield','Rating':'star','Avg. rating given':'star','Active delivery':'box','Problems':'alert','Expected today':'inbox','Awaiting collection':'clock','Collected today':'check','Daily limit':'gauge','Users':'users','Open deliveries':'box','Reported problems':'alert','Deliveries':'box'};
+  function addStatIcons(){
+    app.querySelectorAll('.stat').forEach(function(st){
+      var lab = st.querySelector('span'); if (!lab || st.querySelector('.stat-ic')) return;
+      var k = SL[lab.textContent.trim()]; if (!k) return;
+      var d = document.createElement('span');
+      d.className = 'stat-ic' + (k === 'alert' ? ' warn' : ''); d.setAttribute('aria-hidden','true');
+      d.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + SI[k] + '</svg>';
+      st.appendChild(d);
+    });
+  }
   /* ---------- Render & routing ---------- */
   var app = document.getElementById('app'), nav = document.getElementById('nav');
   var all = ['start','send','matches','profile','checkout','confirmed','track','dash','review','driving','route','point','trust','admin'];
@@ -719,6 +802,7 @@
     document.querySelectorAll('[data-pick-role]').forEach(function(b){ b.setAttribute('aria-checked', b.dataset.pickRole === state.role ? 'true' : 'false'); });
     document.getElementById('whoAv').textContent = roleAv[state.role];
     app.innerHTML = '<section class="view on">' + V[state.view]() + '</section>';
+    addStatIcons();
   }
   function go(view){
     if (all.indexOf(view) < 0) view = 'start';
