@@ -22,6 +22,7 @@
     color-scheme:dark;
   }
   *{box-sizing:border-box}
+  [hidden]{display:none!important}
   body{margin:0;color:var(--paper);font:400 15px/1.5 var(--font);min-height:100vh;
     background:linear-gradient(var(--grid) 1px,transparent 1px) 0 0/240px 240px,linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/240px 240px,var(--navy)}
   body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:40;background:var(--navy)}
@@ -50,10 +51,25 @@
   .nav a{white-space:nowrap;text-decoration:none;color:var(--mist);font-weight:500;padding:7px 12px;border-radius:999px;font-size:14px}
   .nav a:hover{color:var(--paper)}
   .nav a.on{color:var(--gold);background:rgba(217,197,140,.1)}
-  .who{flex:none;display:flex;align-items:center;gap:8px;padding:5px 6px 5px 5px;border:1px solid var(--line);border-radius:999px;background:var(--navy-2)}
-  .who .av{width:28px;height:28px;font-size:11px}
-  .who select{background:transparent;border:0;color:var(--paper);font:inherit;font-weight:600;font-size:13px;padding-right:4px;cursor:pointer}
-  .who select option{background:var(--navy-2)}
+  .who{flex:none;position:relative}
+  .who-btn{display:flex;align-items:center;gap:8px;padding:5px 10px 5px 5px;border:1px solid var(--line);border-radius:999px;background:var(--navy-2);color:var(--paper);font:inherit;font-weight:600;font-size:13px;cursor:pointer;transition:border-color .15s}
+  .who-btn:hover,.who-btn[aria-expanded="true"]{border-color:var(--gold-deep)}
+  .who-btn .av{width:28px;height:28px;font-size:11px}
+  .who-btn .chev{width:16px;height:16px;color:var(--gold);transition:transform .2s}
+  .who-btn[aria-expanded="true"] .chev{transform:rotate(180deg)}
+  .who-menu{position:absolute;right:0;top:calc(100% + 8px);width:250px;padding:6px;background:var(--navy-2);border:1px solid rgba(217,197,140,.35);border-radius:16px;box-shadow:0 20px 50px rgba(0,0,0,.45);z-index:35;animation:menuIn .16s ease}
+  @keyframes menuIn{from{transform:translateY(-4px)}to{transform:none}}
+  .who-head{font-size:11px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);padding:8px 10px 6px}
+  .who-menu button{width:100%;display:flex;align-items:center;gap:10px;padding:8px 10px;border:0;border-radius:10px;background:transparent;color:var(--paper);font:inherit;text-align:left;cursor:pointer}
+  .who-menu button:hover,.who-menu button:focus-visible{background:var(--navy-3);outline:none}
+  .who-menu .av{width:32px;height:32px;font-size:12px}
+  .who-menu span:not(.av){flex:1;display:grid;line-height:1.25}
+  .who-menu b{font-size:14px;font-weight:600}
+  .who-menu small{font-size:12px;color:var(--mist)}
+  .who-menu i{width:18px;height:18px;flex:none}
+  .who-menu button[aria-checked="true"]{background:rgba(217,197,140,.1)}
+  .who-menu button[aria-checked="true"] .av{background:var(--gold);color:var(--navy)}
+  .who-menu button[aria-checked="true"] i{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d9c58c' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 12 5 5 9-10'/%3E%3C/svg%3E") center/18px no-repeat}
 
   /* Common UI */
   .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid transparent;border-radius:999px;padding:11px 20px;font:inherit;font-weight:700;cursor:pointer;text-decoration:none;background:var(--gold);color:var(--navy);transition:background .15s}
@@ -268,7 +284,7 @@
     .match{grid-template-columns:1fr}
     .price-box{text-align:left;justify-items:start;grid-template-columns:auto auto;align-items:center}
     .steps button span{display:none}
-    .who select{max-width:150px}
+    .who-name{max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
     .top .wrap{flex-wrap:wrap;height:auto;padding-block:10px 0;row-gap:6px}
     .brand{order:1}
     .who{order:2;margin-left:auto}
@@ -286,13 +302,18 @@
   <div class="wrap">
     <a class="brand" href="#" data-go="start"><img alt="" src="assets/logo-mark.svg"><b>ATOBBEE</b></a>
     <nav class="nav" id="nav" aria-label="Demo pages"></nav>
-    <div class="who"><span class="av" id="whoAv">PV</span>
-      <select id="roleSel" aria-label="View the demo as">
-        <option value="sender">Pieter · Sender</option>
-        <option value="driver">Sophie · Driver</option>
-        <option value="point">De Kaashoek · Pickup</option>
-        <option value="admin">Admin</option>
-      </select>
+    <div class="who" id="who">
+      <button type="button" class="who-btn" id="whoBtn" aria-haspopup="menu" aria-expanded="false" aria-label="View the demo as">
+        <span class="av" id="whoAv">PV</span><span class="who-name" id="whoName">Pieter · Sender</span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+      <div class="who-menu" id="whoMenu" role="menu" hidden>
+        <div class="who-head">View the demo as</div>
+        <button type="button" role="menuitemradio" data-pick-role="sender"><span class="av">PV</span><span><b>Pieter</b><small>Sender</small></span><i></i></button>
+        <button type="button" role="menuitemradio" data-pick-role="driver"><span class="av">SV</span><span><b>Sophie</b><small>Driver</small></span><i></i></button>
+        <button type="button" role="menuitemradio" data-pick-role="point"><span class="av">DK</span><span><b>De Kaashoek</b><small>Pickup point</small></span><i></i></button>
+        <button type="button" role="menuitemradio" data-pick-role="admin"><span class="av">AD</span><span><b>Admin</b><small>Platform overview</small></span><i></i></button>
+      </div>
     </div>
   </div>
 </header>
@@ -619,7 +640,9 @@
   var all = ['start','send','matches','profile','checkout','confirmed','track','dash','review','driving','route','point','trust','admin'];
   function render(){
     nav.innerHTML = roleNav[state.role].map(function(n){ return '<a href="#' + n[0] + '" data-go="' + n[0] + '" class="' + (state.view === n[0] ? 'on' : '') + '">' + n[1] + '</a>'; }).join('');
-    document.getElementById('roleSel').value = state.role;
+    var names = { sender:'Pieter · Sender', driver:'Sophie · Driver', point:'De Kaashoek · Pickup', admin:'Admin' };
+    document.getElementById('whoName').textContent = names[state.role];
+    document.querySelectorAll('[data-pick-role]').forEach(function(b){ b.setAttribute('aria-checked', b.dataset.pickRole === state.role ? 'true' : 'false'); });
     document.getElementById('whoAv').textContent = roleAv[state.role];
     app.innerHTML = '<section class="view on">' + V[state.view]() + '</section>';
   }
@@ -668,7 +691,19 @@
       document.querySelectorAll('.sugg button').forEach(function(b){ b.classList.toggle('on', +b.dataset.price === p); });
     }
   });
-  document.getElementById('roleSel').addEventListener('change', function(e){ setRole(e.target.value); });
+  // Role menu
+  var whoBtn = document.getElementById('whoBtn'), whoMenu = document.getElementById('whoMenu');
+  function menu(open){ whoMenu.hidden = !open; whoBtn.setAttribute('aria-expanded', open ? 'true' : 'false'); if (open){ var cur = whoMenu.querySelector('[aria-checked="true"]') || whoMenu.querySelector('button'); cur.focus(); } }
+  whoBtn.addEventListener('click', function(e){ e.stopPropagation(); menu(whoMenu.hidden); });
+  whoMenu.addEventListener('click', function(e){ var b = e.target.closest('[data-pick-role]'); if (!b) return; e.stopPropagation(); menu(false); whoBtn.focus(); setRole(b.dataset.pickRole); });
+  document.addEventListener('click', function(e){ if (!whoMenu.hidden && !e.target.closest('#who')) menu(false); });
+  document.addEventListener('keydown', function(e){
+    if (whoMenu.hidden) return;
+    var items = Array.prototype.slice.call(whoMenu.querySelectorAll('button')), i = items.indexOf(document.activeElement);
+    if (e.key === 'Escape'){ menu(false); whoBtn.focus(); }
+    else if (e.key === 'ArrowDown'){ e.preventDefault(); items[(i + 1) % items.length].focus(); }
+    else if (e.key === 'ArrowUp'){ e.preventDefault(); items[(i - 1 + items.length) % items.length].focus(); }
+  });
   window.addEventListener('hashchange', function(){ var v = location.hash.slice(1); if (v && v !== state.view) go(v); });
 
   var startView = location.hash.slice(1);
