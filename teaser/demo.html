@@ -202,6 +202,58 @@
   .prohib li{padding-left:18px;position:relative;color:var(--paper)}
   .prohib li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:2px;background:var(--bad)}
 
+  /* Trust & safety, visual */
+  .ts-hero{text-align:center;padding-block:44px 28px}
+  .ts-hero h1{font-size:clamp(40px,7vw,72px);font-weight:900;letter-spacing:-.045em;margin:12px 0 10px}
+  .ts-hero p{color:var(--mist);font-size:18px}
+  .ts-journey{position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;text-align:center;padding-block:16px 36px}
+  .ts-journey::before{content:"";position:absolute;top:50px;left:10%;right:10%;border-top:2px dashed var(--gold-deep);opacity:.6}
+  .ts-stop{position:relative;display:grid;justify-items:center;gap:4px}
+  .ts-node{width:68px;height:68px;border-radius:50%;display:grid;place-items:center;background:var(--navy);border:2px solid var(--gold);color:var(--gold);margin-bottom:10px}
+  .ts-node svg{width:28px;height:28px}
+  .ts-stop.b .ts-node{background:var(--gold);color:var(--navy);box-shadow:0 0 0 9px var(--glow)}
+  .ts-stop b{font-size:16px}
+  .ts-stop span{font-size:13px;color:var(--mist)}
+  .ts-money{display:grid;gap:22px;margin-bottom:16px}
+  .ts-money-head h2,.ts-sec-head h2{font-size:clamp(22px,3vw,30px);font-weight:800;letter-spacing:-.02em;margin-top:8px}
+  .ts-flow{display:grid;grid-template-columns:1fr 40px 1.2fr 40px 1.4fr;align-items:center;gap:8px}
+  .ts-box{border-radius:16px;padding:16px 18px;background:var(--navy);border:1px solid var(--line);display:grid;gap:4px}
+  .ts-box span{font-size:13px;color:var(--mist);display:flex;align-items:center;gap:6px}
+  .ts-box span svg{width:15px;height:15px;color:var(--gold)}
+  .ts-box b{font-size:24px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+  .ts-box.held{border-style:dashed;border-color:var(--gold-deep)}
+  .ts-box.held b{font-size:16px;font-weight:700;color:var(--gold)}
+  .ts-box.gold{background:rgba(217,197,140,.12);border-color:rgba(217,197,140,.45)}
+  .ts-box.gold b{color:var(--gold)}
+  .ts-split{display:grid;grid-template-columns:1.4fr 1fr;gap:8px}
+  .ts-arrow{height:2px;background:var(--gold-deep);position:relative}
+  .ts-arrow::after{content:"";position:absolute;right:-1px;top:-5px;border:6px solid transparent;border-left:8px solid var(--gold-deep);border-right:0}
+  .ts-sec{padding-block:20px}
+  .ts-sec-head{margin-bottom:16px}
+  .ts-tiles{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
+  .ts-tile{display:grid;justify-items:center;gap:10px;padding:22px 10px;border-radius:18px;background:var(--navy-2);border:1px solid var(--line);text-align:center}
+  .ts-tile svg{width:34px;height:34px;color:var(--gold)}
+  .ts-tile b{font-size:14px}
+  .ts-ban{display:flex;flex-wrap:wrap;gap:10px}
+  .ts-ban span{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;background:var(--bad-bg);color:var(--paper);font-weight:600;font-size:14px}
+  .ts-ban svg{width:16px;height:16px;color:var(--bad)}
+  .ts-fine{border:1px solid var(--line);border-radius:16px;background:var(--navy-2)}
+  .ts-fine summary{cursor:pointer;padding:16px 20px;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center}
+  .ts-fine summary::-webkit-details-marker{display:none}
+  .ts-fine summary::after{content:"+";color:var(--gold);font-size:22px;font-weight:600}
+  .ts-fine[open] summary::after{content:"–"}
+  .ts-fine .stack{padding:0 20px 20px;color:var(--mist);font-size:14px;gap:10px}
+  .ts-fine b{color:var(--paper)}
+  @media (max-width:900px){
+    .ts-journey{grid-template-columns:1fr;text-align:left;gap:0;padding-left:4px}
+    .ts-journey::before{top:30px;bottom:60px;left:37px;right:auto;border-top:0;border-left:2px dashed var(--gold-deep)}
+    .ts-stop{grid-template-columns:68px 1fr;column-gap:16px;justify-items:start;align-items:center;padding-bottom:14px}
+    .ts-stop .ts-node{grid-row:span 2;margin:0}
+    .ts-flow{grid-template-columns:1fr}
+    .ts-arrow{width:2px;height:22px;justify-self:center}
+    .ts-arrow::after{right:-5px;top:auto;bottom:-2px;border:6px solid transparent;border-top:8px solid var(--gold-deep);border-bottom:0}
+    .ts-tiles{grid-template-columns:repeat(3,minmax(0,1fr))}
+  }
   @media (max-width:900px){
     .side,.g4,.roles{grid-template-columns:repeat(2,minmax(0,1fr))}
     .side{grid-template-columns:1fr}
@@ -491,14 +543,53 @@
   };
 
   V.trust = function(){
-    var proofs = [['PIN & QR','A one-time code, confirmed by driver and recipient.'],['Signature','Signed on screen at delivery.'],['Photo proof','Timestamped photo of the package in place.'],['ID & age check','Driver checks ID or minimum age at the door.'],['Recipient only','No neighbours. Only the named recipient.'],['Fragile & upright','Handling confirmed at pickup, with a photo.']];
-    var prohib = ['Illegal goods or controlled substances','Weapons, firearms or ammunition','Explosives or fireworks','Unpackaged hazardous substances','Cash or bearer instruments','Live animals','Items bigger than declared','Stolen goods','Radioactive materials','Biological materials'];
-    return head('Trust & safety', 'How AtoBbee keeps packages safe', 'In this demo, verification and payments are simulated.') +
-      '<div class="grid g2"><div class="panel stack"><h2>Verification</h2><p class="mist">Drivers and pickup points are checked before they can take packages. The real platform will use a regulated identity provider.</p><dl class="kvl small"><dt>Drivers</dt><dd>ID and driving licence</dd><dt>Pro transporters</dt><dd>KvK registration</dd><dt>Pickup points</dt><dd>Business address</dd></dl></div>' +
-        '<div class="panel stack"><h2>Payments</h2><p class="mist">The sender pays up front. The money is held until delivery, then released to the driver after a 24-hour dispute window. AtoBbee keeps 8% (min. €1.50).</p>' + note('Demo: no real charges are made.') + '</div></div>' +
-      '<div class="panel" style="margin-top:16px"><h2 style="margin-bottom:12px">Proof of pickup & delivery</h2><div class="grid g3">' + proofs.map(function(p){ return '<div class="stat" style="background:var(--navy)"><b style="font-size:16px">' + p[0] + '</b><span>' + p[1] + '</span></div>'; }).join('') + '</div></div>' +
-      '<div class="grid g2" style="margin-top:16px"><div class="panel"><h2>Prohibited items</h2><ul class="prohib">' + prohib.map(function(p){ return '<li>' + p + '</li>'; }).join('') + '</ul></div>' +
-        '<div class="panel stack"><h2>Ratings & disputes</h2><p class="mist">Both sides can review after delivery. Only completed deliveries count. Problems can be reported within 24 hours; serious incidents go to an admin.</p><h2 style="margin-top:8px">Liability</h2><p class="mist">AtoBbee is a marketplace connecting senders with independent drivers. Insurance and liability will be set out in the final terms. All legal text needs professional review before launch.</p></div></div>';
+    function ic(d){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">' + d + '</svg>'; }
+    var P = {
+      id:'<rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2.2"/><path d="M5.5 16c.6-1.6 2-2.4 3.5-2.4s2.9.8 3.5 2.4M14 10h4M14 13h3"/>',
+      pin:'<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>',
+      road:'<path d="M5 21 9 3M19 21 15 3M12 5v2M12 10v2M12 15v2"/>',
+      check:'<circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/>',
+      clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+      qr:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM18 18h3v3h-3z"/>',
+      sign:'<path d="M3 17c3-1 4-6 6-6s1 5 3 5 3-3 4-3 1 2 2 2M3 21h18"/>',
+      cam:'<path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/>',
+      age:'<path d="M12 3 4 6v6c0 4.5 3.4 8 8 9 4.6-1 8-4.5 8-9V6z"/><path d="M9 14v-4l-1 1M12.5 10h2a1 1 0 0 1 0 2h-1.5 1.5a1 1 0 0 1 0 2h-2"/>',
+      door:'<path d="M5 21V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v17M3 21h18M14 12h.01"/>',
+      fragile:'<path d="M8 3h8l-1 7a3 3 0 0 1-6 0zM12 13v6M9 21h6"/>',
+      ban:'<circle cx="12" cy="12" r="9"/><path d="m6 6 12 12"/>'
+    };
+    var journey = [['id','Verified','ID-checked drivers'],['pin','PIN pickup','Only your driver'],['road','On its way','Status at every step'],['check','PIN delivery','Only the recipient'],['clock','24h window','Then the driver is paid']];
+    var proofs = [['qr','PIN & QR'],['sign','Signature'],['cam','Photo proof'],['age','ID & 18+'],['door','Recipient only'],['fragile','Fragile care']];
+    var banned = ['Weapons','Drugs','Explosives','Hazardous goods','Cash','Live animals','Stolen goods','Biological material'];
+    return '<div class="ts-hero"><span class="caps">Trust & safety</span><h1>Safe from A to B.</h1><p>Every handover is checked. Every payment waits until it’s delivered.</p></div>' +
+
+      '<section class="ts-journey" aria-label="Safety checkpoints">' + journey.map(function(j, i){
+        var cls = i === 0 ? 'a' : (i === journey.length - 1 ? 'b' : '');
+        return '<div class="ts-stop ' + cls + '"><div class="ts-node">' + ic(P[j[0]]) + '</div><b>' + j[1] + '</b><span>' + j[2] + '</span></div>';
+      }).join('') + '</section>' +
+
+      '<section class="panel ts-money"><div class="ts-money-head"><span class="caps">Where the money goes</span><h2>Held until it’s delivered.</h2></div>' +
+        '<div class="ts-flow">' +
+          '<div class="ts-box"><span>Sender pays</span><b>€20.00</b></div>' +
+          '<div class="ts-arrow" aria-hidden="true"></div>' +
+          '<div class="ts-box held"><span>' + ic(P.pin) + ' Held safely</span><b>until delivery + 24h</b></div>' +
+          '<div class="ts-arrow" aria-hidden="true"></div>' +
+          '<div class="ts-split"><div class="ts-box gold"><span>Driver</span><b>€18.40</b></div><div class="ts-box"><span>AtoBbee 8%</span><b>€1.60</b></div></div>' +
+        '</div>' +
+        '<p class="small dim">Something wrong? Report it within 24 hours and the payout freezes until an admin decides.</p></section>' +
+
+      '<section class="ts-sec"><div class="ts-sec-head"><span class="caps">Proof options</span><h2>Choose how sure you want to be.</h2></div><div class="ts-tiles">' +
+        proofs.map(function(p){ return '<div class="ts-tile">' + ic(P[p[0]]) + '<b>' + p[1] + '</b></div>'; }).join('') + '</div></section>' +
+
+      '<section class="ts-sec"><div class="ts-sec-head"><span class="caps">Never allowed</span><h2>Some things stay home.</h2></div><div class="ts-ban">' +
+        banned.map(function(b){ return '<span>' + ic(P.ban) + b + '</span>'; }).join('') + '</div></section>' +
+
+      '<section class="ts-sec"><details class="ts-fine"><summary>The fine print</summary><div class="stack">' +
+        '<p><b>Verification.</b> Drivers show ID and a driving licence, pro transporters a KvK registration, pickup points a business address. In this demo, verification is simulated; the real platform will use a regulated identity provider.</p>' +
+        '<p><b>Ratings.</b> Both sides can review after delivery. Only completed deliveries count, and unfair reviews can be reported.</p>' +
+        '<p><b>Packaging.</b> Senders pack properly and declare contents honestly. Badly packed or misdeclared items aren’t the driver’s responsibility.</p>' +
+        '<p><b>Liability.</b> AtoBbee is a marketplace connecting senders with independent drivers. Insurance and liability will be set out in the final terms, which still need professional legal review.</p>' +
+      '</div></details></section>';
   };
 
   V.admin = function(){
