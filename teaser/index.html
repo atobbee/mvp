@@ -22,6 +22,7 @@
     color-scheme:dark;
   }
   *{box-sizing:border-box}
+  [hidden]{display:none!important}
   html{scroll-behavior:smooth}
   body{
     margin:0;color:var(--paper);font:400 17px/1.5 var(--font);
@@ -266,7 +267,7 @@
       <a href="#drive" data-go="drive">Drive</a>
       <a href="#host" data-go="host">Pickup points</a>
     </nav>
-    <a class="btn sm" href="demo.html" data-demo>Open demo</a>
+    <a class="btn sm" id="navDemo" href="demo.html" data-demo>Open demo</a>
   </div>
 </header>
 
@@ -544,6 +545,7 @@
   function show(name, role){
     if (views.indexOf(name) < 0) name = 'home';
     views.forEach(function(v){ document.getElementById('v-' + v).classList.toggle('on', v === name); });
+    document.getElementById('navDemo').hidden = (name === 'home');
     document.querySelectorAll('.links a').forEach(function(a){
       if (a.dataset.go === name) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current');
     });
