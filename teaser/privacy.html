@@ -3,68 +3,93 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0D1B2A">
 <link rel="icon" href="assets/logo-mark.svg" type="image/svg+xml">
-<title>Privacy statement · AtoBbee</title>
+<title>Waitlist privacy statement · AtoBbee</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{--navy:#0f1b2e;--navy-2:#16233a;--gold:#d9c58c;--paper:#ece7dc;--mist:#9aa3b5;--line:rgba(236,231,220,.12)}
-  body{margin:0;background:var(--navy);color:var(--paper);font:400 16px/1.7 Inter,"Helvetica Neue",Arial,sans-serif}
-  .nav{border-bottom:1px solid var(--line)}
-  .nav div{max-width:720px;margin:0 auto;padding:0 16px;height:68px;display:flex;align-items:center}
-  .logo{text-decoration:none;color:var(--paper);display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;font-size:16px}
+  :root{--navy:#0D1B2A;--ivory:#f5f3ee;--beige:#E8E4D9;--white:#fff;--gold:#C8B87A;--gold-ink:#8a7536;--text:#1a2535;--mid:#4a5568;--soft:#718096;--line:#ddd8cc;
+    --font:"Barlow",system-ui,-apple-system,"Segoe UI",sans-serif;--cond:"Barlow Condensed","Arial Narrow",sans-serif;color-scheme:light}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ivory);color:var(--text);font:400 16px/1.7 var(--font)}
+  a{color:var(--gold-ink)}
+  :focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
+  .nav{background:var(--navy);box-shadow:0 2px 16px rgba(0,0,0,.25)}
+  .nav div{max-width:1120px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-left,0px));height:64px;display:flex;align-items:center;justify-content:space-between}
+  .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
   .logo img{width:34px;height:34px}
-  main{max-width:720px;margin:0 auto;padding:24px 16px 72px}
-  h1{font-size:38px;font-weight:800;letter-spacing:-.02em;margin:28px 0 4px}
-  h2{font-size:13px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin:36px 0 8px}
-  p,li{color:var(--mist)}
-  .muted{color:#6b7489}
-  a{color:var(--paper)}
-  ul{padding-left:20px}
+  .logo span{font-family:var(--cond);font-weight:700;font-size:22px;color:var(--gold)}
+  .back{color:rgba(255,255,255,.8);text-decoration:none;font-weight:500;font-size:15px}
+  .back:hover{color:#fff}
+  .hero{background:var(--beige);border-bottom:1px solid var(--line)}
+  .hero div{max-width:820px;margin:0 auto;padding:44px max(16px,env(safe-area-inset-left,0px)) 34px}
+  .caps{font-family:var(--cond);font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-ink)}
+  h1{font-family:var(--cond);font-weight:700;font-size:clamp(36px,5vw,52px);line-height:1.05;margin:8px 0 6px;color:var(--navy)}
+  .upd{margin:0;color:var(--soft)}
+  .other{margin-top:14px;font-size:15px;color:var(--mid)}
+  main{max-width:820px;margin:0 auto;padding:12px max(16px,env(safe-area-inset-left,0px)) 72px}
+  h2{font-family:var(--cond);font-weight:700;font-size:26px;color:var(--navy);margin:40px 0 10px;padding-top:6px;border-top:1px solid var(--line)}
+  h3{font-family:var(--cond);font-weight:700;font-size:19px;color:var(--navy);margin:26px 0 6px}
+  p{margin:0 0 12px;color:var(--mid)}
+  ul{margin:0 0 14px;padding-left:22px;color:var(--mid)}
+  li{margin-bottom:4px}
+  li::marker{color:var(--gold)}
+  .tbl{overflow-x:auto;margin:6px 0 18px;border:1px solid var(--line);border-radius:12px;background:var(--white)}
+  table{width:100%;border-collapse:collapse;font-size:15px}
+  th{text-align:left;font-family:var(--cond);font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--gold-ink);background:#faf8f3;padding:12px 14px;border-bottom:1px solid var(--line)}
+  td{padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--mid)}
+  tr:last-child td{border-bottom:0}
+  td:first-child{color:var(--text);font-weight:500}
+  .box{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:8px 0 16px}
+  .box p{margin:0}
+  footer{background:var(--navy);color:rgba(255,255,255,.6);font-size:14px}
+  footer div{max-width:1120px;margin:0 auto;padding:24px max(16px,env(safe-area-inset-left,0px));display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  footer a{color:rgba(255,255,255,.7);text-decoration:none;margin-left:16px}
+  footer a:hover{color:var(--gold)}
 </style>
 </head>
 <body>
-<nav class="nav"><div><a class="logo" href="index.html"><img src="assets/logo-mark.svg" alt="">AtoBbee</a></div></nav>
+<nav class="nav"><div><a class="logo" href="index.html"><img src="assets/logo-mark.svg" alt=""><span>AtoBbee</span></a><a class="back" href="index.html">← Back to AtoBbee</a></div></nav>
+<header class="hero"><div><span class="caps">Legal</span><h1>Waitlist privacy statement</h1><p class="upd">Last updated: [DATE]</p></div></header>
 <main>
-  <h1>Privacy statement</h1>
-  <p class="muted">Last updated: [DATE]</p>
+<div class="box"><p>This statement covers the AtoBbee waitlist only. For everything else, see our full <a href="privacy-policy.html">Privacy Policy</a>.</p></div>
 
-  <p>AtoBbee is a platform in development. On this website you can join our waitlist. Below we explain which data we use for that and what your rights are.</p>
+<h2>Who we are</h2>
+<p>AtoBbee is a product of Transportation Federation BV ([ADDRESS], KvK [KVK NUMBER]). We are responsible for processing your data. You can reach us at <a href="mailto:YOUR-ADDRESS@gmail.com">YOUR-ADDRESS@gmail.com</a>.</p>
 
-  <h2>Who we are</h2>
-  <p>AtoBbee is an initiative of [FULL NAME(S)]. We are responsible for processing your data. You can reach us at <a href="mailto:YOUR-ADDRESS@gmail.com">YOUR-ADDRESS@gmail.com</a>.</p>
+<h2>What we collect</h2>
+<ul>
+<li>Your email address</li>
+<li>Your first name and surname, if you give them</li>
+<li>What you're interested in: sending, driving and/or hosting pickups</li>
+<li>Your shop or business name, if you sign up as a pickup point and give it</li>
+<li>When you signed up, and the text you agreed to</li>
+</ul>
+<p>That's all. We don't ask for your address or phone number.</p>
 
-  <h2>What we collect</h2>
-  <ul>
-    <li>Your email address</li>
-    <li>Your first name and surname, if you give them</li>
-    <li>What you're interested in: sending, driving and/or hosting pickups</li>
-    <li>Your shop or business name, if you sign up as a pickup point and give it</li>
-    <li>When you signed up, and the text you agreed to</li>
-  </ul>
-  <p>That's all. We don't ask for your address or phone number.</p>
+<h2>What we use it for</h2>
+<p>To email you now and then about AtoBbee's progress, invitations to test, and when we go live. What you're interested in helps us send you relevant updates. We don't use your data for anything else, we don't sell it, and we don't share it with other parties for their own purposes.</p>
 
-  <h2>What we use it for</h2>
-  <p>To email you now and then about AtoBbee's progress, invitations to test, and when we go live. Your role helps us send you relevant updates. We don't use your data for anything else, we don't sell it, and we don't share it with other parties for their own purposes.</p>
+<h2>Legal basis</h2>
+<p>Your consent, which you give by ticking the box when you sign up. You can withdraw it at any time, using the unsubscribe option in our emails or by emailing us.</p>
 
-  <h2>Legal basis</h2>
-  <p>Your consent, which you give by ticking the box when you sign up. You can withdraw it at any time, using the unsubscribe option in our emails or by emailing us.</p>
+<h2>How long we keep it</h2>
+<p>As long as you're on the waitlist. If you unsubscribe, we delete your data. If AtoBbee doesn't go ahead, we delete the whole list.</p>
 
-  <h2>How long we keep it</h2>
-  <p>As long as you're on the waitlist. If you unsubscribe, we delete your data. If AtoBbee doesn't go ahead, we delete the whole list.</p>
+<h2>Who has access</h2>
+<p>Only us. The data is stored with our hosting provider Hostnet in the Netherlands. [If you later use an email tool such as Brevo or Mailchimp, name it here and say where it stores data.]</p>
 
-  <h2>Who has access</h2>
-  <p>Only us. The data is stored with our hosting provider Hostnet in the Netherlands. [If you later use an email tool such as Brevo or Mailchimp, name it here and say where it stores data.]</p>
+<h2>Cookies</h2>
+<p>The waitlist sets no tracking or advertising cookies. See our <a href="cookies.html">Cookie Policy</a>.</p>
 
-  <h2>Cookies</h2>
-  <p>This website doesn't use tracking or advertising cookies. We load fonts from Google Fonts, which means your browser connects to Google's servers.</p>
+<h2>Your rights</h2>
+<p>You can ask to see, correct or delete your data. Email us and we'll sort it within a month, usually much sooner. If you're not happy with how we handle your data, you can file a complaint with the Dutch Data Protection Authority (<a href="https://autoriteitpersoonsgegevens.nl/en">Autoriteit Persoonsgegevens</a>).</p>
 
-  <h2>Your rights</h2>
-  <p>You can ask to see, correct or delete your data. Email us and we'll sort it within a month, usually much sooner. If you're not happy with how we handle your data, you can file a complaint with the Dutch Data Protection Authority (<a href="https://autoriteitpersoonsgegevens.nl/en">Autoriteit Persoonsgegevens</a>).</p>
-
-  <h2>Changes</h2>
-  <p>When AtoBbee actually launches, a lot will change and we'll update this statement. If we want to use your data for something new, we'll ask for your consent again first.</p>
+<h2>Changes</h2>
+<p>When AtoBbee actually launches, a lot will change and we'll update this statement. If we want to use your data for something new, we'll ask for your consent again first.</p>
 </main>
+<footer><div><span>© 2026 AtoBbee · Transportation Federation BV · Netherlands</span><span><a href="privacy-policy.html">Privacy Policy</a><a href="cookies.html">Cookie Policy</a></span></div></footer>
 </body>
 </html>
