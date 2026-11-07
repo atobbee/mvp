@@ -206,14 +206,14 @@
   .ts-hero{text-align:center;padding-block:44px 28px}
   .ts-hero h1{font-size:clamp(40px,7vw,72px);font-weight:900;letter-spacing:-.045em;margin:12px 0 10px}
   .ts-hero p{color:var(--mist);font-size:18px}
-  .ts-journey{position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;text-align:center;padding-block:16px 36px}
-  .ts-journey::before{content:"";position:absolute;top:50px;left:10%;right:10%;border-top:2px dashed var(--gold-deep);opacity:.6}
-  .ts-stop{position:relative;display:grid;justify-items:center;gap:4px}
-  .ts-node{width:68px;height:68px;border-radius:50%;display:grid;place-items:center;background:var(--navy);border:2px solid var(--gold);color:var(--gold);margin-bottom:10px}
-  .ts-node svg{width:28px;height:28px}
-  .ts-stop.b .ts-node{background:var(--gold);color:var(--navy);box-shadow:0 0 0 9px var(--glow)}
-  .ts-stop b{font-size:16px}
-  .ts-stop span{font-size:13px;color:var(--mist)}
+  .ts-journey{position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;text-align:center;padding:28px 18px 24px;margin-bottom:16px;background:var(--navy-2);border:1px solid var(--line);border-radius:18px}
+  .ts-journey::before{content:"";position:absolute;top:calc(28px + clamp(22px,3.2vw,30px));left:10%;right:10%;border-top:2px dashed var(--gold-deep);opacity:.6}
+  .ts-stop{position:relative;display:grid;justify-items:center;gap:3px;min-width:0}
+  .ts-node{width:clamp(44px,6.4vw,60px);height:clamp(44px,6.4vw,60px);border-radius:50%;display:grid;place-items:center;background:var(--navy);border:2px solid var(--gold);color:var(--gold);margin-bottom:10px}
+  .ts-node svg{width:45%;height:45%}
+  .ts-stop.b .ts-node{background:var(--gold);color:var(--navy);box-shadow:0 0 0 7px var(--glow)}
+  .ts-stop b{font-size:clamp(13px,1.6vw,16px)}
+  .ts-stop span{font-size:clamp(11px,1.3vw,13px);color:var(--mist);line-height:1.35}
   .ts-money{display:grid;gap:22px;margin-bottom:16px}
   .ts-money-head h2,.ts-sec-head h2{font-size:clamp(22px,3vw,30px);font-weight:800;letter-spacing:-.02em;margin-top:8px}
   .ts-flow{display:grid;grid-template-columns:1fr 40px 1.2fr 40px 1.4fr;align-items:center;gap:8px}
@@ -245,14 +245,19 @@
   .ts-fine .stack{padding:0 20px 20px;color:var(--mist);font-size:14px;gap:10px}
   .ts-fine b{color:var(--paper)}
   @media (max-width:900px){
-    .ts-journey{grid-template-columns:1fr;text-align:left;gap:0;padding-left:4px}
-    .ts-journey::before{top:30px;bottom:60px;left:37px;right:auto;border-top:0;border-left:2px dashed var(--gold-deep)}
-    .ts-stop{grid-template-columns:68px 1fr;column-gap:16px;justify-items:start;align-items:center;padding-bottom:14px}
-    .ts-stop .ts-node{grid-row:span 2;margin:0}
     .ts-flow{grid-template-columns:1fr}
     .ts-arrow{width:2px;height:22px;justify-self:center}
     .ts-arrow::after{right:-5px;top:auto;bottom:-2px;border:6px solid transparent;border-top:8px solid var(--gold-deep);border-bottom:0}
     .ts-tiles{grid-template-columns:repeat(3,minmax(0,1fr))}
+  }
+  @media (max-width:560px){
+    .ts-journey{grid-template-columns:1fr;text-align:left;gap:0;padding:20px 20px 8px;max-width:420px;margin-inline:auto}
+    .ts-journey::before{top:40px;bottom:46px;left:41px;right:auto;border-top:0;border-left:2px dashed var(--gold-deep)}
+    .ts-stop{grid-template-columns:44px 1fr;column-gap:14px;justify-items:start;align-items:center;row-gap:0;padding-bottom:14px}
+    .ts-node{width:44px;height:44px;grid-row:span 2;margin:0}
+    .ts-stop.b .ts-node{box-shadow:0 0 0 5px var(--glow)}
+    .ts-stop b{font-size:15px;align-self:end}
+    .ts-stop span{font-size:13px;align-self:start}
   }
   @media (max-width:900px){
     .side,.g4,.roles{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -263,8 +268,11 @@
     .match{grid-template-columns:1fr}
     .price-box{text-align:left;justify-items:start;grid-template-columns:auto auto;align-items:center}
     .steps button span{display:none}
-    .who select{max-width:92px}
-    .brand b{display:none}
+    .who select{max-width:150px}
+    .top .wrap{flex-wrap:wrap;height:auto;padding-block:10px 0;row-gap:6px}
+    .brand{order:1}
+    .who{order:2;margin-left:auto}
+    .nav{order:3;flex:1 0 100%;margin-inline:-6px;padding-bottom:8px}
     .kvl{grid-template-columns:110px 1fr}
   }
   @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
