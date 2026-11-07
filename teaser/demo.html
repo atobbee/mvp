@@ -409,6 +409,24 @@
   [data-mode="dark"] .panel.hi{border-color:rgba(200,184,122,.35)}
   [data-mode="dark"] .stack .stat[style*="background:var(--navy)"]{background:var(--navy)!important}
   [data-mode="dark"] .ts-stop.b .ts-node{background:var(--gold-fill)}
+
+  /* Route match breakdown */
+  .why-btn{margin-top:12px;background:none;border:0;padding:0;font:inherit;font-weight:600;font-size:14px;color:var(--gold);cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+  .why-btn::after{content:"";width:9px;height:9px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translateY(-3px);transition:transform .2s}
+  .why-btn[aria-expanded="true"]::after{transform:rotate(-135deg) translateY(-2px)}
+  .why{margin-top:12px;padding:14px 16px;border-radius:12px;background:#faf8f3;border:1px solid var(--line)}
+  .why p{margin:0 0 10px;font-size:14px;color:var(--mist)}
+  .why p b{color:var(--paper)}
+  .why ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 18px}
+  .why li{display:grid;grid-template-columns:18px 1fr;column-gap:8px;font-size:13px;line-height:1.35}
+  .why li::before{content:"";grid-row:span 2;width:16px;height:16px;margin-top:2px;border-radius:50%;background:#e3f5ea url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232FA36B' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 12 4 4 8-9'/%3E%3C/svg%3E") center/11px no-repeat}
+  .why li.part::before{background:#fdf0d8 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c7861a' stroke-width='3.4' stroke-linecap='round'%3E%3Cpath d='M6 12h12'/%3E%3C/svg%3E") center/11px no-repeat}
+  .why li span{color:var(--mist)}
+  .why li b{color:var(--paper);font-weight:600}
+  [data-mode="dark"] .why{background:var(--navy);}
+  [data-mode="dark"] .why li::before{background-color:rgba(143,212,168,.14)}
+  [data-mode="dark"] .why li.part::before{background-color:rgba(240,198,116,.14)}
+  @media (max-width:640px){.why ul{grid-template-columns:1fr}}
 </style>
 <script>
 /* Light / dark mode, remembered per visitor */
@@ -554,6 +572,22 @@
   };
   function sizeName(){ return { envelope:'Envelope', small:'Small parcel', medium:'Medium parcel', large:'Large parcel' }[state.size]; }
 
+
+  /* Route match breakdown per driver: [factor, detail, ok|part] */
+  var WHY = {
+    sophie:{ sum:'This driver is already travelling along most of your delivery route, has enough vehicle capacity and can meet your requested pickup and delivery times.',
+      f:[['Route overlap','Drives 92% of your route, via the A16','ok'],['Extra driving time','+6 min detour','ok'],['Vehicle space','Room for a medium parcel','ok'],['Size & weight','3.2 kg of 20 kg max','ok'],['Pickup & delivery times','Fits your 15:00–17:00 window','ok'],['Driver preferences','Accepts artisan food','ok'],['Handling & checks','Fragile care and PIN supported','ok']] },
+    marco:{ sum:'This driver covers most of your route with a slightly longer detour. Plenty of space, and the pickup window partly overlaps yours.',
+      f:[['Route overlap','Drives 85% of your route','ok'],['Extra driving time','+14 min detour','part'],['Vehicle space','Large van, lots of room','ok'],['Size & weight','3.2 kg of 80 kg max','ok'],['Pickup & delivery times','14:00–16:00 partly overlaps your window','part'],['Driver preferences','Accepts all categories','ok'],['Handling & checks','Fragile specialist, PIN supported','ok']] },
+    lena:{ sum:'This driver travels a large part of your route and fits your times, with a slightly longer detour.',
+      f:[['Route overlap','Drives 78% of your route','part'],['Extra driving time','+11 min detour','part'],['Vehicle space','Room for a medium parcel','ok'],['Size & weight','3.2 kg of 25 kg max','ok'],['Pickup & delivery times','15:30–17:00 fits your window','ok'],['Driver preferences','Accepts food and artisan products','ok'],['Handling & checks','Fragile care and PIN supported','ok']] }
+  };
+  function whyHtml(id, v){
+    var w = WHY[id]; if (!w) return '';
+    return '<button type="button" class="why-btn" data-why="' + id + '" aria-expanded="false" aria-controls="why-' + id + '">Why ' + v + '%?</button>' +
+      '<div class="why" id="why-' + id + '" hidden><p><b>' + v + '% route match.</b> ' + w.sum + '</p><ul>' +
+      w.f.map(function(x){ return '<li class="' + x[2] + '"><span>' + x[0] + '</span><b>' + x[1] + '</b></li>'; }).join('') + '</ul></div>';
+  }
   V.matches = function(){
     var order = ['sophie','marco','lena'];
     return head('Available drivers', '3 drivers on your route', state.from.split(',').pop().trim() + ' → ' + state.to.split(' ')[0] + ' · Today · ' + sizeName() + ' (' + state.weight + ' kg)',
@@ -562,10 +596,10 @@
         var d = drivers[id];
         return '<article class="panel match"><div><div class="who-l"><div class="av">' + d.ini + '</div><div><h3>' + d.name + '</h3><div class="small mist">' + d.vehicle + ' · ' + d.kind + '</div><div class="small" style="margin-top:4px"><span class="gold">★ ' + d.rating + '</span> <span class="mist">(' + d.n + ' deliveries)</span></div></div></div>' +
           '<div class="badges" style="margin-top:12px">' + d.tags.map(function(t, i){ return '<span class="badge' + (i === 0 ? ' gold' : '') + '">' + (i === 0 ? '✓ ' : '') + t + '</span>'; }).join('') + '</div>' +
-          '<div class="meta"><div><b>' + d.win + '</b><span>Pickup window</span></div><div><b>' + d.eta + '</b><span>Est. delivery</span></div><div><b>' + d.compat + '%</b><span>Route match</span></div></div></div>' +
+          '<div class="meta"><div><b>' + d.win + '</b><span>Pickup window</span></div><div><b>' + d.eta + '</b><span>Est. delivery</span></div><div><b>' + d.compat + '%</b><span>Route match</span></div></div>' + whyHtml(id, d.compat) + '</div>' +
           '<div class="price-box">' + ring(d.compat) + '<div><div class="p">' + eur(d.price) + '</div><div class="small mist">Driver gets ' + eur(driverGets(d.price)) + '</div></div>' +
           '<div class="row"><button class="btn ghost sm" data-go="profile" data-pick="' + id + '">Profile</button><button class="btn sm" data-go="checkout" data-pick="' + id + '">Book</button></div></div></article>';
-      }).join('') + note('Route match looks at origin and destination area, date, maximum detour, free capacity and your package requirements. It is rule-based, not AI.') + '</div>';
+      }).join('') + note('Route match combines route overlap, extra driving time, vehicle space, package size and weight, pickup and delivery times, driver preferences and the handling or checks you asked for. It is rule-based, not AI.') + '</div>';
   };
 
   V.profile = function(){
@@ -690,7 +724,7 @@
 
   V.point = function(){
     var rows = [['#ATB-2026-00342','Small parcel · 1.2 kg','Before 14:00','<span class="badge gold">In transit</span>',''],['#ATB-2026-00338','Envelope · 0.2 kg','Before 17:00','<span class="badge warn">Awaiting pickup</span>','<button class="btn ghost sm" data-toast="Handed over to the recipient (demo).">Hand over</button>'],['#ATB-2026-00330','Medium parcel · 4.5 kg','Collected 11:30','<span class="badge ok">Collected ✓</span>','']];
-    return head('Pickup point', 'De Kaashoek, Breda', 'AtoBbee Business · €0.99/month · active', '<span class="badge ok">● Open</span>') +
+    return head('Pickup point', 'De Kaashoek, Breda', 'AtoBbee Business · €0.99/month or €10/year · active', '<span class="badge ok">● Open</span>') +
       '<div class="grid g4"><div class="stat"><b class="gold">3</b><span>Expected today</span></div><div class="stat"><b>1</b><span>Awaiting collection</span></div><div class="stat"><b>2</b><span>Collected today</span></div><div class="stat"><b>10</b><span>Daily limit</span></div></div>' +
       '<div class="side" style="margin-top:16px"><div class="stack"><div class="panel"><h2 style="margin-bottom:8px">Today’s packages</h2><div class="table-wrap"><table><thead><tr><th>Booking</th><th>Contents</th><th>ETA</th><th>Status</th><th></th></tr></thead><tbody>' +
         rows.map(function(r){ return '<tr><td>' + r[0] + '</td><td>' + r[1] + '</td><td>' + r[2] + '</td><td>' + r[3] + '</td><td>' + r[4] + '</td></tr>'; }).join('') + '</tbody></table></div></div>' +
@@ -822,6 +856,7 @@
 
   document.addEventListener('click', function(e){
     var el;
+    if ((el = e.target.closest('[data-why]'))) { var box = document.getElementById('why-' + el.dataset.why); var open = box.hidden; box.hidden = !open; el.setAttribute('aria-expanded', open ? 'true' : 'false'); return; }
     if ((el = e.target.closest('[data-role]'))) { setRole(el.dataset.role); return; }
     if ((el = e.target.closest('[data-step]'))) { saveSend(); state.step = +el.dataset.step; render(); return; }
     if ((el = e.target.closest('[data-price]'))) { state.routePrice = +el.dataset.price; render(); return; }

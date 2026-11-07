@@ -5,6 +5,7 @@ require __DIR__ . '/db.php';
 
 const CONSENT_TEXT = 'Yes, send me AtoBbee news and early-access invites. Unsubscribe anytime.';
 const ROLES = ['sending', 'driving', 'pickup'];
+const COUNTRIES = ['Netherlands', 'Belgium', 'Germany', 'Other'];
 
 $wantsJson = str_contains($_SERVER['HTTP_ACCEPT'] ?? '', 'application/json');
 
@@ -35,10 +36,19 @@ $roles   = array_values(array_intersect(ROLES, array_map('strval', $picked)));
 $consent = ($_POST['consent'] ?? '') === 'yes';
 $firstName = mb_substr(trim(strip_tags((string)($_POST['first_name'] ?? ''))), 0, 60);
 $lastName  = mb_substr(trim(strip_tags((string)($_POST['last_name'] ?? ''))), 0, 80);
+$postcode  = strtoupper(mb_substr(trim(strip_tags((string)($_POST['postcode'] ?? ''))), 0, 12));
+$city      = mb_substr(trim(strip_tags((string)($_POST['city'] ?? ''))), 0, 80);
+$country   = (string)($_POST['country'] ?? '');
 $company   = in_array('pickup', $roles, true) ? mb_substr(trim(strip_tags((string)($_POST['company'] ?? ''))), 0, 120) : '';
 
 if (!$roles) {
     respond(false, 'Pick at least one option.', $wantsJson);
+}
+if ($firstName === '' || $lastName === '') {
+    respond(false, 'Fill in your first name and surname.', $wantsJson);
+}
+if ($postcode === '' || $city === '' || !in_array($country, COUNTRIES, true)) {
+    respond(false, 'Fill in your postcode, city and country.', $wantsJson);
 }
 if (!filter_var($email, FILTER_VALIDATE_EMAIL) || strlen($email) > 254) {
     respond(false, "That email doesn't look quite right.", $wantsJson);
@@ -49,9 +59,9 @@ if (!$consent) {
 
 try {
     $db = atobbee_db();
-    $stmt = $db->prepare('INSERT INTO waitlist (email, role, consent_text, created_at, first_name, last_name, company)
-                          VALUES (:email, :role, :consent, :created, :first, :last, :company)
-                          ON CONFLICT(email) DO UPDATE SET role = excluded.role,
+    $stmt = $db->prepare('INSERT INTO waitlist (email, role, consent_text, created_at, first_name, last_name, company, postcode, city, country)
+                          VALUES (:email, :role, :consent, :created, :first, :last, :company, :postcode, :city, :country)
+                          ON CONFLICT(email) DO UPDATE SET role = excluded.role, postcode = excluded.postcode, city = excluded.city, country = excluded.country,
                             first_name = COALESCE(NULLIF(excluded.first_name, \'\'), first_name),
                             last_name  = COALESCE(NULLIF(excluded.last_name, \'\'), last_name),
                             company    = COALESCE(NULLIF(excluded.company, \'\'), company)');
@@ -63,6 +73,9 @@ try {
         ':first'   => $firstName,
         ':last'    => $lastName,
         ':company' => $company,
+        ':postcode'=> $postcode,
+        ':city'    => $city,
+        ':country' => $country,
     ]);
 } catch (Throwable $e) {
     error_log('AtoBbee signup failed: ' . $e->getMessage());

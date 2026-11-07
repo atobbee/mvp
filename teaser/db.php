@@ -15,11 +15,14 @@ function atobbee_db(): PDO
         created_at   TEXT NOT NULL,
         first_name   TEXT,
         last_name    TEXT,
+        postcode     TEXT,
+        city         TEXT,
+        country      TEXT,
         company      TEXT
     )');
     // Upgrade databases created before these columns existed
     $cols = array_column($pdo->query('PRAGMA table_info(waitlist)')->fetchAll(PDO::FETCH_ASSOC), 'name');
-    foreach (['first_name', 'last_name', 'company'] as $col) {
+    foreach (['first_name', 'last_name', 'company', 'postcode', 'city', 'country'] as $col) {
         if (!in_array($col, $cols, true)) $pdo->exec("ALTER TABLE waitlist ADD COLUMN $col TEXT");
     }
     return $pdo;

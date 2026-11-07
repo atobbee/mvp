@@ -410,6 +410,32 @@
   .pf-center{text-align:center;margin-top:12px}
   @media (max-width:700px){.pf-grid{grid-template-columns:1fr}}
   @media (max-width:600px){.pf-links{grid-template-columns:1fr 1fr}}
+
+  /* Location fields */
+  .loc{border:0;padding:0;margin:0}
+  .loc legend{margin-bottom:8px}
+  .loc-row{display:grid;grid-template-columns:1fr 1.3fr 1.2fr;gap:10px}
+  .field select{width:100%;padding:13px 18px;border:1px solid var(--line);border-radius:999px;font:inherit;font-size:16px;background:#fff;color:var(--paper);appearance:none;-webkit-appearance:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238a7536' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-size:16px;padding-right:40px}
+  .field select:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px var(--glow)}
+  .loc-note{font-size:13px;color:var(--dim);margin:8px 2px 0}
+  @media (max-width:560px){.loc-row{grid-template-columns:1fr 1fr}.loc-row .field:last-child{grid-column:1/-1}}
+  /* Route match explainer */
+  .ex-match{margin-top:20px;padding:28px;gap:20px}
+  .ex-match-top{display:flex;gap:20px;align-items:center}
+  .ex-match-top h3{margin-bottom:6px}
+  .ex-match-top p{flex:none}
+  .ex-ring{--v:90;width:84px;height:84px;border-radius:50%;flex:none;display:grid;place-items:center;position:relative;background:conic-gradient(#C8B87A calc(var(--v)*1%),#ece8dd 0)}
+  .ex-ring::before{content:"";position:absolute;inset:8px;border-radius:50%;background:#fff}
+  .ex-ring b{position:relative;font-family:var(--cond);font-size:24px;color:#8a7536}
+  .ex-factors{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+  .ex-factors div{display:grid;grid-template-columns:34px 1fr;column-gap:10px;align-items:start;padding:12px;border-radius:12px;background:#faf8f3;border:1px solid var(--line)}
+  .ex-factors svg{grid-row:span 2;width:34px;height:34px;padding:7px;border-radius:9px;background:#f6efd9;color:#8a7536}
+  .ex-factors b{font-size:15px;color:var(--paper);line-height:1.3}
+  .ex-factors span{font-size:13px;color:var(--dim);line-height:1.4}
+  .ex-match-note{font-size:13px;color:var(--dim)!important;margin:0!important}
+  @media (max-width:900px){.ex-factors{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media (max-width:560px){.ex-factors{grid-template-columns:1fr}.ex-match-top{flex-direction:column;align-items:flex-start}}
 </style>
 </head>
 <body>
@@ -582,6 +608,7 @@
       <h1>Your shop. <em>The local hub.</em></h1>
       <p class="sub">Neighbours pick up their packages at your counter, and stay for a coffee.</p>
       <ul class="chips">
+        <li>€0.99/month or €10/year</li>
         <li>More foot traffic</li>
         <li>Your hours, your limits</li>
         <li>Pause anytime</li>
@@ -630,9 +657,18 @@
         </fieldset>
         <div class="shop-field field" id="shopField"><label for="shop">Shop or business name <span class="opt">(optional)</span></label><input type="text" id="shop" name="company" maxlength="120" autocomplete="organization" placeholder="e.g. De Kaashoek, Breda"></div>
         <div class="name-row">
-          <div class="field"><label for="fname">First name <span class="opt">(optional)</span></label><input type="text" id="fname" name="first_name" maxlength="60" autocomplete="given-name" placeholder="Anna"></div>
-          <div class="field"><label for="lname">Surname <span class="opt">(optional)</span></label><input type="text" id="lname" name="last_name" maxlength="80" autocomplete="family-name" placeholder="de Vries"></div>
+          <div class="field"><label for="fname">First name</label><input type="text" id="fname" name="first_name" maxlength="60" autocomplete="given-name" placeholder="Anna" required></div>
+          <div class="field"><label for="lname">Surname</label><input type="text" id="lname" name="last_name" maxlength="80" autocomplete="family-name" placeholder="de Vries" required></div>
         </div>
+        <fieldset class="loc">
+          <legend>Where are you based?</legend>
+          <div class="loc-row">
+            <div class="field"><label for="postcode">Postcode</label><input type="text" id="postcode" name="postcode" maxlength="12" autocomplete="postal-code" placeholder="4811 AB" required></div>
+            <div class="field"><label for="city">City</label><input type="text" id="city" name="city" maxlength="80" autocomplete="address-level2" placeholder="Breda" required></div>
+            <div class="field"><label for="country">Country</label><select id="country" name="country" autocomplete="country-name"><option>Netherlands</option><option>Belgium</option><option>Germany</option><option>Other</option></select></div>
+          </div>
+          <p class="loc-note">Just your postcode and city, never your street address. It shows us where to launch first.</p>
+        </fieldset>
         <div class="email-row">
           <input type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com" aria-label="Email address" required>
           <button class="btn" type="submit">Get early access</button>
@@ -678,7 +714,7 @@
           </article>
           <article class="ex-card">
             <div class="ex-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M4 10v10h16V10"/><path d="M3 10l2-6h14l2 6z"/><path d="M10 20v-5h4v5"/></svg></div>
-            <h3>Businesses</h3><p>Become an AtoBbee pickup point and hold packages for neighbours, for a small monthly fee.</p>
+            <h3>Businesses</h3><p>Become an AtoBbee pickup point and hold packages for neighbours, for €0.99 a month or €10 a year.</p>
             <a class="btn ghost sm" href="#join" data-go="join" data-role="pickup">Join as a pickup point</a>
           </article>
         </div>
@@ -689,9 +725,28 @@
       <div class="wrap">
         <div class="ex-head"><span class="caps">Active routes today</span><h2>Drivers already on the road in your region</h2><p>An example of what you'll see when you post a package.</p></div>
         <div class="ex-grid3">
-          <div class="ex-card ex-route"><div class="ex-route-top"><b>Breda <i>→</i> Rotterdam</b></div><div class="ex-who"><svg class="ex-person" width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="21" fill="#2c4370" stroke="#d8cfae" stroke-width="2"/><circle cx="22" cy="17" r="7" fill="#d4c07f"/><path d="M9.5 37.5c1.6-7 6.5-10.5 12.5-10.5s10.9 3.5 12.5 10.5A20.8 20.8 0 0 1 22 43a20.8 20.8 0 0 1-12.5-5.5z" fill="#d4c07f"/></svg><div><b>Sophie V.</b><span>Tesla Model 3 · Today 15:00–17:00</span></div></div><div class="ex-route-foot"><span class="ex-chip">94% compatible</span><span class="ex-price">From €20</span></div></div>
-          <div class="ex-card ex-route"><div class="ex-route-top"><b>Tilburg <i>→</i> Antwerp</b></div><div class="ex-who"><svg class="ex-person" width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="21" fill="#1d2a44" stroke="#d8cfae" stroke-width="2"/><circle cx="22" cy="17" r="7" fill="#d4c07f"/><path d="M9.5 37.5c1.6-7 6.5-10.5 12.5-10.5s10.9 3.5 12.5 10.5A20.8 20.8 0 0 1 22 43a20.8 20.8 0 0 1-12.5-5.5z" fill="#d4c07f"/></svg><div><b>Marco T.</b><span>VW Transporter · Today 16:30</span></div></div><div class="ex-route-foot"><span class="ex-chip">88% compatible</span><span class="ex-price">From €28</span></div></div>
-          <div class="ex-card ex-route"><div class="ex-route-top"><b>Eindhoven <i>→</i> Breda</b></div><div class="ex-who"><svg class="ex-person" width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="21" fill="#2f5a48" stroke="#d8cfae" stroke-width="2"/><circle cx="22" cy="17" r="7" fill="#d4c07f"/><path d="M9.5 37.5c1.6-7 6.5-10.5 12.5-10.5s10.9 3.5 12.5 10.5A20.8 20.8 0 0 1 22 43a20.8 20.8 0 0 1-12.5-5.5z" fill="#d4c07f"/></svg><div><b>Lena K.</b><span>Cargo bike · Tomorrow 09:00</span></div></div><div class="ex-route-foot"><span class="ex-chip">82% compatible</span><span class="ex-price">From €12</span></div></div>
+          <div class="ex-card ex-route"><div class="ex-route-top"><b>Breda <i>→</i> Rotterdam</b></div><div class="ex-who"><svg class="ex-person" width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="21" fill="#2c4370" stroke="#d8cfae" stroke-width="2"/><circle cx="22" cy="17" r="7" fill="#d4c07f"/><path d="M9.5 37.5c1.6-7 6.5-10.5 12.5-10.5s10.9 3.5 12.5 10.5A20.8 20.8 0 0 1 22 43a20.8 20.8 0 0 1-12.5-5.5z" fill="#d4c07f"/></svg><div><b>Sophie V.</b><span>Tesla Model 3 · Today 15:00–17:00</span></div></div><div class="ex-route-foot"><span class="ex-chip">94% route match</span><span class="ex-price">From €20</span></div></div>
+          <div class="ex-card ex-route"><div class="ex-route-top"><b>Tilburg <i>→</i> Antwerp</b></div><div class="ex-who"><svg class="ex-person" width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="21" fill="#1d2a44" stroke="#d8cfae" stroke-width="2"/><circle cx="22" cy="17" r="7" fill="#d4c07f"/><path d="M9.5 37.5c1.6-7 6.5-10.5 12.5-10.5s10.9 3.5 12.5 10.5A20.8 20.8 0 0 1 22 43a20.8 20.8 0 0 1-12.5-5.5z" fill="#d4c07f"/></svg><div><b>Marco T.</b><span>VW Transporter · Today 16:30</span></div></div><div class="ex-route-foot"><span class="ex-chip">88% route match</span><span class="ex-price">From €28</span></div></div>
+          <div class="ex-card ex-route"><div class="ex-route-top"><b>Eindhoven <i>→</i> Breda</b></div><div class="ex-who"><svg class="ex-person" width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="21" fill="#2f5a48" stroke="#d8cfae" stroke-width="2"/><circle cx="22" cy="17" r="7" fill="#d4c07f"/><path d="M9.5 37.5c1.6-7 6.5-10.5 12.5-10.5s10.9 3.5 12.5 10.5A20.8 20.8 0 0 1 22 43a20.8 20.8 0 0 1-12.5-5.5z" fill="#d4c07f"/></svg><div><b>Lena K.</b><span>Cargo bike · Tomorrow 09:00</span></div></div><div class="ex-route-foot"><span class="ex-chip">82% route match</span><span class="ex-price">From €12</span></div></div>
+        </div>
+        <div class="ex-card ex-match">
+          <div class="ex-match-top">
+            <div class="ex-ring" style="--v:94"><b>94%</b></div>
+            <div>
+              <h3>What does 94% route match mean?</h3>
+              <p>This driver is already travelling along most of your delivery route, has enough vehicle capacity and can meet your requested pickup and delivery times.</p>
+            </div>
+          </div>
+          <div class="ex-factors">
+            <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="6" r="2.5"/><path d="M8.5 18H14a4 4 0 0 0 0-8h-4a4 4 0 0 1 0-8h5.5"/></svg><b>Route overlap</b><span>How much of your route the driver already drives</span></div>
+            <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 1.5M9 2h6"/></svg><b>Extra driving time</b><span>The detour to pick up and drop off</span></div>
+            <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg><b>Vehicle space</b><span>Room left in the car, van or bike</span></div>
+            <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5 12 12l9-4.5M12 12v9"/></svg><b>Size &amp; weight</b><span>Your package fits the driver's limits</span></div>
+            <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><b>Pickup &amp; delivery times</b><span>Overlap with your time windows</span></div>
+            <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg><b>Driver preferences</b><span>Categories and items they accept</span></div>
+            <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.4 8 8 9 4.6-1 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg><b>Handling &amp; checks</b><span>Fragile care, PIN, ID or signature you asked for</span></div>
+          </div>
+          <p class="ex-match-note">Rule-based, not AI: you can always see why a driver matches.</p>
         </div>
         <p class="ex-foot">Example data. Live routes appear once AtoBbee launches.</p>
       </div>
@@ -754,7 +809,7 @@
           <div class="ex-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M4 10v10h16V10"/><path d="M3 10l2-6h14l2 6z"/><path d="M10 20v-5h4v5"/></svg></div>
           <h3>AtoBbee Business</h3>
           <div class="ex-plan-price">€0.99<small>/month</small></div>
-          <p class="ex-plan-per">or €11.88 billed annually · planned</p>
+          <p class="ex-plan-per">or €10 a year · planned</p>
           <ul class="ex-checks">
             <li>Business pickup point profile</li>
             <li>Opening hours and daily capacity</li>
@@ -877,6 +932,8 @@
   form.addEventListener('submit', function(e){
     e.preventDefault();
     if (!form.querySelector('input[name="roles[]"]:checked')) { msg.textContent = 'Pick at least one option.'; return; }
+    if (!form.first_name.value.trim() || !form.last_name.value.trim()) { msg.textContent = 'Fill in your first name and surname.'; return; }
+    if (!form.postcode.value.trim() || !form.city.value.trim()) { msg.textContent = 'Fill in your postcode and city.'; return; }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.value.trim())) { msg.textContent = "That email doesn't look quite right."; return; }
     if (!form.consent.checked) { msg.textContent = 'Tick the box so we can email you.'; return; }
     msg.textContent = '';
