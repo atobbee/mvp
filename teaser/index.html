@@ -332,20 +332,6 @@
   .cta-band p{color:var(--mist);font-size:18px;margin:0 auto 26px;max-width:34em}
   .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
   .cta-band .cta-note{font-size:13px;font-style:italic;color:var(--dim);margin:22px auto 0}
-  .site-foot{background:#0D1B2A;border-top:1px solid rgba(236,231,220,.08);margin-top:0;padding-block:52px 30px;text-align:left;color:var(--mist);font-size:15px}
-  .foot-grid{display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:32px}
-  .site-foot .brand{display:inline-flex;margin-bottom:14px}
-  .site-foot .brand .wordmark{font-size:24px;letter-spacing:.02em;color:var(--gold)}
-  .site-foot p{margin:0 0 10px;color:var(--paper);line-height:1.6}
-  .site-foot .foot-soft{font-size:13px;font-style:italic;color:var(--dim)}
-  .site-foot h4{font-family:var(--cond);font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin:6px 0 14px}
-  .site-foot ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
-  .site-foot a{color:var(--mist);text-decoration:none}
-  .site-foot a:hover{color:#fff}
-  .foot-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid rgba(236,231,220,.1);margin-top:36px;padding-top:18px;font-size:14px}
-  .foot-fine{font-size:12.5px;font-style:italic;color:var(--dim)!important;text-align:center;margin-top:14px!important}
-  @media (max-width:860px){.foot-grid{grid-template-columns:1fr 1fr}.foot-brand{grid-column:1/-1}}
-  @media (max-width:480px){.foot-grid{grid-template-columns:1fr}}
   /* ===== Join page: more about AtoBbee ===== */
   .ex-band{padding-block:64px;position:relative;isolation:isolate}
   .ex-band.alt::before{content:"";position:absolute;inset:0 calc(50% - 50vw);z-index:-1;background:#E8E4D9}
@@ -406,19 +392,24 @@
   .ex-back{text-align:center;padding-block:8px 24px}
   @media (max-width:900px){.ex-grid3{grid-template-columns:repeat(2,minmax(0,1fr))}.ex-split{grid-template-columns:1fr;gap:28px}.ex-split.rev > div:last-child{order:-1}}
   @media (max-width:600px){.ex-grid3{grid-template-columns:1fr}.ex-band{padding-block:48px}.ex-price-card{padding:24px 20px}}
-  /* Footer sized to match the prototype */
-  .site-foot{padding-block:64px 40px;font-size:17px}
-  .foot-grid{gap:48px}
-  .site-foot .brand{margin-bottom:18px}
-  .site-foot .brand img{width:40px;height:40px}
-  .site-foot .brand .wordmark{font-size:28px}
-  .site-foot p{font-size:17px;color:#e8e4d9;line-height:1.75}
-  .site-foot .foot-soft{font-size:15px;line-height:1.8;color:#7a8699}
-  .site-foot h4{font-size:17px;letter-spacing:.08em;margin:8px 0 18px}
-  .site-foot ul{gap:14px}
-  .site-foot a,.site-foot li span{color:rgba(232,228,217,.78)}
-  .foot-bottom{font-size:16px;color:#e8e4d9;margin-top:44px;padding-top:24px}
-  .foot-fine{font-size:15px!important;line-height:1.75;margin-top:18px!important}
+
+  /* Footer: same structure, type and spacing as the prototype */
+  .pf{background:#0D1B2A;color:rgba(255,255,255,.7);padding:48px 0 24px;font-family:var(--font);font-size:16px;line-height:1.6;text-align:left}
+  .pf-container{max-width:1200px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+  .pf-grid{display:grid;grid-template-columns:250px 1fr;gap:40px;margin-bottom:40px}
+  .pf-logo{margin-bottom:12px;display:flex;align-items:center;gap:10px;text-decoration:none}
+  .pf-logo img{height:36px;width:36px}
+  .pf-logo span{color:#C8B87A;font-family:var(--cond);font-size:1.3rem;font-weight:700}
+  .pf-tag{font-size:.88rem;line-height:1.6;margin:0 0 8px;color:rgba(255,255,255,.7)}
+  .pf-links{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .pf-col h4{color:#C8B87A;font-family:var(--cond);font-size:.9rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin:0 0 10px}
+  .pf-col a{display:block;color:rgba(255,255,255,.6);text-decoration:none;font-size:.88rem;margin-bottom:6px;transition:color .15s}
+  .pf-col a:hover{color:#C8B87A}
+  .pf-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:.82rem}
+  .pf-legal{font-size:.78rem;color:rgba(255,255,255,.4);margin:8px 0 0;font-style:italic;line-height:1.6}
+  .pf-center{text-align:center;margin-top:12px}
+  @media (max-width:700px){.pf-grid{grid-template-columns:1fr}}
+  @media (max-width:600px){.pf-links{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
@@ -797,20 +788,40 @@
     <p class="cta-note">No passenger transport · Coming soon · Not yet a live service</p>
   </div>
 </section>
-<footer class="site-foot dz">
-  <div class="wrap">
-    <div class="foot-grid">
-      <div class="foot-brand">
-        <a class="brand" href="#" data-go="home"><img src="assets/logo-mark.svg" alt=""><span class="wordmark">AtoBbee</span></a>
-        <p>A to B. Every time.<br>Community-powered delivery for the Netherlands.</p>
-        <p class="foot-soft">Coming soon · Initial market: Breda–Rotterdam corridor</p>
+<footer class="pf">
+  <div class="pf-container">
+    <div class="pf-grid">
+      <div>
+        <a class="pf-logo" href="#" data-go="home"><img src="assets/logo-mark.svg" alt="AtoBbee"><span>AtoBbee</span></a>
+        <p class="pf-tag">A to B. Every time.<br>Community-powered delivery for the Netherlands.</p>
+        <p class="pf-legal">Coming soon · Not yet a live service<br>Initial market: Breda–Rotterdam corridor</p>
       </div>
-      <div><h4>Platform</h4><ul><li><a href="#send" data-go="send">Send a package</a></li><li><a href="#drive" data-go="drive">Drive &amp; earn</a></li><li><a href="#host" data-go="host">Business pickup</a></li><li><a href="demo.html" data-demo>Try the demo</a></li></ul></div>
-      <div><h4>Company</h4><ul><li><a href="#join" data-go="join">Early access</a></li><li><a href="demo.html" data-demo>Trust &amp; safety</a></li><li><span>Contact: YOUR-ADDRESS@gmail.com</span></li></ul></div>
-      <div><h4>Legal</h4><ul><li><a href="privacy.html">Privacy statement</a></li></ul></div>
+      <div class="pf-links">
+        <div class="pf-col">
+          <h4>Platform</h4>
+          <a href="#send" data-go="send">Send a Package</a>
+          <a href="#drive" data-go="drive">Drive &amp; Earn</a>
+          <a href="#host" data-go="host">Business Pickup</a>
+          <a href="demo.html" data-demo>Try the Demo</a>
+        </div>
+        <div class="pf-col">
+          <h4>Company</h4>
+          <a href="demo.html" data-demo>Trust &amp; Safety</a>
+          <a href="#" data-go="home">How It Works</a>
+          <a href="#join" data-go="join">Early Access</a>
+          <a href="mailto:YOUR-ADDRESS@gmail.com">Contact</a>
+        </div>
+        <div class="pf-col">
+          <h4>Legal</h4>
+          <a href="privacy.html">Privacy Policy</a>
+        </div>
+      </div>
     </div>
-    <div class="foot-bottom"><span>© 2026 AtoBbee · Netherlands</span><span>A Transportation Federation product</span></div>
-    <p class="foot-fine">AtoBbee will operate a marketplace connecting senders with independent transport providers. Responsibilities, insurance, liability limits and claims procedures will be governed by the final platform terms and applicable law. All legal text requires professional review before launch.</p>
+    <div class="pf-bottom">
+      <span>© 2026 AtoBbee · Netherlands</span>
+      <span>A Transportation Federation product</span>
+    </div>
+    <p class="pf-legal pf-center">AtoBbee will operate a marketplace connecting senders with independent transport providers. Responsibilities, insurance, liability limits and claims procedures will be governed by the final platform terms and applicable law. All legal text requires professional review before launch.</p>
   </div>
 </footer>
 
