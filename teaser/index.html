@@ -218,6 +218,19 @@
   .done h2{font-size:36px;font-weight:900;letter-spacing:-.03em;margin-bottom:8px}
   .done p{color:var(--mist)}
 
+  /* Demo notice */
+  .modal{position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:20px;background:rgba(8,14,26,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+  .modal[hidden]{display:none}
+  .modal-card{width:min(440px,100%);background:var(--navy-2);border:1px solid rgba(217,197,140,.4);border-radius:24px;padding:28px;box-shadow:0 30px 70px rgba(0,0,0,.5);animation:popin .3s ease both}
+  .modal-card .caps{display:block;margin-bottom:10px}
+  .modal-card h2{font-size:28px;font-weight:900;letter-spacing:-.03em;margin-bottom:12px}
+  .modal-card ul{list-style:none;padding:0;margin:0 0 22px;display:grid;gap:10px}
+  .modal-card li{display:flex;gap:10px;color:var(--mist);font-size:15px}
+  .modal-card li::before{content:"";flex:none;width:8px;height:8px;margin-top:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px var(--glow)}
+  .modal-card .row{display:flex;gap:10px;flex-wrap:wrap}
+  .modal-card .row .btn{flex:1 1 auto;justify-content:center}
+  @keyframes popin{from{transform:translateY(10px) scale(.97)}to{transform:none}}
+
   /* Footer */
   footer{border-top:1px solid var(--line);padding-block:40px 32px;text-align:center}
   footer .wordmark{font-size:clamp(26px,4.5vw,40px);letter-spacing:.24em;display:block;margin-bottom:10px}
@@ -253,7 +266,7 @@
       <a href="#drive" data-go="drive">Drive</a>
       <a href="#host" data-go="host">Pickup points</a>
     </nav>
-    <a class="btn sm" href="#join" data-go="join">Get early access</a>
+    <a class="btn sm" href="demo.html" data-demo>Open demo</a>
   </div>
 </header>
 
@@ -298,7 +311,7 @@
       <p class="sub">Send your package with people already heading your way.</p>
       <div class="row">
         <a class="btn" href="#join" data-go="join">Get early access</a>
-        <a class="btn ghost" href="demo.html" id="demo-link">Peek at the demo</a>
+        <a class="btn ghost" href="demo.html" id="demo-link" data-demo>Peek at the demo</a>
       </div>
     </div>
   </div>
@@ -509,6 +522,22 @@
   </div>
 </footer>
 
+<div class="modal" id="demoModal" hidden role="dialog" aria-modal="true" aria-labelledby="demoTitle">
+  <div class="modal-card">
+    <span class="caps">Heads up</span>
+    <h2 id="demoTitle">This is just a demo.</h2>
+    <ul>
+      <li>Every person, package, price and booking in it is example data.</li>
+      <li>Nothing you type or click is saved or sent anywhere.</li>
+      <li>No real deliveries or payments happen.</li>
+    </ul>
+    <div class="row">
+      <a class="btn" id="demoGo" href="demo.html">Open the demo</a>
+      <button class="btn ghost" type="button" id="demoCancel">Not now</button>
+    </div>
+  </div>
+</div>
+
 <script>
 (function(){
   var views = ['home','send','drive','host','join'];
@@ -555,6 +584,17 @@
   var qs = new URLSearchParams(location.search);
   if (qs.get('joined')) { show('join'); form.style.display = 'none'; done.classList.add('on'); }
   if (qs.get('error')) { show('join'); msg.textContent = qs.get('error'); }
+
+  // Demo notice before opening the demo
+  var modal = document.getElementById('demoModal'), lastFocus = null;
+  function openModal(){ lastFocus = document.activeElement; modal.hidden = false; document.getElementById('demoGo').focus(); }
+  function closeModal(){ modal.hidden = true; if (lastFocus) lastFocus.focus(); }
+  document.addEventListener('click', function(e){
+    var d = e.target.closest('[data-demo]');
+    if (d){ e.preventDefault(); openModal(); return; }
+    if (e.target === modal || e.target.id === 'demoCancel') closeModal();
+  });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !modal.hidden) closeModal(); });
 })();
 </script>
 
