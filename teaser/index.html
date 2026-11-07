@@ -388,7 +388,9 @@
   .ex-checks li::before{content:"";position:absolute;left:0;top:2px;width:20px;height:20px;border-radius:50%;background:#e3f5ea url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232FA36B' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 12 4 4 8-9'/%3E%3C/svg%3E") center/13px no-repeat}
   .ex-profile{gap:0;padding:28px}
   .ex-profile .ex-who b{font-size:20px}
-  .ex-verified{display:inline-block;margin-top:8px;font-style:normal;font-family:var(--cond);font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;padding:4px 12px;border-radius:999px;background:#e3f5ea;color:#1f7a49}
+  .ex-verified{display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-style:normal;font-family:var(--cond);font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;padding:5px 13px;border-radius:999px;background:#0D1B2A;color:#C8B87A}
+  .ex-verified::before{content:"";width:12px;height:12px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23C8B87A' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 12 5 5 9-10'/%3E%3C/svg%3E") center/contain no-repeat}
+  .ex-stats div:last-child b{color:#2FA36B}
   .ex-stats{display:grid;grid-template-columns:repeat(3,1fr);text-align:center;border-top:1px solid var(--line);margin-top:22px;padding-top:18px}
   .ex-stats b{display:block;font-family:var(--cond);font-size:30px;color:var(--paper)}
   .ex-stats span{font-size:14px;color:var(--dim)}
@@ -399,6 +401,8 @@
   .ex-plan .ex-checks{margin:8px 0 14px}
   .ex-plan .btn.block{align-self:stretch;width:100%;justify-content:center}
   .ex-person{flex:none;display:block}
+  .btn.ex-navy{background:#0D1B2A;color:#C8B87A}
+  .btn.ex-navy:hover{background:#1a2d44}
   .ex-back{text-align:center;padding-block:8px 24px}
   @media (max-width:900px){.ex-grid3{grid-template-columns:repeat(2,minmax(0,1fr))}.ex-split{grid-template-columns:1fr;gap:28px}.ex-split.rev > div:last-child{order:-1}}
   @media (max-width:600px){.ex-grid3{grid-template-columns:1fr}.ex-band{padding-block:48px}.ex-price-card{padding:24px 20px}}
@@ -744,7 +748,7 @@
             <li>24 hours to report a problem before the driver is paid</li>
             <li>Admin review for serious incidents</li>
           </ul>
-          <a class="btn ghost" href="demo.html" data-demo>See it in the demo</a>
+          <a class="btn ex-navy" href="demo.html" data-demo>See it in the demo →</a>
         </div>
         <div class="ex-card ex-profile">
           <div class="ex-who"><svg class="ex-person lg" width="76" height="76" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="21" fill="#2c4370" stroke="#d8cfae" stroke-width="2"/><circle cx="22" cy="17" r="7" fill="#d4c07f"/><path d="M9.5 37.5c1.6-7 6.5-10.5 12.5-10.5s10.9 3.5 12.5 10.5A20.8 20.8 0 0 1 22 43a20.8 20.8 0 0 1-12.5-5.5z" fill="#d4c07f"/></svg><div><b>Sophie van den Berg</b><span>Private driver · Tesla Model 3</span><em class="ex-verified">Identity verified</em></div></div>
