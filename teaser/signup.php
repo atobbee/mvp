@@ -3,7 +3,7 @@
 
 require __DIR__ . '/db.php';
 
-const CONSENT_TEXT = 'Yes, send me AtoBbee news and early-access invites. Unsubscribe anytime.';
+const CONSENT_TEXT = 'Yes, send me Atobbee news and early-access invites. Unsubscribe anytime.';
 const ROLES = ['sending', 'driving', 'pickup'];
 const COUNTRIES = ['Netherlands', 'Belgium', 'Germany', 'Other'];
 
@@ -78,7 +78,7 @@ try {
         ':country' => $country,
     ]);
 } catch (Throwable $e) {
-    error_log('AtoBbee signup failed: ' . $e->getMessage());
+    error_log('Atobbee signup failed: ' . $e->getMessage());
     respond(false, 'Something went wrong on our side. Please try again in a moment.', $wantsJson);
 }
 

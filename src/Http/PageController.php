@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace AtoBbee\Http;
+namespace Atobbee\Http;
 
-use AtoBbee\Domain\{BookingService, Matching, Pricing};
+use Atobbee\Domain\{BookingService, Matching, Pricing};
 
 final class PageController
 {

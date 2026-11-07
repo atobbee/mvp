@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace AtoBbee\Domain;
+namespace Atobbee\Domain;
 
 /**
  * Booking lifecycle. Every status change goes through BookingService::transition(),

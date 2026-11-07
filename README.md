@@ -1,6 +1,6 @@
-# AtoBbee MVP
+# Atobbee MVP
 
-Community-powered package delivery for the Breda–Rotterdam corridor. Senders post a package, verified drivers already travelling that way carry it, AtoBbee takes 8% (min €1.50) and pays the driver after delivery plus a 24-hour dispute window.
+Community-powered package delivery for the Breda–Rotterdam corridor. Senders post a package, verified drivers already travelling that way carry it, Atobbee takes 8% (min €1.50) and pays the driver after delivery plus a 24-hour dispute window.
 
 Plain PHP 8.2+, no framework, no Composer dependencies. Runs on any basic PHP host.
 

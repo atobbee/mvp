@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace AtoBbee\Payments;
+namespace Atobbee\Payments;
 
 /**
  * Stripe Connect via the REST API (no SDK dependency, just curl).
@@ -36,7 +36,7 @@ final class StripeGateway implements Gateway
                 'price_data' => [
                     'currency' => 'eur',
                     'unit_amount' => $booking['price_cents'],
-                    'product_data' => ['name' => 'AtoBbee delivery ' . $booking['ref']],
+                    'product_data' => ['name' => 'Atobbee delivery ' . $booking['ref']],
                 ],
             ]],
             'payment_intent_data' => [

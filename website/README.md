@@ -1,6 +1,6 @@
-# AtoBbee website (after the teaser)
+# Atobbee website (after the teaser)
 
-This folder is the base of the **real AtoBbee website**, for when the teaser phase is over. It follows the original Atobbee prototype page by page, rebuilt in the AtoBbee design system (light ivory pages, navy bands, muted gold, Barlow / Barlow Condensed, line icons instead of emojis), with a light/dark switch.
+This folder is the base of the **real Atobbee website**, for when the teaser phase is over. It follows the original Atobbee prototype page by page, rebuilt in the Atobbee design system (light ivory pages, navy bands, muted gold, Barlow / Barlow Condensed, line icons instead of emojis), with a light/dark switch.
 
 It is **front-end only**: every person, booking and price in it is example data. Nothing is saved.
 
@@ -22,4 +22,4 @@ It is **front-end only**: every person, booking and price in it is example data.
 2. Replace example data with real data from the MVP backend.
 3. Before real users and money: the open legal, insurance and tax questions in the project notes, a real ID-verification provider, and a security review.
 
-Design tokens and rules: see `brand/brand-guide.md` in the AtoBbee Claude project.
+Design tokens and rules: see `brand/brand-guide.md` in the Atobbee Claude project.

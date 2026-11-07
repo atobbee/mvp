@@ -1,5 +1,5 @@
 <?php
-use AtoBbee\Domain\BookingService;
+use Atobbee\Domain\BookingService;
 $title = 'Available drivers';
 $p = $package;
 $reqLabels = array_map(fn($k) => BookingService::REQUIREMENTS[$k] ?? $k, $p['requirements']);

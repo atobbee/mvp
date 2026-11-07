@@ -7,7 +7,7 @@ require dirname(__DIR__) . '/src/bootstrap.php';
 $GLOBALS['__config']['db_dsn'] = 'sqlite::memory:';
 $GLOBALS['__config']['payment_gateway'] = 'fake';
 
-use AtoBbee\Domain\{BookingService, BookingStatus, Matching, Pricing};
+use Atobbee\Domain\{BookingService, BookingStatus, Matching, Pricing};
 
 $passed = 0; $failed = 0;
 function check(string $name, bool $ok, string $detail = ''): void

@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 require dirname(__DIR__) . '/src/bootstrap.php';
 
-use AtoBbee\Auth;
-use AtoBbee\Http\{AdminController, AuthController, BookingController, DriverController, PageController, PointController, SenderController, WebhookController};
+use Atobbee\Auth;
+use Atobbee\Http\{AdminController, AuthController, BookingController, DriverController, PageController, PointController, SenderController, WebhookController};
 
 // Built-in dev server: let it serve static files directly.
 if (PHP_SAPI === 'cli-server' && is_file(__DIR__ . parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH))) {

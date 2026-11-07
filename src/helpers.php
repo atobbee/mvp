@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-use AtoBbee\Db;
+use Atobbee\Db;
 
 /** HTML-escape. Use for every value printed into a template. */
 function e(mixed $v): string

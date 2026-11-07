@@ -1,5 +1,5 @@
 <?php $title = 'Trust & Safety'; ?>
-<div class="page-head"><h1>Trust &amp; Safety</h1><p class="muted">How AtoBbee keeps you and your packages safe.</p></div>
+<div class="page-head"><h1>Trust &amp; Safety</h1><p class="muted">How Atobbee keeps you and your packages safe.</p></div>
 <div class="grid g2">
   <div class="card"><h3>🔐 Verification</h3>
     <p>Drivers and transporters are identity-verified before they can accept deliveries. Professional transporters add their KvK registration. Pickup points are verified before they appear to senders.</p></div>
@@ -14,4 +14,4 @@
   <p>Never send: illegal goods or controlled substances; weapons, firearms or ammunition; explosives or fireworks; unpackaged hazardous substances; cash or bearer instruments; live animals; items larger than declared; stolen goods; radioactive materials; biological materials or human remains.</p>
   <p class="muted small">Senders are responsible for appropriate packaging and an accurate description of the contents.</p></div>
 <div class="card"><h3>⚖️ Liability</h3>
-  <p class="muted">AtoBbee is a marketplace connecting senders with independent transport providers. Responsibilities, insurance, liability limits and claims procedures are governed by the platform terms and applicable law. All legal text is provisional pending professional review.</p></div>
+  <p class="muted">Atobbee is a marketplace connecting senders with independent transport providers. Responsibilities, insurance, liability limits and claims procedures are governed by the platform terms and applicable law. All legal text is provisional pending professional review.</p></div>

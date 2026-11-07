@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace AtoBbee\Http;
+namespace Atobbee\Http;
 
-use AtoBbee\Auth;
-use AtoBbee\Domain\{BookingService, Matching};
+use Atobbee\Auth;
+use Atobbee\Domain\{BookingService, Matching};
 
 final class PointController
 {
@@ -90,7 +90,7 @@ final class PointController
     {
         $u = Auth::require('business');
         db()->run("UPDATE pickup_points SET subscription_status = 'active', subscription_until = ? WHERE user_id = ?", [now_utc('+1 month'), $u['id']]);
-        flash('success', 'AtoBbee Business activated.' . (config('payment_gateway') === 'fake' ? ' (Demo: no charge.)' : ''));
+        flash('success', 'Atobbee Business activated.' . (config('payment_gateway') === 'fake' ? ' (Demo: no charge.)' : ''));
         redirect('/point');
     }
 }

@@ -1,7 +1,7 @@
 <?php
 // Copy to config.php and adjust. config.php is not committed.
 return [
-    'app_name'   => 'AtoBbee',
+    'app_name'   => 'Atobbee',
     'base_url'   => 'http://localhost:8000',
     'env'        => 'dev',                      // dev | prod (prod hides errors, forces secure cookies)
 

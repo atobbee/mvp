@@ -1,5 +1,5 @@
 <?php
-use AtoBbee\Domain\BookingService;
+use Atobbee\Domain\BookingService;
 $title = 'My route';
 $r = $route;
 ?>

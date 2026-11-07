@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0f1b2e">
 <link rel="icon" href="assets/logo-mark.svg" type="image/svg+xml">
-<title>AtoBbee Demo</title>
-<meta name="description" content="Clickable AtoBbee demo with example data.">
+<title>Atobbee Demo</title>
+<meta name="description" content="Clickable Atobbee demo with example data.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  /* Layout: app shell (sticky bar + role switch), one view at a time, panels on the AtoBbee navy grid */
+  /* Layout: app shell (sticky bar + role switch), one view at a time, panels on the Atobbee navy grid */
   :root{
     --navy:#0f1b2e; --navy-2:#16233a; --navy-3:#1e2d47; --navy-4:#273856;
     --gold:#d9c58c; --gold-hi:#e8d7a3; --gold-deep:#b8a46a; --stripe:#8e8762;
@@ -445,11 +445,11 @@
 </head>
 <body>
 
-<div class="demo-bar"><div class="wrap">Demo with example data. No real people, packages or payments. <a href="index.html" style="color:inherit;margin-left:8px">← Back to AtoBbee</a></div></div>
+<div class="demo-bar"><div class="wrap">Demo with example data. No real people, packages or payments. <a href="index.html" style="color:inherit;margin-left:8px">← Back to Atobbee</a></div></div>
 
 <header class="top dz">
   <div class="wrap">
-    <a class="brand" href="index.html" aria-label="AtoBbee home"><img alt="" src="assets/logo-mark.svg"><b>AtoBbee</b></a>
+    <a class="brand" href="index.html" aria-label="Atobbee home"><img alt="" src="assets/logo-mark.svg"><b>Atobbee</b></a>
     <nav class="nav" id="nav" aria-label="Demo pages"></nav>
     <button type="button" class="mode-btn" data-mode-toggle aria-label="Switch light or dark mode" title="Light / dark"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></button>
     <div class="who" id="who">
@@ -522,7 +522,7 @@
   var V = {};
 
   V.start = function(){
-    return '<div class="hero-demo"><span class="caps">AtoBbee demo</span><h1>Pick a seat and look around.</h1><p>See AtoBbee through the eyes of each user.</p></div>' +
+    return '<div class="hero-demo"><span class="caps">Atobbee demo</span><h1>Pick a seat and look around.</h1><p>See Atobbee through the eyes of each user.</p></div>' +
       '<div class="roles">' +
       roleCard('sender', I.box, 'Sender', 'Pieter sends a cheese parcel from Breda to Rotterdam.') +
       roleCard('driver', I.car, 'Driver', 'Sophie earns on her daily drive to Rotterdam.') +
@@ -567,7 +567,7 @@
       '<aside class="panel hi stack"><span class="caps">Your delivery</span>' +
         '<dl class="kvl"><dt>From</dt><dd>' + state.from + '</dd><dt>To</dt><dd>' + state.to + '</dd><dt>Package</dt><dd>' + sizeName() + ' · ' + state.weight + ' kg</dd><dt>When</dt><dd>Today, 15:00–17:00</dd></dl>' +
         '<hr style="margin:0"><div class="small mist">Typical price on this route</div><div style="font-size:28px;font-weight:800" class="tnum">€17 – €28</div>' +
-        '<div class="small dim">Drivers set their own price. AtoBbee takes 8%, minimum €1.50, out of it.</div>' +
+        '<div class="small dim">Drivers set their own price. Atobbee takes 8%, minimum €1.50, out of it.</div>' +
       '</aside></div>';
   };
   function sizeName(){ return { envelope:'Envelope', small:'Small parcel', medium:'Medium parcel', large:'Large parcel' }[state.size]; }
@@ -624,10 +624,10 @@
         '<div class="panel"><span class="caps">Your driver</span><div class="row" style="margin-top:12px"><div class="av">' + d.ini + '</div><div style="flex:1"><h3>' + d.name + '</h3><div class="small mist">' + d.vehicle + ' · ' + d.kind + ' · ★ ' + d.rating + ' · ' + d.n + ' deliveries</div></div><button class="btn ghost sm" data-go="matches">Change</button></div></div>' +
         '<div class="panel stack"><span class="caps">Delivery</span><dl class="kvl"><dt>From</dt><dd>' + state.from + '</dd><dt>To</dt><dd>' + state.to + '</dd><dt>Pickup</dt><dd>Today, ' + d.win + '</dd><dt>Est. delivery</dt><dd>' + d.eta + ' today</dd><dt>Package</dt><dd>Small cheese parcel · ' + state.weight + ' kg · Artisan</dd><dt>Requirements</dt><dd>PIN · Fragile</dd></dl></div>' +
         '<div class="panel stack"><span class="caps">Payment method</span><div class="row"><div class="av" style="border-radius:10px">' + I.lock.replace('<svg','<svg width="20" height="20"') + '</div><div style="flex:1"><b>Demo Visa ···· 4242</b><div class="small mist">No real charge in this demo</div></div><span class="badge warn">Demo</span></div>' +
-          '<p class="small mist">The full amount is held until delivery. After the 24-hour dispute window, the driver gets paid and AtoBbee keeps its fee.</p></div>' +
+          '<p class="small mist">The full amount is held until delivery. After the 24-hour dispute window, the driver gets paid and Atobbee keeps its fee.</p></div>' +
       '</div><aside class="panel hi stack"><span class="caps">Order summary</span>' +
         '<dl class="kv"><dt>Delivery</dt><dd>' + eur(d.price) + '</dd><dt>Payment processing</dt><dd>€0.00</dd><dt class="t">Total</dt><dd class="t">' + eur(d.price) + '</dd></dl>' +
-        '<dl class="kv small"><dt>Of which AtoBbee fee (8%' + (f === MIN_FEE && d.price * RATE < MIN_FEE ? ', min. €1.50' : '') + ')</dt><dd>' + eur(f) + '</dd><dt>Driver receives after delivery</dt><dd>' + eur(driverGets(d.price)) + '</dd></dl>' +
+        '<dl class="kv small"><dt>Of which Atobbee fee (8%' + (f === MIN_FEE && d.price * RATE < MIN_FEE ? ', min. €1.50' : '') + ')</dt><dd>' + eur(f) + '</dd><dt>Driver receives after delivery</dt><dd>' + eur(driverGets(d.price)) + '</dd></dl>' +
         '<label class="ck small"><input type="checkbox" id="agree" checked>I agree to the terms and confirm my package isn’t on the prohibited list.</label>' +
         '<button class="btn block" data-go="confirmed">Confirm & pay ' + eur(d.price) + '</button>' +
         '<div class="small dim" style="text-align:center">Demo only. No money moves.</div>' +
@@ -716,7 +716,7 @@
         '<label class="f">Your price (€)<input type="number" id="rp" min="5" step="0.5" value="' + p + '"></label>' +
       '</form>' +
       '<aside class="panel hi stack"><span class="caps">You receive</span><div style="font-size:44px;font-weight:900;letter-spacing:-.03em" class="gold tnum" id="rpGet">' + eur(driverGets(p)) + '</div>' +
-        '<dl class="kv"><dt>Your price</dt><dd id="rpP">' + eur(p) + '</dd><dt>AtoBbee fee (8%, min. €1.50)</dt><dd id="rpF">− ' + eur(f) + '</dd></dl>' +
+        '<dl class="kv"><dt>Your price</dt><dd id="rpP">' + eur(p) + '</dd><dt>Atobbee fee (8%, min. €1.50)</dt><dd id="rpF">− ' + eur(f) + '</dd></dl>' +
         '<p class="small dim">Minimum price €5. Senders see your price clearly before booking.</p>' +
         '<button class="btn block" data-toast="Route published. We’ll show you matching packages (demo)." data-go="driving">Publish route</button></aside></div>';
     function sugg(v, t, s){ return '<button type="button" data-price="' + v + '" class="' + (v === p ? 'on' : '') + '"><span>' + t + '</span><b>€' + v + '</b><span>' + s + '</span></button>'; }
@@ -724,7 +724,7 @@
 
   V.point = function(){
     var rows = [['#ATB-2026-00342','Small parcel · 1.2 kg','Before 14:00','<span class="badge gold">In transit</span>',''],['#ATB-2026-00338','Envelope · 0.2 kg','Before 17:00','<span class="badge warn">Awaiting pickup</span>','<button class="btn ghost sm" data-toast="Handed over to the recipient (demo).">Hand over</button>'],['#ATB-2026-00330','Medium parcel · 4.5 kg','Collected 11:30','<span class="badge ok">Collected ✓</span>','']];
-    return head('Pickup point', 'De Kaashoek, Breda', 'AtoBbee Business · €0.99/month or €10/year · active', '<span class="badge ok">● Open</span>') +
+    return head('Pickup point', 'De Kaashoek, Breda', 'Atobbee Business · €0.99/month or €10/year · active', '<span class="badge ok">● Open</span>') +
       '<div class="grid g4"><div class="stat"><b class="gold">3</b><span>Expected today</span></div><div class="stat"><b>1</b><span>Awaiting collection</span></div><div class="stat"><b>2</b><span>Collected today</span></div><div class="stat"><b>10</b><span>Daily limit</span></div></div>' +
       '<div class="side" style="margin-top:16px"><div class="stack"><div class="panel"><h2 style="margin-bottom:8px">Today’s packages</h2><div class="table-wrap"><table><thead><tr><th>Booking</th><th>Contents</th><th>ETA</th><th>Status</th><th></th></tr></thead><tbody>' +
         rows.map(function(r){ return '<tr><td>' + r[0] + '</td><td>' + r[1] + '</td><td>' + r[2] + '</td><td>' + r[3] + '</td><td>' + r[4] + '</td></tr>'; }).join('') + '</tbody></table></div></div>' +
@@ -769,7 +769,7 @@
           '<div class="ts-arrow" aria-hidden="true"></div>' +
           '<div class="ts-box held"><span>' + ic(P.pin) + ' Held safely</span><b>until delivery + 24h</b></div>' +
           '<div class="ts-arrow" aria-hidden="true"></div>' +
-          '<div class="ts-split"><div class="ts-box gold"><span>Driver</span><b>€18.40</b></div><div class="ts-box"><span>AtoBbee 8%</span><b>€1.60</b></div></div>' +
+          '<div class="ts-split"><div class="ts-box gold"><span>Driver</span><b>€18.40</b></div><div class="ts-box"><span>Atobbee 8%</span><b>€1.60</b></div></div>' +
         '</div>' +
         '<p class="small dim">Something wrong? Report it within 24 hours and the payout freezes until an admin decides.</p></section>' +
 
@@ -783,7 +783,7 @@
         '<p><b>Verification.</b> Drivers show ID and a driving licence, pro transporters a KvK registration, pickup points a business address. In this demo, verification is simulated; the real platform will use a regulated identity provider.</p>' +
         '<p><b>Ratings.</b> Both sides can review after delivery. Only completed deliveries count, and unfair reviews can be reported.</p>' +
         '<p><b>Packaging.</b> Senders pack properly and declare contents honestly. Badly packed or misdeclared items aren’t the driver’s responsibility.</p>' +
-        '<p><b>Liability.</b> AtoBbee is a marketplace connecting senders with independent drivers. Insurance and liability will be set out in the final terms, which still need professional legal review.</p>' +
+        '<p><b>Liability.</b> Atobbee is a marketplace connecting senders with independent drivers. Insurance and liability will be set out in the final terms, which still need professional legal review.</p>' +
       '</div></details></section>';
   };
 

@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace AtoBbee\Http;
+namespace Atobbee\Http;
 
-use AtoBbee\Auth;
+use Atobbee\Auth;
 
 final class AuthController
 {
@@ -42,7 +42,7 @@ final class AuthController
         $errors = [];
         if ($data['first_name'] === '' || $data['last_name'] === '') $errors[] = 'Please fill in your name.';
         if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) $errors[] = 'Please use a valid email address.';
-        if (!in_array($data['role'], ['sender', 'driver', 'business'], true)) $errors[] = 'Choose what you want to do on AtoBbee.';
+        if (!in_array($data['role'], ['sender', 'driver', 'business'], true)) $errors[] = 'Choose what you want to do on Atobbee.';
         if (strlen($password) < 10) $errors[] = 'Use a password of at least 10 characters.';
         if (!input('terms')) $errors[] = 'Please accept the Terms of Service and Privacy Policy.';
         if (db()->value('SELECT id FROM users WHERE email = ?', [$data['email']])) $errors[] = 'An account with that email already exists.';
@@ -57,7 +57,7 @@ final class AuthController
         flash('success', match ($data['role']) {
             'driver' => 'Welcome! Add your vehicle and submit your verification to start earning.',
             'business' => 'Welcome! Set up your pickup point below.',
-            default => 'Welcome to AtoBbee. Ready to send your first package?',
+            default => 'Welcome to Atobbee. Ready to send your first package?',
         });
         redirect(match ($data['role']) { 'driver' => '/driver/profile', 'business' => '/point', default => '/send' });
     }

@@ -1,5 +1,5 @@
 <?php
-use AtoBbee\Domain\{BookingService, BookingStatus};
+use Atobbee\Domain\{BookingService, BookingStatus};
 $title = $b['ref'];
 $p = $b['package']; $r = $b['route']; $s = $b['status'];
 $req = $p['requirements'];

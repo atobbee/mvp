@@ -1,5 +1,5 @@
 <?php
-use AtoBbee\Domain\BookingService;
+use Atobbee\Domain\BookingService;
 $title = 'Send a package';
 $o = $_SESSION['old'] ?? [];
 $v = fn($k, $d = '') => e($o[$k] ?? $d);

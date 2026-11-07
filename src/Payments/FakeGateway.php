@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace AtoBbee\Payments;
+namespace Atobbee\Payments;
 
 /** Development gateway: no money moves, everything succeeds instantly. Never use in production. */
 final class FakeGateway implements Gateway

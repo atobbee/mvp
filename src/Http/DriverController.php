@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace AtoBbee\Http;
+namespace Atobbee\Http;
 
-use AtoBbee\Auth;
-use AtoBbee\Domain\{BookingService, Matching, Pricing};
+use Atobbee\Auth;
+use Atobbee\Domain\{BookingService, Matching, Pricing};
 
 final class DriverController
 {

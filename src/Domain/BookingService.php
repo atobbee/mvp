@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace AtoBbee\Domain;
+namespace Atobbee\Domain;
 
-use AtoBbee\Db;
-use AtoBbee\Payments\FakeGateway;
-use AtoBbee\Payments\Gateway;
-use AtoBbee\Payments\StripeGateway;
+use Atobbee\Db;
+use Atobbee\Payments\FakeGateway;
+use Atobbee\Payments\Gateway;
+use Atobbee\Payments\StripeGateway;
 use DomainException;
 
 /** All booking state changes live here, so controllers stay thin and rules stay in one place. */

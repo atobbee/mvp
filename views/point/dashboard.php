@@ -12,7 +12,7 @@ $val = fn($k, $d = '') => e($pt[$k] ?? $d);
 
 <?php if ($point): ?>
   <div class="card row spread">
-    <div><b>AtoBbee Business</b> · <?= money((int)config('business_fee_cents')) ?>/month
+    <div><b>Atobbee Business</b> · <?= money((int)config('business_fee_cents')) ?>/month
       <?php if ($point['subscription_status'] === 'active'): ?><span class="badge ok">Active until <?= local_time($point['subscription_until'], 'j M Y') ?></span><?php else: ?><span class="badge warn">Not active — senders can't choose you yet</span><?php endif ?></div>
     <?php if ($point['subscription_status'] !== 'active'): ?><form method="post" action="/point/subscribe"><?= csrf_field() ?><button class="btn honey">Activate subscription</button></form><?php endif ?>
   </div>

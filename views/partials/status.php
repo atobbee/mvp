@@ -1,5 +1,5 @@
 <?php
-use AtoBbee\Domain\BookingStatus;
+use Atobbee\Domain\BookingStatus;
 $cls = match ($status) {
     'completed', 'delivered' => 'ok',
     'picked_up', 'at_point', 'paid' => 'honey',

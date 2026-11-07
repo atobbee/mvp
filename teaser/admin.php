@@ -8,7 +8,7 @@ $config = require (file_exists(__DIR__ . '/config.php') ? __DIR__ . '/config.php
 
 if (!file_exists(__DIR__ . '/config.php') || str_starts_with($config['admin_password'], 'CHANGE-ME')) {
     http_response_code(503);
-    exit('<!doctype html><meta charset="utf-8"><title>AtoBbee admin</title><body style="font-family:system-ui;background:#0f1b2e;color:#ece7dc;max-width:480px;margin:15vh auto;padding:0 16px"><h1>Admin is locked</h1><p>Copy <b>config.example.php</b> to <b>config.php</b> on the server and set your own admin password in it. Then reload this page.</p></body>');
+    exit('<!doctype html><meta charset="utf-8"><title>Atobbee admin</title><body style="font-family:system-ui;background:#0f1b2e;color:#ece7dc;max-width:480px;margin:15vh auto;padding:0 16px"><h1>Admin is locked</h1><p>Copy <b>config.example.php</b> to <b>config.php</b> on the server and set your own admin password in it. Then reload this page.</p></body>');
 }
 
 if (isset($_POST['password'])) {
@@ -42,8 +42,8 @@ button.del{background:none;color:#f2a99a;padding:0;font-weight:500}
 
 if (empty($_SESSION['atobbee_admin'])) { ?>
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="noindex"><title>AtoBbee admin</title><?= $style ?></head>
-<body style="max-width:360px;margin-top:15vh"><div class="logo"><img src="assets/logo-mark.svg" alt="" width="30">AtoBbee</div><h1>Waitlist</h1>
+<meta name="robots" content="noindex"><title>Atobbee admin</title><?= $style ?></head>
+<body style="max-width:360px;margin-top:15vh"><div class="logo"><img src="assets/logo-mark.svg" alt="" width="30">Atobbee</div><h1>Waitlist</h1>
 <?php if (!empty($error)) echo '<p style="color:#c0392b">' . $error . '</p>'; ?>
 <form method="post"><label>Password<input type="password" name="password" autofocus required></label><button>Log in</button></form></body></html>
 <?php exit; }
@@ -74,9 +74,9 @@ foreach ($rows as $r) { $c = trim((string)($r['city'] ?? '')); if ($c === '') co
 arsort($cities);
 ?>
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="noindex"><title>AtoBbee admin</title><?= $style ?></head>
+<meta name="robots" content="noindex"><title>Atobbee admin</title><?= $style ?></head>
 <body style="max-width:900px">
-<div class="logo"><img src="assets/logo-mark.svg" alt="" width="30">AtoBbee</div>
+<div class="logo"><img src="assets/logo-mark.svg" alt="" width="30">Atobbee</div>
 <h1>Waitlist: <?= count($rows) ?></h1>
 <p>Sending: <?= $counts['sending'] ?> · Driving: <?= $counts['driving'] ?> · Pickup points: <?= $counts['pickup'] ?></p>
 <?php if ($cities): ?><p><b>Top cities:</b> <?php $i = 0; foreach ($cities as $c => $n) { if ($i++ >= 8) break; echo htmlspecialchars($c) . ' (' . $n . ')' . ($i < min(8, count($cities)) ? ' · ' : ''); } ?></p><?php endif; ?>

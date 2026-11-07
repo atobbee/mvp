@@ -2,7 +2,7 @@
 <div class="section" style="max-width:520px;margin:0 auto">
   <form class="card" method="post" action="/register">
     <?= csrf_field() ?>
-    <h1>Join AtoBbee</h1>
+    <h1>Join Atobbee</h1>
     <div class="field"><label>I want to…</label>
       <div class="pills">
         <label><input type="radio" name="role" value="sender" <?= $sel === 'sender' ? 'checked' : '' ?>><span>📦 Send packages</span></label>

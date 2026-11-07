@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace AtoBbee\Http;
+namespace Atobbee\Http;
 
-use AtoBbee\Auth;
-use AtoBbee\Domain\{BookingService, Matching};
+use Atobbee\Auth;
+use Atobbee\Domain\{BookingService, Matching};
 
 final class SenderController
 {
@@ -73,7 +73,7 @@ final class SenderController
         $cityIds = array_column(db()->all('SELECT id FROM cities'), 'id');
         if ($data['pickup_address'] === '' || $data['delivery_address'] === '') $errors[] = 'Please fill in both addresses.';
         if (!in_array($data['pickup_city_id'], $cityIds) || !in_array($data['delivery_city_id'], $cityIds)) $errors[] = 'Please choose a pickup and delivery city.';
-        if ($data['pickup_city_id'] === $data['delivery_city_id'] && !$data['pickup_point_id']) $errors[] = 'Pickup and delivery are in the same city — AtoBbee is for trips between cities for now.';
+        if ($data['pickup_city_id'] === $data['delivery_city_id'] && !$data['pickup_point_id']) $errors[] = 'Pickup and delivery are in the same city — Atobbee is for trips between cities for now.';
         if ($data['recipient_name'] === '') $errors[] = 'Who is receiving the package?';
         if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $data['pickup_date']) || $data['pickup_date'] < date('Y-m-d')) $errors[] = 'Pick a date from today onwards.';
         if (!preg_match('/^\d{2}:\d{2}$/', $data['window_start']) || !preg_match('/^\d{2}:\d{2}$/', $data['window_end']) || $data['window_end'] <= $data['window_start']) $errors[] = 'The pickup window needs a start and a later end time.';

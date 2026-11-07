@@ -1,16 +1,16 @@
-<?php use AtoBbee\Auth; $me = Auth::user(); ?>
+<?php use Atobbee\Auth; $me = Auth::user(); ?>
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title><?= e(($title ?? null) ? "$title · AtoBbee" : 'AtoBbee · Community-powered delivery') ?></title>
+<title><?= e(($title ?? null) ? "$title · Atobbee" : 'Atobbee · Community-powered delivery') ?></title>
 <link rel="stylesheet" href="/assets/app.css">
 </head>
 <body>
 <nav class="nav">
   <div class="wrap">
-    <a class="logo" href="/"><span>🐝</span>AtoBbee</a>
+    <a class="logo" href="/"><span>🐝</span>Atobbee</a>
     <div class="links">
       <?php if (!$me || $me['role'] === 'sender'): ?><a href="/send">Send a package</a><?php endif ?>
       <?php if (!$me): ?><a href="/register?role=driver">Drive &amp; earn</a><a href="/register?role=business">Pickup points</a><?php endif ?>
@@ -37,10 +37,10 @@
 </main>
 <footer>
   <div class="wrap row spread">
-    <div><b>AtoBbee</b> · A to B. Every time. · Initial market: Breda–Rotterdam corridor</div>
+    <div><b>Atobbee</b> · A to B. Every time. · Initial market: Breda–Rotterdam corridor</div>
     <div>No passenger transport · <a href="/trust">Trust &amp; Safety</a> · Payments by Stripe</div>
   </div>
-  <div class="wrap small" style="margin-top:8px">AtoBbee operates a marketplace connecting senders with independent transport providers. Legal text is provisional and requires professional review before launch.</div>
+  <div class="wrap small" style="margin-top:8px">Atobbee operates a marketplace connecting senders with independent transport providers. Legal text is provisional and requires professional review before launch.</div>
 </footer>
 </body>
 </html>

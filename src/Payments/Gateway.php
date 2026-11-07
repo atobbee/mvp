@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace AtoBbee\Payments;
+namespace Atobbee\Payments;
 
 /**
  * Money flow ("separate charges and transfers" in Stripe Connect terms):

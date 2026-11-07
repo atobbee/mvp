@@ -1,6 +1,6 @@
 <?php
 // ============================================================
-//  AtoBbee teaser — settings.
+//  Atobbee teaser — settings.
 //  Copy this file to config.php on your server and edit THAT copy.
 //  config.php is never uploaded to GitHub, so your password stays private.
 // ============================================================

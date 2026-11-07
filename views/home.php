@@ -2,7 +2,7 @@
 <section class="hero">
   <div class="tag">🐝 Netherlands · Breda–Rotterdam corridor</div>
   <h1>Your package is going somewhere.<br>Someone already is too.</h1>
-  <p class="lead">AtoBbee connects packages with verified people and professional transporters already travelling in the right direction.</p>
+  <p class="lead">Atobbee connects packages with verified people and professional transporters already travelling in the right direction.</p>
 
   <form class="card quote" method="get" action="/send">
     <h3>Quick quote</h3>

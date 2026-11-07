@@ -51,7 +51,7 @@ $city = fn(string $n) => (int)$db->value('SELECT id FROM cities WHERE name = ?',
 $hash = password_hash('demo1234', PASSWORD_DEFAULT);
 $user = fn(array $u) => $db->insert('users', $u + ['password_hash' => $hash]);
 
-$admin  = $user(['email' => 'admin@atobbee.test', 'first_name' => 'Admin', 'last_name' => 'AtoBbee', 'role' => 'admin', 'verification_status' => 'verified']);
+$admin  = $user(['email' => 'admin@atobbee.test', 'first_name' => 'Admin', 'last_name' => 'Atobbee', 'role' => 'admin', 'verification_status' => 'verified']);
 $pieter = $user(['email' => 'pieter@atobbee.test', 'first_name' => 'Pieter', 'last_name' => 'Verhoeven', 'role' => 'sender']);
 $sophie = $user(['email' => 'sophie@atobbee.test', 'first_name' => 'Sophie', 'last_name' => 'van den Berg', 'role' => 'driver',
     'verification_status' => 'verified', 'languages' => 'NL,EN,FR',

@@ -1,6 +1,6 @@
-# AtoBbee teaser site
+# Atobbee teaser site
 
-The public "coming soon" site for AtoBbee: a teaser homepage with Send / Drive / Pickup point pages, a waitlist, a privacy statement, and a clickable demo with example data. Plain PHP + SQLite, no installs needed. Runs on Hostnet's standard webhosting.
+The public "coming soon" site for Atobbee: a teaser homepage with Send / Drive / Pickup point pages, a waitlist, a privacy statement, and a clickable demo with example data. Plain PHP + SQLite, no installs needed. Runs on Hostnet's standard webhosting.
 
 ## What's in here
 

@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace AtoBbee\Http;
+namespace Atobbee\Http;
 
-use AtoBbee\Domain\BookingService;
-use AtoBbee\Payments\StripeGateway;
+use Atobbee\Domain\BookingService;
+use Atobbee\Payments\StripeGateway;
 
 final class WebhookController
 {

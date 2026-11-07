@@ -1,4 +1,4 @@
--- AtoBbee MVP schema. Written for SQLite (dev/small deployments); see README for moving to MySQL.
+-- Atobbee MVP schema. Written for SQLite (dev/small deployments); see README for moving to MySQL.
 -- All money is stored in euro cents (INTEGER). All timestamps are UTC ISO-8601 strings.
 
 PRAGMA foreign_keys = ON;

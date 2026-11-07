@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace AtoBbee\Http;
+namespace Atobbee\Http;
 
-use AtoBbee\Auth;
-use AtoBbee\Domain\BookingService;
+use Atobbee\Auth;
+use Atobbee\Domain\BookingService;
 
 final class AdminController
 {

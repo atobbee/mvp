@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace AtoBbee\Domain;
+namespace Atobbee\Domain;
 
 /**
  * Commission: 8% of the customer price, minimum €1.50. The sender pays the driver's
