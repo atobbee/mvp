@@ -325,6 +325,27 @@
   footer .wordmark{color:#ece7dc}
   .tile .art svg [stroke="#d9c58c"]{stroke:#a8924f}
   .tile .art svg [fill="#d9c58c"]{fill:#C8B87A}
+
+  /* CTA band + footer (prototype style) */
+  .cta-band{background:linear-gradient(135deg,#0D1B2A 0%,#122035 60%,#1a3050 100%);text-align:center;padding-block:72px;margin-top:48px}
+  .cta-band h2{font-size:clamp(32px,4.4vw,48px);color:#fff;margin-bottom:12px}
+  .cta-band p{color:var(--mist);font-size:18px;margin:0 auto 26px;max-width:34em}
+  .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .cta-band .cta-note{font-size:13px;font-style:italic;color:var(--dim);margin:22px auto 0}
+  .site-foot{background:#0D1B2A;border-top:1px solid rgba(236,231,220,.08);margin-top:0;padding-block:52px 30px;text-align:left;color:var(--mist);font-size:15px}
+  .foot-grid{display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:32px}
+  .site-foot .brand{display:inline-flex;margin-bottom:14px}
+  .site-foot .brand .wordmark{font-size:24px;letter-spacing:.02em;color:var(--gold)}
+  .site-foot p{margin:0 0 10px;color:var(--paper);line-height:1.6}
+  .site-foot .foot-soft{font-size:13px;font-style:italic;color:var(--dim)}
+  .site-foot h4{font-family:var(--cond);font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin:6px 0 14px}
+  .site-foot ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+  .site-foot a{color:var(--mist);text-decoration:none}
+  .site-foot a:hover{color:#fff}
+  .foot-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid rgba(236,231,220,.1);margin-top:36px;padding-top:18px;font-size:14px}
+  .foot-fine{font-size:12.5px;font-style:italic;color:var(--dim)!important;text-align:center;margin-top:14px!important}
+  @media (max-width:860px){.foot-grid{grid-template-columns:1fr 1fr}.foot-brand{grid-column:1/-1}}
+  @media (max-width:480px){.foot-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -434,11 +455,6 @@
     </div>
   </div>
 
-  <div class="wrap final">
-    <span class="caps">Coming soon</span>
-    <h2>Be first in line.</h2>
-    <a class="btn" href="#join" data-go="join">Get early access</a>
-  </div>
 </section>
 
 <!-- ============ SEND ============ -->
@@ -584,13 +600,28 @@
 
 </main>
 
-<footer class="dz">
+<section class="cta-band dz" id="ctaBand">
   <div class="wrap">
-    <span class="wordmark">AtoBbee</span>
-    <span class="caps">A to B · Every time</span>
-    <span class="caps dim">A Transportation Federation product</span>
-    <p class="fine"><a href="privacy.html">Privacy statement</a> · Contact: YOUR-ADDRESS@gmail.com</p>
-    <p class="fine">In development. Not yet a live service. Examples are illustrative.</p>
+    <h2>Ready to send smarter?</h2>
+    <p>Join the community of senders and drivers making local transport work better.</p>
+    <div class="cta-row"><a class="btn" href="#join" data-go="join">Get early access</a><a class="btn ghost" href="demo.html" data-demo>Peek at the demo</a></div>
+    <p class="cta-note">No passenger transport · Coming soon · Not yet a live service</p>
+  </div>
+</section>
+<footer class="site-foot dz">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="#" data-go="home"><img src="assets/logo-mark.svg" alt=""><span class="wordmark">AtoBbee</span></a>
+        <p>A to B. Every time.<br>Community-powered delivery for the Netherlands.</p>
+        <p class="foot-soft">Coming soon · Initial market: Breda–Rotterdam corridor</p>
+      </div>
+      <div><h4>Platform</h4><ul><li><a href="#send" data-go="send">Send a package</a></li><li><a href="#drive" data-go="drive">Drive &amp; earn</a></li><li><a href="#host" data-go="host">Business pickup</a></li><li><a href="demo.html" data-demo>Try the demo</a></li></ul></div>
+      <div><h4>Company</h4><ul><li><a href="#join" data-go="join">Early access</a></li><li><a href="demo.html" data-demo>Trust &amp; safety</a></li><li><span>Contact: YOUR-ADDRESS@gmail.com</span></li></ul></div>
+      <div><h4>Legal</h4><ul><li><a href="privacy.html">Privacy statement</a></li></ul></div>
+    </div>
+    <div class="foot-bottom"><span>© 2026 AtoBbee · Netherlands</span><span>A Transportation Federation product</span></div>
+    <p class="foot-fine">AtoBbee will operate a marketplace connecting senders with independent transport providers. Responsibilities, insurance, liability limits and claims procedures will be governed by the final platform terms and applicable law. All legal text requires professional review before launch.</p>
   </div>
 </footer>
 
@@ -617,6 +648,7 @@
     if (views.indexOf(name) < 0) name = 'home';
     views.forEach(function(v){ document.getElementById('v-' + v).classList.toggle('on', v === name); });
     document.getElementById('navDemo').hidden = (name === 'home');
+    document.getElementById('ctaBand').hidden = (name === 'join');
     document.querySelectorAll('.links a').forEach(function(a){
       if (a.dataset.go === name) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current');
     });
