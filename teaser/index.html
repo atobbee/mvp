@@ -398,6 +398,7 @@
   .ex-plan-per{font-size:14px;flex:0!important}
   .ex-plan .ex-checks{margin:8px 0 14px}
   .ex-plan .btn.block{align-self:stretch;width:100%;justify-content:center}
+  .ex-person{flex:none;display:block}
   .ex-back{text-align:center;padding-block:8px 24px}
   @media (max-width:900px){.ex-grid3{grid-template-columns:repeat(2,minmax(0,1fr))}.ex-split{grid-template-columns:1fr;gap:28px}.ex-split.rev > div:last-child{order:-1}}
   @media (max-width:600px){.ex-grid3{grid-template-columns:1fr}.ex-band{padding-block:48px}.ex-price-card{padding:24px 20px}}
@@ -691,11 +692,11 @@
 
     <section class="ex-band">
       <div class="wrap">
-        <div class="ex-head"><span class="caps">How matching works</span><h2>Drivers already on the road</h2><p>An example of what you'll see when you post a package.</p></div>
+        <div class="ex-head"><span class="caps">Active routes today</span><h2>Drivers already on the road in your region</h2><p>An example of what you'll see when you post a package.</p></div>
         <div class="ex-grid3">
-          <div class="ex-card ex-route"><div class="ex-route-top"><b>Breda <i>→</i> Rotterdam</b></div><div class="ex-who"><span class="ex-av">SV</span><div><b>Sophie V.</b><span>Tesla Model 3 · Today 15:00–17:00</span></div></div><div class="ex-route-foot"><span class="ex-chip">94% match</span><span class="ex-price">From €20</span></div></div>
-          <div class="ex-card ex-route"><div class="ex-route-top"><b>Tilburg <i>→</i> Antwerp</b></div><div class="ex-who"><span class="ex-av">MT</span><div><b>Marco T.</b><span>VW Transporter · Today 16:30</span></div></div><div class="ex-route-foot"><span class="ex-chip">88% match</span><span class="ex-price">From €28</span></div></div>
-          <div class="ex-card ex-route"><div class="ex-route-top"><b>Eindhoven <i>→</i> Breda</b></div><div class="ex-who"><span class="ex-av">LK</span><div><b>Lena K.</b><span>Cargo bike · Tomorrow 09:00</span></div></div><div class="ex-route-foot"><span class="ex-chip">82% match</span><span class="ex-price">From €12</span></div></div>
+          <div class="ex-card ex-route"><div class="ex-route-top"><b>Breda <i>→</i> Rotterdam</b></div><div class="ex-who"><svg class="ex-person" width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="21" fill="#2c4370" stroke="#d8cfae" stroke-width="2"/><circle cx="22" cy="17" r="7" fill="#d4c07f"/><path d="M9.5 37.5c1.6-7 6.5-10.5 12.5-10.5s10.9 3.5 12.5 10.5A20.8 20.8 0 0 1 22 43a20.8 20.8 0 0 1-12.5-5.5z" fill="#d4c07f"/></svg><div><b>Sophie V.</b><span>Tesla Model 3 · Today 15:00–17:00</span></div></div><div class="ex-route-foot"><span class="ex-chip">94% compatible</span><span class="ex-price">From €20</span></div></div>
+          <div class="ex-card ex-route"><div class="ex-route-top"><b>Tilburg <i>→</i> Antwerp</b></div><div class="ex-who"><svg class="ex-person" width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="21" fill="#1d2a44" stroke="#d8cfae" stroke-width="2"/><circle cx="22" cy="17" r="7" fill="#d4c07f"/><path d="M9.5 37.5c1.6-7 6.5-10.5 12.5-10.5s10.9 3.5 12.5 10.5A20.8 20.8 0 0 1 22 43a20.8 20.8 0 0 1-12.5-5.5z" fill="#d4c07f"/></svg><div><b>Marco T.</b><span>VW Transporter · Today 16:30</span></div></div><div class="ex-route-foot"><span class="ex-chip">88% compatible</span><span class="ex-price">From €28</span></div></div>
+          <div class="ex-card ex-route"><div class="ex-route-top"><b>Eindhoven <i>→</i> Breda</b></div><div class="ex-who"><svg class="ex-person" width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="21" fill="#2f5a48" stroke="#d8cfae" stroke-width="2"/><circle cx="22" cy="17" r="7" fill="#d4c07f"/><path d="M9.5 37.5c1.6-7 6.5-10.5 12.5-10.5s10.9 3.5 12.5 10.5A20.8 20.8 0 0 1 22 43a20.8 20.8 0 0 1-12.5-5.5z" fill="#d4c07f"/></svg><div><b>Lena K.</b><span>Cargo bike · Tomorrow 09:00</span></div></div><div class="ex-route-foot"><span class="ex-chip">82% compatible</span><span class="ex-price">From €12</span></div></div>
         </div>
         <p class="ex-foot">Example data. Live routes appear once AtoBbee launches.</p>
       </div>
@@ -746,7 +747,7 @@
           <a class="btn ghost" href="demo.html" data-demo>See it in the demo</a>
         </div>
         <div class="ex-card ex-profile">
-          <div class="ex-who"><span class="ex-av lg">SV</span><div><b>Sophie van den Berg</b><span>Private driver · Tesla Model 3</span><em class="ex-verified">Identity verified</em></div></div>
+          <div class="ex-who"><svg class="ex-person lg" width="76" height="76" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="21" fill="#2c4370" stroke="#d8cfae" stroke-width="2"/><circle cx="22" cy="17" r="7" fill="#d4c07f"/><path d="M9.5 37.5c1.6-7 6.5-10.5 12.5-10.5s10.9 3.5 12.5 10.5A20.8 20.8 0 0 1 22 43a20.8 20.8 0 0 1-12.5-5.5z" fill="#d4c07f"/></svg><div><b>Sophie van den Berg</b><span>Private driver · Tesla Model 3</span><em class="ex-verified">Identity verified</em></div></div>
           <div class="ex-stats"><div><b>4.9</b><span>Rating</span></div><div><b>127</b><span>Deliveries</span></div><div><b>98%</b><span>Reliability</span></div></div>
           <p class="ex-foot" style="margin:14px 0 0">Example driver profile</p>
         </div>
