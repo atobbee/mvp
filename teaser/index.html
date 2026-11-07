@@ -346,6 +346,74 @@
   .foot-fine{font-size:12.5px;font-style:italic;color:var(--dim)!important;text-align:center;margin-top:14px!important}
   @media (max-width:860px){.foot-grid{grid-template-columns:1fr 1fr}.foot-brand{grid-column:1/-1}}
   @media (max-width:480px){.foot-grid{grid-template-columns:1fr}}
+  /* ===== Join page: more about AtoBbee ===== */
+  .ex-band{padding-block:64px;position:relative;isolation:isolate}
+  .ex-band.alt::before{content:"";position:absolute;inset:0 calc(50% - 50vw);z-index:-1;background:#E8E4D9}
+  .ex-head{text-align:center;max-width:640px;margin:0 auto 36px}
+  .ex-head .caps{display:block;margin-bottom:8px}
+  .ex-head h2,.ex-h2{font-size:clamp(28px,3.4vw,40px);font-weight:700;color:var(--paper);margin:0 0 8px}
+  .ex-head p,.ex-lead{color:var(--mist);font-size:17px}
+  .ex-lead{margin:0 0 14px}
+  .ex-grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+  .ex-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px;min-width:0}
+  .ex-card h3{font-size:21px;font-weight:700;color:var(--paper);margin:0}
+  .ex-card p{color:var(--mist);margin:0;flex:1}
+  .ex-card .btn{align-self:flex-start;margin-top:6px}
+  .ex-ic{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:#f6efd9;color:#8a7536;margin-bottom:6px}
+  .ex-ic svg{width:24px;height:24px}
+  .ex-route{gap:16px}
+  .ex-route-top b{font-family:var(--cond);font-size:21px;color:var(--paper)}
+  .ex-route-top i{font-style:normal;color:#C8B87A;margin:0 6px}
+  .ex-who{display:flex;gap:12px;align-items:center}
+  .ex-who b{display:block;font-weight:600;color:var(--paper)}
+  .ex-who span:not(.ex-av){display:block;font-size:14px;color:var(--dim)}
+  .ex-av{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:#ece8dd;color:#8a7536;font-weight:700;font-size:14px;flex:none}
+  .ex-av.lg{width:72px;height:72px;font-size:22px;border:2px solid #C8B87A}
+  .ex-route-foot{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:14px}
+  .ex-chip{font-family:var(--cond);font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:#f6efd9;color:#8a7536}
+  .ex-price{font-family:var(--cond);font-weight:700;font-size:20px;padding:6px 14px;border-radius:9px;background:#C8B87A;color:#0D1B2A}
+  .ex-foot{text-align:center;font-size:13px;font-style:italic;color:var(--dim);margin:22px 0 0}
+  .ex-price-card{max-width:620px;margin:0 auto;background:linear-gradient(160deg,#0D1B2A,#122035);border-radius:18px;padding:32px 36px;text-align:center;box-shadow:0 14px 40px rgba(13,27,42,.18)}
+  .ex-price-card .caps{color:var(--mist);letter-spacing:.14em}
+  .ex-price-card dl{margin:18px 0 0;text-align:left}
+  .ex-price-card dl div{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0;border-bottom:1px solid rgba(236,231,220,.12)}
+  .ex-price-card dt{color:var(--paper)} .ex-price-card dd{margin:0;font-weight:600;color:#fff;font-variant-numeric:tabular-nums}
+  .ex-price-card dd.minus{color:#F4A72C}
+  .ex-price-card .total dt{color:#C8B87A;font-weight:600}
+  .ex-price-card .total dd{font-family:var(--cond);font-size:30px;color:#C8B87A}
+  .ex-price-card p{margin:18px 0 0;font-size:14px;color:var(--dim)}
+  .ex-split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:center}
+  .ex-checks{list-style:none;padding:0;margin:20px 0 26px;display:grid;gap:12px}
+  .ex-checks li{position:relative;padding-left:30px;color:var(--paper)}
+  .ex-checks li::before{content:"";position:absolute;left:0;top:2px;width:20px;height:20px;border-radius:50%;background:#e3f5ea url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232FA36B' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 12 4 4 8-9'/%3E%3C/svg%3E") center/13px no-repeat}
+  .ex-profile{gap:0;padding:28px}
+  .ex-profile .ex-who b{font-size:20px}
+  .ex-verified{display:inline-block;margin-top:8px;font-style:normal;font-family:var(--cond);font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;padding:4px 12px;border-radius:999px;background:#e3f5ea;color:#1f7a49}
+  .ex-stats{display:grid;grid-template-columns:repeat(3,1fr);text-align:center;border-top:1px solid var(--line);margin-top:22px;padding-top:18px}
+  .ex-stats b{display:block;font-family:var(--cond);font-size:30px;color:var(--paper)}
+  .ex-stats span{font-size:14px;color:var(--dim)}
+  .ex-plan{align-items:flex-start}
+  .ex-plan-price{font-family:var(--cond);font-weight:700;font-size:52px;line-height:1;color:#8a7536;margin-top:4px}
+  .ex-plan-price small{font-size:20px;color:var(--mist)}
+  .ex-plan-per{font-size:14px;flex:0!important}
+  .ex-plan .ex-checks{margin:8px 0 14px}
+  .ex-plan .btn.block{align-self:stretch;width:100%;justify-content:center}
+  .ex-back{text-align:center;padding-block:8px 24px}
+  @media (max-width:900px){.ex-grid3{grid-template-columns:repeat(2,minmax(0,1fr))}.ex-split{grid-template-columns:1fr;gap:28px}.ex-split.rev > div:last-child{order:-1}}
+  @media (max-width:600px){.ex-grid3{grid-template-columns:1fr}.ex-band{padding-block:48px}.ex-price-card{padding:24px 20px}}
+  /* Footer sized to match the prototype */
+  .site-foot{padding-block:64px 40px;font-size:17px}
+  .foot-grid{gap:48px}
+  .site-foot .brand{margin-bottom:18px}
+  .site-foot .brand img{width:40px;height:40px}
+  .site-foot .brand .wordmark{font-size:28px}
+  .site-foot p{font-size:17px;color:#e8e4d9;line-height:1.75}
+  .site-foot .foot-soft{font-size:15px;line-height:1.8;color:#7a8699}
+  .site-foot h4{font-size:17px;letter-spacing:.08em;margin:8px 0 18px}
+  .site-foot ul{gap:14px}
+  .site-foot a,.site-foot li span{color:rgba(232,228,217,.78)}
+  .foot-bottom{font-size:16px;color:#e8e4d9;margin-top:44px;padding-top:24px}
+  .foot-fine{font-size:15px!important;line-height:1.75;margin-top:18px!important}
 </style>
 </head>
 <body>
@@ -596,6 +664,123 @@
       </div>
     </div>
   </div>
+  <!-- ===== More about AtoBbee (below the form) ===== -->
+  <div class="ex">
+    <section class="ex-band alt">
+      <div class="wrap">
+        <div class="ex-head"><span class="caps">Who it's for</span><h2>A platform built for three communities</h2></div>
+        <div class="ex-grid3">
+          <article class="ex-card">
+            <div class="ex-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5 12 12l9-4.5M12 12v9"/></svg></div>
+            <h3>Senders</h3><p>Send packages with drivers already heading your way, for a transparent fee: 8%, minimum €1.50. No hidden charges.</p>
+            <a class="btn sm" href="#join" data-go="join" data-role="sending">Join as a sender</a>
+          </article>
+          <article class="ex-card">
+            <div class="ex-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 16h14v-4l-2-5H7l-2 5z"/><path d="M5 12h14"/><circle cx="8" cy="16.5" r="1.8"/><circle cx="16" cy="16.5" r="1.8"/></svg></div>
+            <h3>Drivers</h3><p>Earn on journeys you already make. Publish your route, accept matching packages and get paid after delivery.</p>
+            <a class="btn ghost sm" href="#join" data-go="join" data-role="driving">Join as a driver</a>
+          </article>
+          <article class="ex-card">
+            <div class="ex-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M4 10v10h16V10"/><path d="M3 10l2-6h14l2 6z"/><path d="M10 20v-5h4v5"/></svg></div>
+            <h3>Businesses</h3><p>Become an AtoBbee pickup point and hold packages for neighbours, for a small monthly fee.</p>
+            <a class="btn ghost sm" href="#join" data-go="join" data-role="pickup">Join as a pickup point</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="ex-band">
+      <div class="wrap">
+        <div class="ex-head"><span class="caps">How matching works</span><h2>Drivers already on the road</h2><p>An example of what you'll see when you post a package.</p></div>
+        <div class="ex-grid3">
+          <div class="ex-card ex-route"><div class="ex-route-top"><b>Breda <i>→</i> Rotterdam</b></div><div class="ex-who"><span class="ex-av">SV</span><div><b>Sophie V.</b><span>Tesla Model 3 · Today 15:00–17:00</span></div></div><div class="ex-route-foot"><span class="ex-chip">94% match</span><span class="ex-price">From €20</span></div></div>
+          <div class="ex-card ex-route"><div class="ex-route-top"><b>Tilburg <i>→</i> Antwerp</b></div><div class="ex-who"><span class="ex-av">MT</span><div><b>Marco T.</b><span>VW Transporter · Today 16:30</span></div></div><div class="ex-route-foot"><span class="ex-chip">88% match</span><span class="ex-price">From €28</span></div></div>
+          <div class="ex-card ex-route"><div class="ex-route-top"><b>Eindhoven <i>→</i> Breda</b></div><div class="ex-who"><span class="ex-av">LK</span><div><b>Lena K.</b><span>Cargo bike · Tomorrow 09:00</span></div></div><div class="ex-route-foot"><span class="ex-chip">82% match</span><span class="ex-price">From €12</span></div></div>
+        </div>
+        <p class="ex-foot">Example data. Live routes appear once AtoBbee launches.</p>
+      </div>
+    </section>
+
+    <section class="ex-band alt">
+      <div class="wrap">
+        <div class="ex-head"><span class="caps">Transparent pricing</span><h2>One simple commission</h2><p>No hidden fees.</p></div>
+        <div class="ex-price-card dz">
+          <span class="caps">Example delivery · Breda → Rotterdam</span>
+          <dl>
+            <div><dt>Customer delivery price</dt><dd>€20.00</dd></div>
+            <div><dt>AtoBbee commission (8%)</dt><dd class="minus">− €1.60</dd></div>
+            <div class="total"><dt>Driver earnings</dt><dd>€18.40</dd></div>
+          </dl>
+          <p>Minimum commission €1.50 · Planned pricing, may change before launch</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="ex-band">
+      <div class="wrap">
+        <div class="ex-head"><span class="caps">Proof of delivery</span><h2>Choose how sure you want to be</h2></div>
+        <div class="ex-grid3">
+          <div class="ex-card"><div class="ex-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM18 18h3v3h-3z"/></svg></div><h3>PIN &amp; QR confirmation</h3><p>A one-time code. Driver and recipient both confirm the handover.</p></div>
+          <div class="ex-card"><div class="ex-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M3 17c3-1 4-6 6-6s1 5 3 5 3-3 4-3 1 2 2 2M3 21h18"/></svg></div><h3>Signature</h3><p>Signed on screen at delivery. Ideal for valuable or sensitive items.</p></div>
+          <div class="ex-card"><div class="ex-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></div><h3>Photo proof</h3><p>The driver photographs the package in place, with a timestamp.</p></div>
+          <div class="ex-card"><div class="ex-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2.2"/><path d="M5.5 16c.6-1.6 2-2.4 3.5-2.4s2.9.8 3.5 2.4M14 10h4M14 13h3"/></svg></div><h3>ID &amp; age check</h3><p>The driver checks the recipient's ID or minimum age at the door.</p></div>
+          <div class="ex-card"><div class="ex-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div><h3>Recipient only</h3><p>No neighbours. Only handed to the named recipient.</p></div>
+          <div class="ex-card"><div class="ex-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h8l-1 7a3 3 0 0 1-6 0zM12 13v6M9 21h6"/></svg></div><h3>Fragile &amp; upright</h3><p>Handling instructions confirmed at pickup, with a photo.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ex-band alt">
+      <div class="wrap ex-split">
+        <div>
+          <span class="caps">Trust &amp; verification</span>
+          <h2 class="ex-h2">Built on transparency</h2>
+          <ul class="ex-checks">
+            <li>Identity checks for drivers and transporters</li>
+            <li>Ratings based only on completed deliveries</li>
+            <li>Secure split payments, held until delivery</li>
+            <li>Timestamped proof of pickup and delivery</li>
+            <li>24 hours to report a problem before the driver is paid</li>
+            <li>Admin review for serious incidents</li>
+          </ul>
+          <a class="btn ghost" href="demo.html" data-demo>See it in the demo</a>
+        </div>
+        <div class="ex-card ex-profile">
+          <div class="ex-who"><span class="ex-av lg">SV</span><div><b>Sophie van den Berg</b><span>Private driver · Tesla Model 3</span><em class="ex-verified">Identity verified</em></div></div>
+          <div class="ex-stats"><div><b>4.9</b><span>Rating</span></div><div><b>127</b><span>Deliveries</span></div><div><b>98%</b><span>Reliability</span></div></div>
+          <p class="ex-foot" style="margin:14px 0 0">Example driver profile</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="ex-band">
+      <div class="wrap ex-split rev">
+        <div class="ex-card ex-plan">
+          <div class="ex-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M4 10v10h16V10"/><path d="M3 10l2-6h14l2 6z"/><path d="M10 20v-5h4v5"/></svg></div>
+          <h3>AtoBbee Business</h3>
+          <div class="ex-plan-price">€0.99<small>/month</small></div>
+          <p class="ex-plan-per">or €11.88 billed annually · planned</p>
+          <ul class="ex-checks">
+            <li>Business pickup point profile</li>
+            <li>Opening hours and daily capacity</li>
+            <li>QR package scanning</li>
+            <li>Dashboard with expected packages</li>
+            <li>Pause availability anytime</li>
+          </ul>
+          <a class="btn block" href="#join" data-go="join" data-role="pickup">Join as a pickup point</a>
+        </div>
+        <div>
+          <span class="caps">Pickup points</span>
+          <h2 class="ex-h2">Turn your business into a hub</h2>
+          <p class="ex-lead">Bakeries, corner shops, florists, co-working spaces: any local business can become an AtoBbee pickup and drop-off point. Customers collect when it suits them, and you gain foot traffic.</p>
+          <p class="ex-lead">Free for senders to use. The subscription is paid by the business. Simple, transparent, community-first.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="wrap ex-back"><a class="btn" href="#join" data-go="join">Back to the sign-up form</a></div>
+  </div>
+
 </section>
 
 </main>
