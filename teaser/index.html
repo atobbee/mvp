@@ -436,6 +436,14 @@
   .ex-match-note{font-size:13px;color:var(--dim)!important;margin:0!important}
   @media (max-width:900px){.ex-factors{grid-template-columns:repeat(2,minmax(0,1fr))}}
   @media (max-width:560px){.ex-factors{grid-template-columns:1fr}.ex-match-top{flex-direction:column;align-items:flex-start}}
+  /* Required markers + missing-field highlight */
+  .req{color:#b0892e;text-decoration:none;font-weight:700;margin-left:2px;border:0}
+  .req-note{font-size:13px;color:var(--dim);margin:-4px 0 0;text-align:right}
+  .req-note .req{margin:0 2px 0 0}
+  .email-label{display:block;font-weight:600;font-size:13px;color:var(--mist);margin-bottom:6px}
+  .field input.missing,.email-row input.missing{border-color:#c0392b;box-shadow:0 0 0 3px rgba(192,57,43,.12)}
+  .roles.missing label{border-color:#c0392b}
+  .check.missing span{color:#c0392b}
 </style>
 </head>
 <body>
@@ -646,9 +654,10 @@
       <p class="sub">Be the first to know when AtoBbee lands near you. Early sign-ups get access first.</p>
 
       <form id="form" action="signup.php" method="post" novalidate>
+        <p class="req-note"><abbr class="req" title="required">*</abbr>Required</p>
         <div style="position:absolute;left:-9999px" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
         <fieldset>
-          <legend>I want to… <span style="color:var(--dim);font-weight:500">(pick all that fit)</span></legend>
+          <legend>I want to…<abbr class="req" title="required">*</abbr> <span style="color:var(--dim);font-weight:500">(pick all that fit)</span></legend>
           <div class="roles">
             <input type="checkbox" name="roles[]" id="r-send" value="sending"><label for="r-send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5 12 12l9-4.5M12 12v9"/></svg>Send</label>
             <input type="checkbox" name="roles[]" id="r-drive" value="driving"><label for="r-drive"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 16h14v-4l-2-5H7l-2 5z"/><path d="M5 12h14"/><circle cx="8" cy="16.5" r="1.8"/><circle cx="16" cy="16.5" r="1.8"/></svg>Drive</label>
@@ -657,23 +666,24 @@
         </fieldset>
         <div class="shop-field field" id="shopField"><label for="shop">Shop or business name <span class="opt">(optional)</span></label><input type="text" id="shop" name="company" maxlength="120" autocomplete="organization" placeholder="e.g. De Kaashoek, Breda"></div>
         <div class="name-row">
-          <div class="field"><label for="fname">First name</label><input type="text" id="fname" name="first_name" maxlength="60" autocomplete="given-name" placeholder="Anna" required></div>
-          <div class="field"><label for="lname">Surname</label><input type="text" id="lname" name="last_name" maxlength="80" autocomplete="family-name" placeholder="de Vries" required></div>
+          <div class="field"><label for="fname">First name<abbr class="req" title="required">*</abbr></label><input type="text" id="fname" name="first_name" maxlength="60" autocomplete="given-name" placeholder="Anna" required></div>
+          <div class="field"><label for="lname">Surname<abbr class="req" title="required">*</abbr></label><input type="text" id="lname" name="last_name" maxlength="80" autocomplete="family-name" placeholder="de Vries" required></div>
         </div>
         <fieldset class="loc">
           <legend>Where are you based?</legend>
           <div class="loc-row">
-            <div class="field"><label for="postcode">Postcode</label><input type="text" id="postcode" name="postcode" maxlength="12" autocomplete="postal-code" placeholder="4811 AB" required></div>
-            <div class="field"><label for="city">City</label><input type="text" id="city" name="city" maxlength="80" autocomplete="address-level2" placeholder="Breda" required></div>
-            <div class="field"><label for="country">Country</label><select id="country" name="country" autocomplete="country-name"><option>Netherlands</option><option>Belgium</option><option>Germany</option><option>Other</option></select></div>
+            <div class="field"><label for="postcode">Postcode<abbr class="req" title="required">*</abbr></label><input type="text" id="postcode" name="postcode" maxlength="12" autocomplete="postal-code" placeholder="4811 AB" required></div>
+            <div class="field"><label for="city">City<abbr class="req" title="required">*</abbr></label><input type="text" id="city" name="city" maxlength="80" autocomplete="address-level2" placeholder="Breda" required></div>
+            <div class="field"><label for="country">Country<abbr class="req" title="required">*</abbr></label><select id="country" name="country" autocomplete="country-name"><option>Netherlands</option><option>Belgium</option><option>Germany</option><option>Other</option></select></div>
           </div>
           <p class="loc-note">Just your postcode and city, never your street address. It shows us where to launch first.</p>
         </fieldset>
+        <label class="email-label" for="email">Email address<abbr class="req" title="required">*</abbr></label>
         <div class="email-row">
-          <input type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com" aria-label="Email address" required>
+          <input type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com" required>
           <button class="btn" type="submit">Get early access</button>
         </div>
-        <label class="check"><input type="checkbox" id="consent" name="consent" value="yes"><span>Yes, send me AtoBbee news and early-access invites. Unsubscribe anytime. See the <a href="privacy.html" style="color:var(--paper)">privacy statement</a>.</span></label>
+        <label class="check"><input type="checkbox" id="consent" name="consent" value="yes"><span>Yes, send me AtoBbee news and early-access invites. Unsubscribe anytime. See the <a href="privacy.html" style="color:var(--paper)">privacy statement</a>.<abbr class="req" title="required">*</abbr></span></label>
         <p class="msg" id="msg" role="status" aria-live="polite"></p>
       </form>
 
@@ -929,12 +939,21 @@
   function syncShop(){ shopField.classList.toggle('on', hostBox.checked); }
   hostBox.addEventListener('change', syncShop);
   document.addEventListener('click', function(){ setTimeout(syncShop, 0); });
+
+  function flag(el, bad){ if (el) el.classList.toggle('missing', !!bad); }
+  form.addEventListener('input', function(e){ if (e.target.classList) e.target.classList.remove('missing'); });
+  form.addEventListener('change', function(e){ if (e.target.closest && e.target.closest('.roles')) flag(form.querySelector('.roles'), false); if (e.target.id === 'consent') flag(form.querySelector('.check'), false); });
   form.addEventListener('submit', function(e){
     e.preventDefault();
-    if (!form.querySelector('input[name="roles[]"]:checked')) { msg.textContent = 'Pick at least one option.'; return; }
-    if (!form.first_name.value.trim() || !form.last_name.value.trim()) { msg.textContent = 'Fill in your first name and surname.'; return; }
-    if (!form.postcode.value.trim() || !form.city.value.trim()) { msg.textContent = 'Fill in your postcode and city.'; return; }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.value.trim())) { msg.textContent = "That email doesn't look quite right."; return; }
+    var noRole = !form.querySelector('.roles input:checked');
+    var f = form.first_name, l = form.last_name, pc = form.postcode, c = form.city, em = form.email;
+    var badEmail = !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em.value.trim());
+    flag(form.querySelector('.roles'), noRole); flag(f, !f.value.trim()); flag(l, !l.value.trim());
+    flag(pc, !pc.value.trim()); flag(c, !c.value.trim()); flag(em, badEmail); flag(form.querySelector('.check'), !form.consent.checked);
+    if (noRole) { msg.textContent = 'Pick at least one option.'; return; }
+    if (!f.value.trim() || !l.value.trim()) { msg.textContent = 'Fill in your first name and surname.'; f.value.trim() ? l.focus() : f.focus(); return; }
+    if (!pc.value.trim() || !c.value.trim()) { msg.textContent = 'Fill in your postcode and city.'; pc.value.trim() ? c.focus() : pc.focus(); return; }
+    if (badEmail) { msg.textContent = "That email doesn't look quite right."; em.focus(); return; }
     if (!form.consent.checked) { msg.textContent = 'Tick the box so we can email you.'; return; }
     msg.textContent = '';
     var btn = form.querySelector('button[type=submit]'); btn.disabled = true;
