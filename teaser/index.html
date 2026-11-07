@@ -71,8 +71,8 @@
   @keyframes fade{from{transform:translateY(10px)}to{transform:none}}
 
   /* ---------- HOME ---------- */
-  .hero{text-align:center;padding-block:40px 24px}
-  .orbit{width:min(640px,100%);height:auto;display:block;margin:0 auto -6px}
+  .hero{text-align:center;padding-block:clamp(16px,3vh,40px) 24px}
+  .orbit{width:min(640px,100%,68vh);height:auto;display:block;margin:0 auto -6px}
   .orbit .ring{fill:none;stroke:var(--gold);stroke-opacity:.45;stroke-width:2}
   .orbit .ring-outer{fill:none;stroke:var(--paper);stroke-opacity:.07}
   .orbit .route{stroke:var(--gold);stroke-opacity:.4;stroke-width:2;stroke-dasharray:8 9}
@@ -86,9 +86,9 @@
   @keyframes fly{0%{transform:translateX(-170px)}70%,100%{transform:translateX(150px)}}
   @keyframes trail{0%{stroke-dashoffset:420}70%,100%{stroke-dashoffset:0}}
   @keyframes bob{from{transform:translateY(-3px)}to{transform:translateY(3px)}}
-  .hero h1{font-size:clamp(46px,9vw,104px);font-weight:900;letter-spacing:-.045em;margin:6px auto 18px;max-width:10em}
+  .hero h1{font-size:clamp(40px,min(7.5vw,9vh),84px);font-weight:900;letter-spacing:-.045em;margin:6px auto 14px;max-width:10em}
   .hero h1 em{font-style:normal;color:var(--gold)}
-  .hero .sub{font-size:clamp(18px,2.2vw,22px);color:var(--mist);margin:0 auto 30px;max-width:30em}
+  .hero .sub{font-size:clamp(17px,2vw,21px);color:var(--mist);margin:0 auto 24px;max-width:30em}
   .hero .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
   .hero .caps{display:block}
 
