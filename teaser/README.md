@@ -18,8 +18,8 @@ The public "coming soon" site for Atobbee: a teaser homepage with Send / Drive /
 
 ## Before you upload
 
-1. In `index.html` and `privacy.html`, replace `YOUR-ADDRESS@gmail.com` with your email.
-2. In `privacy.html`, fill in `[FULL NAME(S)]` and `[DATE]`.
+1. Create the mailbox `privacy@atobbee.nl` in Hostnet (the pages use it).
+2. Fill in the company address, KvK and VAT number in `privacy.html` and `privacy-policy.html`.
 
 ## Going live on Hostnet
 
