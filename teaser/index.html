@@ -208,6 +208,8 @@
   .field input{width:100%;padding:13px 18px;border:1px solid var(--line);border-radius:999px;font:inherit;font-size:16px;font-weight:400;background:var(--navy);color:var(--paper)}
   .field input::placeholder{color:var(--dim)}
   .field input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px var(--glow)}
+  .name-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media (max-width:520px){.name-row{grid-template-columns:1fr}}
   .shop-field{display:none}
   .shop-field.on{display:grid;animation:fade .3s ease}
   .done{display:none;text-align:center;padding:24px 8px}
@@ -462,7 +464,10 @@
           </div>
         </fieldset>
         <div class="shop-field field" id="shopField"><label for="shop">Shop or business name <span class="opt">(optional)</span></label><input type="text" id="shop" name="company" maxlength="120" autocomplete="organization" placeholder="e.g. De Kaashoek, Breda"></div>
-        <div class="field"><label for="fname">First name <span class="opt">(optional)</span></label><input type="text" id="fname" name="first_name" maxlength="60" autocomplete="given-name" placeholder="So we can say hi properly"></div>
+        <div class="name-row">
+          <div class="field"><label for="fname">First name <span class="opt">(optional)</span></label><input type="text" id="fname" name="first_name" maxlength="60" autocomplete="given-name" placeholder="Anna"></div>
+          <div class="field"><label for="lname">Surname <span class="opt">(optional)</span></label><input type="text" id="lname" name="last_name" maxlength="80" autocomplete="family-name" placeholder="de Vries"></div>
+        </div>
         <div class="email-row">
           <input type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com" aria-label="Email address" required>
           <button class="btn" type="submit">Get early access</button>
