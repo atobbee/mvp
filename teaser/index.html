@@ -9,7 +9,7 @@
 <meta name="description" content="AtoBbee connects packages with people already travelling in the right direction. Starting on the Breda–Rotterdam corridor. Join the waitlist.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   /* Layout: one bold orbit hero, then short visual sections; Send / Drive / Host / Join as their own views */
   :root{
@@ -254,12 +254,84 @@
     .bee-fly{transform:translateX(0)}
     .trail{stroke-dashoffset:0}
   }
+
+  /* ===== Prototype theme: light ivory pages, navy bands, Barlow ===== */
+  :root{
+    --navy:#f5f3ee; --navy-2:#ffffff; --navy-3:#ece8dd; --navy-4:#e3ded1;
+    --gold:#8a7536; --gold-hi:#6f5e2b; --gold-deep:#b9a868; --stripe:#8e8762;
+    --gold-fill:#C8B87A; --gold-fill-hi:#E8D49A;
+    --paper:#1a2535; --mist:#4a5568; --dim:#718096;
+    --grid:rgba(13,27,42,.035); --line:#ddd8cc; --glow:rgba(200,184,122,.28);
+    --bad:#c0392b; --ok:#2FA36B;
+    --ink-navy:#0D1B2A; --ink-navy2:#122035;
+    --font:"Barlow",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --cond:"Barlow Condensed","Arial Narrow",sans-serif;
+    --shadow:0 2px 12px rgba(13,27,42,.08);
+    color-scheme:light;
+  }
+  /* Dark zones keep the original navy palette */
+  .dz{
+    --navy:#0D1B2A; --navy-2:#122035; --navy-3:#1a2d44; --navy-4:#24395a;
+    --gold:#C8B87A; --gold-hi:#E8D49A; --gold-deep:#a0935f;
+    --paper:#ece7dc; --mist:#a9b3c4; --dim:#7a8699;
+    --line:rgba(236,231,220,.14); --glow:rgba(200,184,122,.18);
+    --bad:#f2a99a; --ok:#8fd4a8;
+    color:var(--paper);
+  }
+  body{font-family:var(--font);background:var(--navy);color:var(--paper)}
+  h1,h2,h3,.wordmark{font-family:var(--cond)}
+  h1,h2,h3{font-weight:700;letter-spacing:-.005em}
+  .caps,legend,label.field,.field label{font-family:var(--cond)}
+  .caps{font-weight:700;letter-spacing:.12em;font-size:13px}
+  .btn{background:var(--gold-fill);color:var(--ink-navy);border-radius:10px}
+  .btn:hover{background:var(--gold-fill-hi)}
+  .btn.ghost{background:transparent;color:var(--paper);border:1.5px solid var(--line)}
+  .btn.ghost:hover{border-color:var(--gold);color:var(--gold);background:transparent}
+  .dz .btn.ghost{border-color:var(--gold-fill);color:var(--gold-fill)}
+  .dz .btn.ghost:hover{background:var(--gold-fill);color:var(--ink-navy)}
+  .preview-bar,.demo-bar{background:var(--gold-fill);color:var(--ink-navy)}
+  /* Teaser specifics */
+  .nav{background:var(--ink-navy);border-bottom:0;box-shadow:0 2px 16px rgba(0,0,0,.25)}
+  .brand .wordmark{color:var(--gold);letter-spacing:.03em;text-transform:none;font-size:22px}
+  .links a{color:rgba(255,255,255,.8)}
+  .links a:hover{color:#fff;background:rgba(255,255,255,.08)}
+  .links a[aria-current="page"]{color:var(--gold);background:rgba(200,184,122,.14)}
+  .hero{position:relative;isolation:isolate;padding-bottom:44px}
+  .hero::before{content:"";position:absolute;inset:-60px calc(50% - 50vw) 0;z-index:-1;
+    background:radial-gradient(ellipse 50% 70% at 70% 45%,rgba(200,184,122,.07),transparent),
+      linear-gradient(rgba(200,184,122,.045) 1px,transparent 1px) 0 0/48px 48px,
+      linear-gradient(90deg,rgba(200,184,122,.045) 1px,transparent 1px) 0 0/48px 48px,
+      linear-gradient(135deg,#0D1B2A 0%,#122035 60%,#1a3050 100%)}
+  .hero h1{letter-spacing:-.01em;line-height:1.02;max-width:13em}
+  .hero h1 em{display:block}
+  .page h1,.join-card h1,.final h2,.corridor-card h2{letter-spacing:-.01em}
+  .tile,.panel,.card,.join-card form{box-shadow:var(--shadow)}
+  .tile:hover{box-shadow:0 8px 32px rgba(13,27,42,.14)}
+  .strip{background:transparent}
+  .node{background:#fff}
+  .node.b{background:var(--gold-fill);color:var(--ink-navy)}
+  .chips li{background:#fff}
+  .chips li::before{background:var(--gold-fill)}
+  .pills input:checked + label,.roles input:checked + label{background:var(--gold-fill);border-color:var(--gold-fill);color:var(--ink-navy)}
+  .roles input:checked + label svg{color:var(--ink-navy)}
+  .roles label::after{border-color:#cfc8b6}
+  .roles input:checked + label::after{border-color:var(--ink-navy);background-color:var(--ink-navy)}
+  .check input,.roles input{accent-color:var(--gold-fill)}
+  .email-row input,.field input{background:#fff}
+  .msg.ok{color:var(--ok)}
+  .bubble{background:var(--gold-fill);color:var(--ink-navy)}
+  .bar b{background:var(--gold-fill)}
+  footer{background:var(--ink-navy);border-top:0;margin-top:40px}
+  footer .wordmark{color:#ece7dc}
+  .modal-card{background:#fff}
+  .tile .art svg [stroke="#d9c58c"]{stroke:#a8924f}
+  .tile .art svg [fill="#d9c58c"]{fill:#C8B87A}
 </style>
 </head>
 <body>
 
 
-<header class="nav">
+<header class="nav dz">
   <div class="wrap">
     <a class="brand" href="#" data-go="home"><img alt="" src="assets/logo-mark.svg"><span class="wordmark">AtoBbee</span></a>
     <nav class="links" aria-label="Pages">
@@ -276,7 +348,7 @@
 <!-- ============ HOME ============ -->
 <section class="view" id="v-home" aria-label="Home">
   <div class="wrap">
-    <div class="hero">
+    <div class="hero dz">
       <svg class="orbit" viewBox="0 0 640 360" role="img" aria-label="A bee flying from A to B">
         <defs>
           <linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#e8d7a3"/><stop offset="1" stop-color="#c9b475"/></linearGradient>
@@ -308,7 +380,7 @@
         </g></g>
       </svg>
       <span class="caps">A to B · Every time</span>
-      <h1>Someone's already <em>going.</em></h1>
+      <h1>Your package is going somewhere. <em>Someone already is too.</em></h1>
       <p class="sub">Send your package with people already heading your way.</p>
       <div class="row">
         <a class="btn" href="#join" data-go="join">Get early access</a>
@@ -341,7 +413,7 @@
   </div>
 
   <div class="wrap corridor">
-    <div class="corridor-card">
+    <div class="corridor-card dz">
       <div>
         <span class="caps">First stop</span>
         <h2>Breda ⇄ Rotterdam.</h2>
@@ -385,7 +457,7 @@
       <a class="btn" href="#join" data-go="join" data-role="sending">Join as a sender</a><br>
       <a class="back" href="#" data-go="home">← Back to home</a>
     </div>
-    <div class="visual">
+    <div class="visual dz">
       <div class="pin-card">
         <span class="caps">Pickup PIN</span>
         <div class="digits"><span>7</span><span>4</span><span>2</span><span>9</span></div>
@@ -411,7 +483,7 @@
       <a class="btn" href="#join" data-go="join" data-role="driving">Join as a driver</a><br>
       <a class="back" href="#" data-go="home">← Back to home</a>
     </div>
-    <div class="visual">
+    <div class="visual dz">
       <div class="earn">
         <div class="big"><small>€</small>18.40</div>
         <p class="lbl">for a trip you were making anyway</p>
@@ -438,7 +510,7 @@
       <a class="btn" href="#join" data-go="join" data-role="pickup">Join as a pickup point</a><br>
       <a class="back" href="#" data-go="home">← Back to home</a>
     </div>
-    <div class="visual">
+    <div class="visual dz">
       <div class="shop">
         <span class="bubble">3 packages waiting</span>
         <svg viewBox="0 0 320 280" fill="none" role="img" aria-label="A shopfront with packages">
@@ -513,7 +585,7 @@
 
 </main>
 
-<footer>
+<footer class="dz">
   <div class="wrap">
     <span class="wordmark">AtoBbee</span>
     <span class="caps">A to B · Every time</span>

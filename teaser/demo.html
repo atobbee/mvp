@@ -9,7 +9,7 @@
 <meta name="description" content="Clickable AtoBbee demo with example data.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   /* Layout: app shell (sticky bar + role switch), one view at a time, panels on the AtoBbee navy grid */
   :root{
@@ -292,15 +292,89 @@
     .kvl{grid-template-columns:110px 1fr}
   }
   @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+  /* ===== Prototype theme: light ivory pages, navy bands, Barlow ===== */
+  :root{
+    --navy:#f5f3ee; --navy-2:#ffffff; --navy-3:#ece8dd; --navy-4:#e3ded1;
+    --gold:#8a7536; --gold-hi:#6f5e2b; --gold-deep:#b9a868; --stripe:#8e8762;
+    --gold-fill:#C8B87A; --gold-fill-hi:#E8D49A;
+    --paper:#1a2535; --mist:#4a5568; --dim:#718096;
+    --grid:rgba(13,27,42,.035); --line:#ddd8cc; --glow:rgba(200,184,122,.28);
+    --bad:#c0392b; --ok:#2FA36B;
+    --ink-navy:#0D1B2A; --ink-navy2:#122035;
+    --font:"Barlow",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --cond:"Barlow Condensed","Arial Narrow",sans-serif;
+    --shadow:0 2px 12px rgba(13,27,42,.08);
+    color-scheme:light;
+  }
+  /* Dark zones keep the original navy palette */
+  .dz{
+    --navy:#0D1B2A; --navy-2:#122035; --navy-3:#1a2d44; --navy-4:#24395a;
+    --gold:#C8B87A; --gold-hi:#E8D49A; --gold-deep:#a0935f;
+    --paper:#ece7dc; --mist:#a9b3c4; --dim:#7a8699;
+    --line:rgba(236,231,220,.14); --glow:rgba(200,184,122,.18);
+    --bad:#f2a99a; --ok:#8fd4a8;
+    color:var(--paper);
+  }
+  body{font-family:var(--font);background:var(--navy);color:var(--paper)}
+  h1,h2,h3,.wordmark{font-family:var(--cond)}
+  h1,h2,h3{font-weight:700;letter-spacing:-.005em}
+  .caps,legend,label.field,.field label{font-family:var(--cond)}
+  .caps{font-weight:700;letter-spacing:.12em;font-size:13px}
+  .btn{background:var(--gold-fill);color:var(--ink-navy);border-radius:10px}
+  .btn:hover{background:var(--gold-fill-hi)}
+  .btn.ghost{background:transparent;color:var(--paper);border:1.5px solid var(--line)}
+  .btn.ghost:hover{border-color:var(--gold);color:var(--gold);background:transparent}
+  .dz .btn.ghost{border-color:var(--gold-fill);color:var(--gold-fill)}
+  .dz .btn.ghost:hover{background:var(--gold-fill);color:var(--ink-navy)}
+  .preview-bar,.demo-bar{background:var(--gold-fill);color:var(--ink-navy)}
+  /* Demo specifics */
+  .top{background:var(--ink-navy);border-bottom:0;box-shadow:0 2px 16px rgba(0,0,0,.25)}
+  .brand b{font-family:var(--cond);color:var(--gold);letter-spacing:.03em;font-size:20px;font-weight:700}
+  .nav a{color:rgba(255,255,255,.8)}
+  .nav a:hover{color:#fff}
+  .nav a.on{color:var(--gold);background:rgba(200,184,122,.14)}
+  .panel,.stat,.role,.ts-tile,.ts-fine{box-shadow:var(--shadow)}
+  .panel.hi{border-color:#d9cfa8}
+  .stat b,.price-box .p{font-family:var(--cond)}
+  .av{background:#ece8dd;color:#6f5e2b}
+  .av.lg{border-color:var(--gold-fill)}
+  .badge{background:#ece8dd;color:var(--paper)}
+  .badge.gold{background:#f4ecd2;color:#6f5e2b}
+  .badge.ok{background:#e3f5ea;color:#1f7a49} .badge.warn{background:#fdf0d8;color:#9a5f00} .badge.bad{background:#fbe5e1;color:#a5321f}
+  .ring{background:conic-gradient(var(--gold-fill) calc(var(--v)*1%),#e8e3d6 0)}
+  .ring::before{background:#fff}
+  .tl li.done .dot{background:var(--gold-fill);border-color:var(--gold-fill)}
+  .tl li.now .dot{border-color:var(--gold-fill)}
+  .tl li.done .dot::after{border-color:var(--ink-navy)}
+  .pills input:checked + label{background:var(--gold-fill);border-color:var(--gold-fill);color:var(--ink-navy)}
+  .steps button.done i{background:var(--gold-fill);border-color:var(--gold-fill);color:var(--ink-navy)}
+  .sugg button{background:#fff}
+  .sugg button.on{background:#f8f2df;border-color:var(--gold-fill)}
+  .ck input{accent-color:var(--gold-fill)}
+  input[type=text],input[type=number],input[type=date],input[type=email],input[type=password],select.in,textarea{background:#fff}
+  .note{background:#efeadf}
+  .qr{background:#fff}
+  .qr:hover{background:#f8f5ee}
+  .toast{background:var(--ink-navy);color:var(--gold-fill)}
+  .ts-stop.b .ts-node{background:var(--gold-fill);color:var(--ink-navy)}
+  .ts-node{background:#fff}
+  .ts-box{background:#fbfaf6}
+  .ts-box.gold{background:#f8f2df;border-color:#d9cfa8}
+  .ts-ban span{background:#fbe5e1}
+  .ts-journey{background:#fff}
+  .stack .stat[style*="background:var(--navy)"]{background:#fbfaf6!important}
+  .who-btn .av,.who-menu .av{background:#24395a;color:#C8B87A}
+  .who-menu button[aria-checked="true"] .av{background:var(--gold-fill);color:var(--ink-navy)}
 </style>
 </head>
 <body>
 
 <div class="demo-bar"><div class="wrap">Demo with example data. No real people, packages or payments. <a href="index.html" style="color:inherit;margin-left:8px">← Back to AtoBbee</a></div></div>
 
-<header class="top">
+<header class="top dz">
   <div class="wrap">
-    <a class="brand" href="index.html" aria-label="AtoBbee home"><img alt="" src="assets/logo-mark.svg"><b>ATOBBEE</b></a>
+    <a class="brand" href="index.html" aria-label="AtoBbee home"><img alt="" src="assets/logo-mark.svg"><b>AtoBbee</b></a>
     <nav class="nav" id="nav" aria-label="Demo pages"></nav>
     <div class="who" id="who">
       <button type="button" class="who-btn" id="whoBtn" aria-haspopup="menu" aria-expanded="false" aria-label="View the demo as">
@@ -392,7 +466,7 @@
         '<div class="steps">' + stepBtn(1,'Route') + stepBtn(2,'Package') + stepBtn(3,'Options') + '</div>' +
         '<div class="step' + (s === 1 ? ' on' : '') + '">' +
           '<div class="grid g2"><label class="f">Pickup address<input type="text" id="from" value="' + state.from + '"></label><label class="f">Delivery address<input type="text" id="to" value="' + state.to + '"></label></div>' +
-          '<div class="route-prev">' + routeSvg() + '</div>' +
+          '<div class="route-prev dz">' + routeSvg() + '</div>' +
           '<div class="grid g2"><label class="f">Pickup date<input type="date" id="date" value="' + new Date().toISOString().slice(0,10) + '"></label><label class="f">Time window<select class="in" id="win"><option>15:00–17:00</option><option>09:00–12:00</option><option>12:00–15:00</option><option>17:00–20:00</option></select></label></div>' +
           note('Estimated delivery before 19:00 today · about 65 km via the A16') +
         '</div>' +
@@ -485,7 +559,7 @@
     var d = drivers[state.pick];
     return head('Tracking #ATB-2026-00341', 'On its way to Rotterdam', state.from + ' → ' + state.to + ' · ' + d.name, '<span class="badge gold">In transit</span>') +
       '<div class="side"><div class="stack">' +
-        '<div class="livemap"><svg viewBox="0 0 700 220" preserveAspectRatio="xMidYMid slice" aria-label="Live map illustration"><defs><path id="tp" d="M60 170 C 200 170, 240 90, 360 100 S 560 60, 640 50"/></defs>' +
+        '<div class="livemap dz"><svg viewBox="0 0 700 220" preserveAspectRatio="xMidYMid slice" aria-label="Live map illustration"><defs><path id="tp" d="M60 170 C 200 170, 240 90, 360 100 S 560 60, 640 50"/></defs>' +
           '<use href="#tp" fill="none" stroke="#d9c58c" stroke-opacity=".2" stroke-width="12" stroke-linecap="round"/><use href="#tp" fill="none" stroke="#d9c58c" stroke-width="3" stroke-dasharray="2 10" stroke-linecap="round"/>' +
           '<circle cx="60" cy="170" r="12" fill="#0f1b2e" stroke="#d9c58c" stroke-width="2.5"/><text x="60" y="175" text-anchor="middle" font-family="Inter" font-weight="800" font-size="12" fill="#d9c58c">A</text>' +
           '<circle cx="640" cy="50" r="12" fill="#d9c58c"/><text x="640" y="55" text-anchor="middle" font-family="Inter" font-weight="800" font-size="12" fill="#0f1b2e">B</text>' +
