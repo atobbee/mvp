@@ -12,7 +12,14 @@ function atobbee_db(): PDO
         email        TEXT NOT NULL UNIQUE,
         role         TEXT NOT NULL,
         consent_text TEXT NOT NULL,
-        created_at   TEXT NOT NULL
+        created_at   TEXT NOT NULL,
+        first_name   TEXT,
+        company      TEXT
     )');
+    // Upgrade databases created before these columns existed
+    $cols = array_column($pdo->query('PRAGMA table_info(waitlist)')->fetchAll(PDO::FETCH_ASSOC), 'name');
+    foreach (['first_name', 'company'] as $col) {
+        if (!in_array($col, $cols, true)) $pdo->exec("ALTER TABLE waitlist ADD COLUMN $col TEXT");
+    }
     return $pdo;
 }

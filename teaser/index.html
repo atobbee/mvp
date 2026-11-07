@@ -203,6 +203,13 @@
   .check{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--mist)}
   .check input{margin-top:3px;width:18px;height:18px;accent-color:var(--gold);flex:none}
   .msg{font-weight:600;min-height:1.4em;font-size:15px;color:var(--bad)}
+  .field{display:grid;gap:6px;font-weight:600;font-size:13px;color:var(--mist)}
+  .field span.opt{color:var(--dim);font-weight:500}
+  .field input{width:100%;padding:13px 18px;border:1px solid var(--line);border-radius:999px;font:inherit;font-size:16px;font-weight:400;background:var(--navy);color:var(--paper)}
+  .field input::placeholder{color:var(--dim)}
+  .field input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px var(--glow)}
+  .shop-field{display:none}
+  .shop-field.on{display:grid;animation:fade .3s ease}
   .done{display:none;text-align:center;padding:24px 8px}
   .done.on{display:block;animation:fade .5s ease}
   .done svg{width:160px;height:auto;margin:0 auto 8px;display:block}
@@ -442,7 +449,7 @@
     <div class="join-card">
       <span class="caps">Early access</span>
       <h1>Be first in line.</h1>
-      <p class="sub">Be the first to know when AtoBbee lands near you. Early testers get in first.</p>
+      <p class="sub">Be the first to know when AtoBbee lands near you. Early sign-ups get access first.</p>
 
       <form id="form" action="signup.php" method="post" novalidate>
         <div style="position:absolute;left:-9999px" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
@@ -454,8 +461,10 @@
             <input type="checkbox" name="roles[]" id="r-host" value="pickup"><label for="r-host"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 10v10h16V10"/><path d="M3 10l2-6h14l2 6z"/><path d="M10 20v-5h4v5"/></svg>Host pickups</label>
           </div>
         </fieldset>
+        <div class="shop-field field" id="shopField"><label for="shop">Shop or business name <span class="opt">(optional)</span></label><input type="text" id="shop" name="company" maxlength="120" autocomplete="organization" placeholder="e.g. De Kaashoek, Breda"></div>
+        <div class="field"><label for="fname">First name <span class="opt">(optional)</span></label><input type="text" id="fname" name="first_name" maxlength="60" autocomplete="given-name" placeholder="So we can say hi properly"></div>
         <div class="email-row">
-          <input type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com" aria-label="Email address">
+          <input type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com" aria-label="Email address" required>
           <button class="btn" type="submit">Get early access</button>
         </div>
         <label class="check"><input type="checkbox" id="consent" name="consent" value="yes"><span>Yes, send me AtoBbee news and early-access invites. Unsubscribe anytime. See the <a href="privacy.html" style="color:var(--paper)">privacy statement</a>.</span></label>
@@ -519,6 +528,10 @@
   show(location.hash.slice(1) || 'home');
 
   var form = document.getElementById('form'), msg = document.getElementById('msg'), done = document.getElementById('done');
+  var hostBox = document.getElementById('r-host'), shopField = document.getElementById('shopField');
+  function syncShop(){ shopField.classList.toggle('on', hostBox.checked); }
+  hostBox.addEventListener('change', syncShop);
+  document.addEventListener('click', function(){ setTimeout(syncShop, 0); });
   form.addEventListener('submit', function(e){
     e.preventDefault();
     if (!form.querySelector('input[name="roles[]"]:checked')) { msg.textContent = 'Pick at least one option.'; return; }

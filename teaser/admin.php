@@ -62,8 +62,8 @@ if (isset($_GET['csv'])) {
     header('Content-Type: text/csv; charset=utf-8');
     header('Content-Disposition: attachment; filename="atobbee-waitlist-' . date('Y-m-d') . '.csv"');
     $out = fopen('php://output', 'w');
-    fputcsv($out, ['email', 'interested_in', 'signed_up_at_utc', 'consent_text']);
-    foreach ($rows as $r) fputcsv($out, [$r['email'], $r['role'], $r['created_at'], $r['consent_text']]);
+    fputcsv($out, ['email', 'first_name', 'interested_in', 'shop', 'signed_up_at_utc', 'consent_text']);
+    foreach ($rows as $r) fputcsv($out, [$r['email'], $r['first_name'] ?? '', $r['role'], $r['company'] ?? '', $r['created_at'], $r['consent_text']]);
     exit;
 }
 
@@ -77,9 +77,9 @@ foreach ($rows as $r) foreach (explode(',', $r['role']) as $role) if (isset($cou
 <h1>Waitlist: <?= count($rows) ?></h1>
 <p>Sending: <?= $counts['sending'] ?> · Driving: <?= $counts['driving'] ?> · Pickup points: <?= $counts['pickup'] ?></p>
 <p><a class="btn" href="?csv=1">Download as CSV</a> &nbsp; <a href="?logout=1">Log out</a></p>
-<table><tr><th>Email</th><th>Interested in</th><th>Signed up (UTC)</th><th></th></tr>
+<table><tr><th>Email</th><th>First name</th><th>Interested in</th><th>Shop</th><th>Signed up (UTC)</th><th></th></tr>
 <?php foreach ($rows as $r): ?>
-<tr><td><?= htmlspecialchars($r['email']) ?></td><td><?= htmlspecialchars(str_replace(',', ', ', $r['role'])) ?></td><td><?= htmlspecialchars(substr($r['created_at'], 0, 16)) ?></td>
+<tr><td><?= htmlspecialchars($r['email']) ?></td><td><?= htmlspecialchars($r['first_name'] ?? '') ?></td><td><?= htmlspecialchars(str_replace(',', ', ', $r['role'])) ?></td><td><?= htmlspecialchars($r['company'] ?? '') ?></td><td><?= htmlspecialchars(substr($r['created_at'], 0, 16)) ?></td>
 <td><form method="post" onsubmit="return confirm('Remove this person?')"><button class="del" name="delete" value="<?= (int)$r['id'] ?>">remove</button></form></td></tr>
 <?php endforeach; ?>
 </table></body></html>

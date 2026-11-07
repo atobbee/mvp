@@ -33,6 +33,8 @@ $email   = strtolower(trim((string)($_POST['email'] ?? '')));
 $picked  = (array)($_POST['roles'] ?? []);
 $roles   = array_values(array_intersect(ROLES, array_map('strval', $picked)));
 $consent = ($_POST['consent'] ?? '') === 'yes';
+$firstName = mb_substr(trim(strip_tags((string)($_POST['first_name'] ?? ''))), 0, 60);
+$company   = in_array('pickup', $roles, true) ? mb_substr(trim(strip_tags((string)($_POST['company'] ?? ''))), 0, 120) : '';
 
 if (!$roles) {
     respond(false, 'Pick at least one option.', $wantsJson);
@@ -46,14 +48,18 @@ if (!$consent) {
 
 try {
     $db = atobbee_db();
-    $stmt = $db->prepare('INSERT INTO waitlist (email, role, consent_text, created_at)
-                          VALUES (:email, :role, :consent, :created)
-                          ON CONFLICT(email) DO UPDATE SET role = excluded.role');
+    $stmt = $db->prepare('INSERT INTO waitlist (email, role, consent_text, created_at, first_name, company)
+                          VALUES (:email, :role, :consent, :created, :first, :company)
+                          ON CONFLICT(email) DO UPDATE SET role = excluded.role,
+                            first_name = COALESCE(NULLIF(excluded.first_name, \'\'), first_name),
+                            company    = COALESCE(NULLIF(excluded.company, \'\'), company)');
     $stmt->execute([
         ':email'   => $email,
         ':role'    => implode(',', $roles),   // e.g. "sending,driving"
         ':consent' => CONSENT_TEXT,
         ':created' => gmdate('c'),
+        ':first'   => $firstName,
+        ':company' => $company,
     ]);
 } catch (Throwable $e) {
     error_log('AtoBbee signup failed: ' . $e->getMessage());
