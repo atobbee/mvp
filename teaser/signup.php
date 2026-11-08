@@ -8,6 +8,20 @@ const ROLES = ['sending', 'driving', 'pickup'];
 const COUNTRIES = ['Netherlands', 'Belgium', 'Germany', 'Other'];
 
 $wantsJson = str_contains($_SERVER['HTTP_ACCEPT'] ?? '', 'application/json');
+$lang = (($_POST['lang'] ?? 'nl') === 'en') ? 'en' : 'nl';
+
+// Messages in Dutch (default) and English, matching the language switch on the site.
+const MESSAGES = [
+    'form'    => ['nl' => 'Gebruik het formulier op de pagina.', 'en' => 'Please use the form on the page.'],
+    'ok'      => ['nl' => 'Je staat op de lijst.', 'en' => "You're on the list."],
+    'role'    => ['nl' => 'Kies minstens één optie.', 'en' => 'Pick at least one option.'],
+    'name'    => ['nl' => 'Vul je voornaam en achternaam in.', 'en' => 'Fill in your first name and surname.'],
+    'loc'     => ['nl' => 'Vul je postcode, plaats en land in.', 'en' => 'Fill in your postcode, city and country.'],
+    'email'   => ['nl' => 'Dat e-mailadres klopt niet helemaal.', 'en' => "That email doesn't look quite right."],
+    'consent' => ['nl' => 'Vink het vakje aan zodat we je mogen mailen.', 'en' => 'Tick the box so we can email you.'],
+    'oops'    => ['nl' => 'Er ging bij ons iets mis. Probeer het zo nog eens.', 'en' => 'Something went wrong on our side. Please try again in a moment.'],
+];
+function msg(string $key, string $lang): string { return MESSAGES[$key][$lang]; }
 
 function respond(bool $ok, string $message, bool $json): void
 {
@@ -16,18 +30,19 @@ function respond(bool $ok, string $message, bool $json): void
         http_response_code($ok ? 200 : 400);
         echo json_encode(['ok' => $ok, 'message' => $message]);
     } else {
-        header('Location: index.html?' . ($ok ? 'joined=1' : 'error=' . rawurlencode($message)) . '#join');
+        global $lang;
+        header('Location: index.html?' . ($lang === 'en' ? 'lang=en&' : '') . ($ok ? 'joined=1' : 'error=' . rawurlencode($message)) . '#join');
     }
     exit;
 }
 
 if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
-    respond(false, 'Please use the form on the page.', $wantsJson);
+    respond(false, msg('form', $lang), $wantsJson);
 }
 
 // Honeypot: a hidden field real people never fill in. Bots do.
 if (!empty($_POST['website'])) {
-    respond(true, "You're on the list.", $wantsJson);
+    respond(true, msg('ok', $lang), $wantsJson);
 }
 
 $email   = strtolower(trim((string)($_POST['email'] ?? '')));
@@ -42,19 +57,19 @@ $country   = (string)($_POST['country'] ?? '');
 $company   = in_array('pickup', $roles, true) ? mb_substr(trim(strip_tags((string)($_POST['company'] ?? ''))), 0, 120) : '';
 
 if (!$roles) {
-    respond(false, 'Pick at least one option.', $wantsJson);
+    respond(false, msg('role', $lang), $wantsJson);
 }
 if ($firstName === '' || $lastName === '') {
-    respond(false, 'Fill in your first name and surname.', $wantsJson);
+    respond(false, msg('name', $lang), $wantsJson);
 }
 if ($postcode === '' || $city === '' || !in_array($country, COUNTRIES, true)) {
-    respond(false, 'Fill in your postcode, city and country.', $wantsJson);
+    respond(false, msg('loc', $lang), $wantsJson);
 }
 if (!filter_var($email, FILTER_VALIDATE_EMAIL) || strlen($email) > 254) {
-    respond(false, "That email doesn't look quite right.", $wantsJson);
+    respond(false, msg('email', $lang), $wantsJson);
 }
 if (!$consent) {
-    respond(false, 'Tick the box so we can email you.', $wantsJson);
+    respond(false, msg('consent', $lang), $wantsJson);
 }
 
 try {
@@ -79,7 +94,7 @@ try {
     ]);
 } catch (Throwable $e) {
     error_log('Atobbee signup failed: ' . $e->getMessage());
-    respond(false, 'Something went wrong on our side. Please try again in a moment.', $wantsJson);
+    respond(false, msg('oops', $lang), $wantsJson);
 }
 
-respond(true, "You're on the list.", $wantsJson);
+respond(true, msg('ok', $lang), $wantsJson);

@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="en">
+<html lang="nl">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0f1b2e">
 <link rel="icon" href="assets/logo-mark.svg" type="image/svg+xml">
-<title>Atobbee · A to B. Every time.</title>
-<meta name="description" content="Atobbee connects packages with people already travelling in the right direction. Starting on the Breda–Rotterdam corridor. Join the waitlist.">
+<title>Atobbee · Van A naar B. Elke keer.</title>
+<meta name="description" content="Atobbee verbindt pakketten met mensen die toch al de goede kant op reizen. We starten op de corridor Breda–Rotterdam. Meld je aan voor de wachtlijst.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -455,6 +455,13 @@
   .ex-match-example .caps{display:block;margin-bottom:4px}
   .ex-match-example p{flex:none;margin:0;color:var(--paper)}
   @media (max-width:560px){.ex-match-example{flex-direction:column;align-items:flex-start}}
+
+  /* Language switch */
+  .lang{display:flex;gap:2px;padding:3px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);flex:none}
+  .lang button{font:inherit;font-size:12px;font-weight:700;letter-spacing:.06em;color:rgba(255,255,255,.7);background:none;border:0;padding:5px 10px;border-radius:999px;cursor:pointer;line-height:1}
+  .lang button:hover{color:#fff}
+  .lang button[aria-pressed="true"]{background:var(--gold);color:var(--ink-navy,#0f1b2e)}
+  .lang button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 </style>
 </head>
 <body>
@@ -464,11 +471,12 @@
   <div class="wrap">
     <a class="brand" href="#" data-go="home"><img alt="" src="assets/logo-mark.svg"><span class="wordmark">Atobbee</span></a>
     <nav class="links" aria-label="Pages">
-      <a href="#send" data-go="send">Send</a>
-      <a href="#drive" data-go="drive">Drive</a>
-      <a href="#host" data-go="host">Pickup points</a>
+      <a href="#send" data-go="send" data-i18n="k0">Versturen</a>
+      <a href="#drive" data-go="drive" data-i18n="k1">Rijden</a>
+      <a href="#host" data-go="host" data-i18n="k2">Afhaalpunten</a>
     </nav>
-    <a class="btn sm" id="navDemo" href="demo.html" data-demo>Open demo</a>
+    <a class="btn sm" id="navDemo" href="demo.html" data-demo data-i18n="k3">Open demo</a>
+    <div class="lang" role="group" aria-label="Taal / Language"><button type="button" data-lang="nl" aria-pressed="true">NL</button><button type="button" data-lang="en" aria-pressed="false">EN</button></div>
   </div>
 </header>
 
@@ -478,7 +486,7 @@
 <section class="view" id="v-home" aria-label="Home">
   <div class="wrap">
     <div class="hero dz">
-      <svg class="orbit" viewBox="0 0 640 360" role="img" aria-label="A bee flying from A to B">
+      <svg class="orbit" viewBox="0 0 640 360" role="img" aria-label="Een bij die van A naar B vliegt" data-i18n-aria-label="a2">
         <defs>
           <linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#e8d7a3"/><stop offset="1" stop-color="#c9b475"/></linearGradient>
         </defs>
@@ -508,47 +516,47 @@
           </g>
         </g></g>
       </svg>
-      <span class="caps">A to B · Every time</span>
-      <h1>Your package is going somewhere. <em>Someone already is too.</em></h1>
-      <p class="sub">Send your package with people already heading your way.</p>
+      <span class="caps" data-i18n="k4">Van A naar B · Elke keer</span>
+      <h1 data-i18n="k5">Je pakket moet ergens heen. <em>Iemand anders ook al.</em></h1>
+      <p class="sub" data-i18n="k6">Verstuur je pakket met mensen die toch al jouw kant op gaan.</p>
       <div class="row">
-        <a class="btn" href="#join" data-go="join">Get early access</a>
-        <a class="btn ghost" href="demo.html" id="demo-link" data-demo>Peek at the demo</a>
+        <a class="btn" href="#join" data-go="join" data-i18n="k7">Krijg vroege toegang</a>
+        <a class="btn ghost" href="demo.html" id="demo-link" data-demo data-i18n="k8">Bekijk de demo</a>
       </div>
     </div>
   </div>
 
   <div class="wrap strip">
     <ol class="route-steps">
-      <li><div class="node">A</div><h3>Post it.</h3><p>What, where, when.</p></li>
-      <li><div class="node mid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div><h3>Match it.</h3><p>A driver already on the way.</p></li>
-      <li><div class="node b">B</div><h3>Done.</h3><p>PIN handover. Delivered.</p></li>
+      <li><div class="node">A</div><h3 data-i18n="k9">Plaats het.</h3><p data-i18n="k10">Wat, waar, wanneer.</p></li>
+      <li><div class="node mid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div><h3 data-i18n="k11">Match het.</h3><p data-i18n="k12">Een chauffeur die toch al onderweg is.</p></li>
+      <li><div class="node b">B</div><h3 data-i18n="k13">Klaar.</h3><p data-i18n="k14">Overdracht met pincode. Bezorgd.</p></li>
     </ol>
   </div>
 
   <div class="wrap tiles">
     <a class="tile" href="#send" data-go="send">
       <div class="art"><svg viewBox="0 0 160 160" fill="none"><path d="M80 22 136 50v60L80 138 24 110V50z" fill="#1e2d47" stroke="#d9c58c" stroke-width="3" stroke-linejoin="round"/><path d="M24 50 80 78l56-28M80 78v60" stroke="#d9c58c" stroke-width="3" stroke-linejoin="round"/><path d="M52 36l56 28v18" stroke="#b8a46a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="118" cy="30" r="14" fill="#d9c58c"/><text x="118" y="35" text-anchor="middle" font-family="Inter,Arial" font-weight="800" font-size="13" fill="#0f1b2e">B</text></svg></div>
-      <div><div class="caps">For senders</div><h3>Send it along.</h3><span class="go">See how <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+      <div><div class="caps" data-i18n="k15">Voor verzenders</div><h3 data-i18n="k16">Stuur het mee.</h3><span class="go"><span data-i18n="seeHow">Bekijk hoe</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
     </a>
     <a class="tile" href="#drive" data-go="drive">
       <div class="art"><svg viewBox="0 0 160 160" fill="none"><path d="M10 122h140" stroke="#d9c58c" stroke-opacity=".45" stroke-width="3" stroke-dasharray="6 9" stroke-linecap="round"/><path d="M30 104h100v-22l-12-26H44L30 82z" fill="#1e2d47" stroke="#d9c58c" stroke-width="3" stroke-linejoin="round"/><path d="M30 82h100M58 56v26M100 56v26" stroke="#d9c58c" stroke-width="3"/><circle cx="52" cy="106" r="11" fill="#0f1b2e" stroke="#d9c58c" stroke-width="3"/><circle cx="108" cy="106" r="11" fill="#0f1b2e" stroke="#d9c58c" stroke-width="3"/><rect x="66" y="30" width="28" height="22" rx="3" fill="#d9c58c"/><path d="M66 41h28" stroke="#8e8762" stroke-width="2"/></svg></div>
-      <div><div class="caps">For drivers</div><h3>Your trip, paid for.</h3><span class="go">See how <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+      <div><div class="caps" data-i18n="k17">Voor chauffeurs</div><h3 data-i18n="k18">Je rit, betaald.</h3><span class="go"><span data-i18n="seeHow">Bekijk hoe</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
     </a>
     <a class="tile" href="#host" data-go="host">
       <div class="art"><svg viewBox="0 0 160 160" fill="none"><path d="M30 70v62h100V70" fill="#1e2d47" stroke="#d9c58c" stroke-width="3" stroke-linejoin="round"/><path d="M22 70l12-36h92l12 36z" fill="#16233a" stroke="#d9c58c" stroke-width="3" stroke-linejoin="round"/><path d="M22 70c0 9 8 14 16 14s16-5 16-14c0 9 8 14 16 14s16-5 16-14c0 9 8 14 16 14s16-5 16-14c0 9 6 14 14 14" stroke="#d9c58c" stroke-width="3"/><rect x="66" y="98" width="28" height="34" fill="#0f1b2e" stroke="#d9c58c" stroke-width="3"/><rect x="104" y="104" width="16" height="14" rx="2" fill="#d9c58c"/><rect x="108" y="92" width="14" height="12" rx="2" fill="#b8a46a"/></svg></div>
-      <div><div class="caps">For local shops</div><h3>Be the hub.</h3><span class="go">See how <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+      <div><div class="caps" data-i18n="k19">Voor lokale winkels</div><h3 data-i18n="k20">Wees het afhaalpunt.</h3><span class="go"><span data-i18n="seeHow">Bekijk hoe</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
     </a>
   </div>
 
   <div class="wrap corridor">
     <div class="corridor-card dz">
       <div>
-        <span class="caps">First stop</span>
+        <span class="caps" data-i18n="k21">Eerste halte</span>
         <h2>Breda ⇄ Rotterdam.</h2>
-        <p>Launching on the A16 first. Then the rest of the Netherlands.</p>
+        <p data-i18n="k22">We starten op de A16. Daarna de rest van Nederland.</p>
       </div>
-      <svg class="map" viewBox="0 0 520 300" role="img" aria-label="The A16 between Breda and Rotterdam">
+      <svg class="map" viewBox="0 0 520 300" role="img" aria-label="De A16 tussen Breda en Rotterdam" data-i18n-aria-label="a3">
         <path class="road-solid" d="M70 250 C 170 230, 200 170, 270 150 S 400 80, 450 50"/>
         <path class="road" d="M70 250 C 170 230, 200 170, 270 150 S 400 80, 450 50"/>
         <rect class="shield" x="238" y="116" width="54" height="30" rx="7"/>
@@ -570,22 +578,22 @@
 <section class="view" id="v-send" aria-label="For senders">
   <div class="wrap page split">
     <div>
-      <span class="caps">For senders</span>
-      <h1>Skip the courier. <em>Catch a ride.</em></h1>
-      <p class="sub">Someone's already driving there. Your package joins them.</p>
+      <span class="caps" data-i18n="k15">Voor verzenders</span>
+      <h1 data-i18n="k23">Geen koerier nodig. <em>Rij gewoon mee.</em></h1>
+      <p class="sub" data-i18n="k24">Iemand rijdt er toch al heen. Je pakket gaat gewoon mee.</p>
       <ul class="chips">
-        <li>Price upfront</li>
-        <li>PIN-locked handover</li>
-        <li>Driver paid after delivery</li>
+        <li data-i18n="k25">Prijs vooraf bekend</li>
+        <li data-i18n="k26">Overdracht met pincode</li>
+        <li data-i18n="k27">Chauffeur betaald na bezorging</li>
       </ul>
-      <a class="btn" href="#join" data-go="join" data-role="sending">Join as a sender</a><br>
-      <a class="back" href="#" data-go="home">← Back to home</a>
+      <a class="btn" href="#join" data-go="join" data-role="sending" data-i18n="k28">Aanmelden als verzender</a><br>
+      <a class="back" href="#" data-go="home" data-i18n="k29">← Terug naar home</a>
     </div>
     <div class="visual dz">
       <div class="pin-card">
-        <span class="caps">Pickup PIN</span>
+        <span class="caps" data-i18n="k30">Ophaalpincode</span>
         <div class="digits"><span>7</span><span>4</span><span>2</span><span>9</span></div>
-        <span class="lock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Only you and your driver know it</span>
+        <span class="lock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span data-i18n="pinKnow">Alleen jij en je chauffeur kennen hem</span></span>
         <div class="route-mini">Breda <i></i> Rotterdam</div>
       </div>
     </div>
@@ -596,24 +604,24 @@
 <section class="view" id="v-drive" aria-label="For drivers">
   <div class="wrap page split">
     <div>
-      <span class="caps">For drivers</span>
-      <h1>Your trip. <em>Paid for.</em></h1>
-      <p class="sub">You're going anyway. Bring a package and earn on the way.</p>
+      <span class="caps" data-i18n="k17">Voor chauffeurs</span>
+      <h1 data-i18n="k31">Je rit. <em>Betaald.</em></h1>
+      <p class="sub" data-i18n="k32">Je gaat toch al. Neem een pakket mee en verdien onderweg.</p>
       <ul class="chips">
-        <li>Routes you already drive</li>
-        <li>You pick what fits</li>
-        <li>Paid after delivery</li>
+        <li data-i18n="k33">Routes die je al rijdt</li>
+        <li data-i18n="k34">Jij kiest wat past</li>
+        <li data-i18n="k35">Betaald na bezorging</li>
       </ul>
-      <a class="btn" href="#join" data-go="join" data-role="driving">Join as a driver</a><br>
-      <a class="back" href="#" data-go="home">← Back to home</a>
+      <a class="btn" href="#join" data-go="join" data-role="driving" data-i18n="k36">Aanmelden als chauffeur</a><br>
+      <a class="back" href="#" data-go="home" data-i18n="k29">← Terug naar home</a>
     </div>
     <div class="visual dz">
       <div class="earn">
-        <div class="big"><small>€</small>18.40</div>
-        <p class="lbl">for a trip you were making anyway</p>
+        <div class="big"><small>€</small><span data-i18n="bigEarn">18,40</span></div>
+        <p class="lbl" data-i18n="k37">voor een rit die je toch al maakte</p>
         <div class="bar"><b></b><s></s></div>
-        <div class="legend"><span><b>You</b> €18.40</span><span>Atobbee 8% · €1.60</span></div>
-        <p class="note">Example: a €20 delivery, Breda → Rotterdam. Pricing may change before launch.</p>
+        <div class="legend"><span data-i18n="k38"><b>Jij</b> €18,40</span><span data-i18n="k39">Atobbee 8% · €1,60</span></div>
+        <p class="note" data-i18n="k40">Voorbeeld: een bezorging van €20, Breda → Rotterdam. Prijzen kunnen nog veranderen voor de lancering.</p>
       </div>
     </div>
   </div>
@@ -623,22 +631,22 @@
 <section class="view" id="v-host" aria-label="For pickup points">
   <div class="wrap page split">
     <div>
-      <span class="caps">For local shops</span>
-      <h1>Your shop. <em>The local hub.</em></h1>
-      <p class="sub">Neighbours pick up their packages at your counter, and stay for a coffee.</p>
+      <span class="caps" data-i18n="k19">Voor lokale winkels</span>
+      <h1 data-i18n="k41">Jouw winkel. <em>Het buurtpunt.</em></h1>
+      <p class="sub" data-i18n="k42">Buren halen hun pakket op bij jouw toonbank, en blijven hangen voor een kop koffie.</p>
       <ul class="chips">
-        <li>€0.99/month or €10/year</li>
-        <li>More foot traffic</li>
-        <li>Your hours, your limits</li>
-        <li>Pause anytime</li>
+        <li data-i18n="k43">€0,99/maand of €10/jaar</li>
+        <li data-i18n="k44">Meer aanloop</li>
+        <li data-i18n="k45">Jouw tijden, jouw grenzen</li>
+        <li data-i18n="k46">Altijd pauzeren</li>
       </ul>
-      <a class="btn" href="#join" data-go="join" data-role="pickup">Join as a pickup point</a><br>
-      <a class="back" href="#" data-go="home">← Back to home</a>
+      <a class="btn" href="#join" data-go="join" data-role="pickup" data-i18n="k47">Aanmelden als afhaalpunt</a><br>
+      <a class="back" href="#" data-go="home" data-i18n="k29">← Terug naar home</a>
     </div>
     <div class="visual dz">
       <div class="shop">
-        <span class="bubble">3 packages waiting</span>
-        <svg viewBox="0 0 320 280" fill="none" role="img" aria-label="A shopfront with packages">
+        <span class="bubble" data-i18n="k48">3 pakketten wachten</span>
+        <svg viewBox="0 0 320 280" fill="none" role="img" aria-label="Een winkelpui met pakketten" data-i18n-aria-label="a4">
           <path d="M40 110v150h240V110" fill="#1e2d47" stroke="#d9c58c" stroke-width="3" stroke-linejoin="round"/>
           <path d="M26 110l20-62h228l20 62z" fill="#16233a" stroke="#d9c58c" stroke-width="3" stroke-linejoin="round"/>
           <path d="M26 110c0 14 12 22 26 22s26-8 26-22c0 14 12 22 26 22s26-8 26-22c0 14 12 22 26 22s26-8 26-22c0 14 12 22 26 22s26-8 26-22c0 14 12 22 26 22s26-8 26-22" stroke="#d9c58c" stroke-width="3"/>
@@ -660,41 +668,42 @@
 <section class="view" id="v-join" aria-label="Join the waitlist">
   <div class="wrap join">
     <div class="join-card">
-      <span class="caps">Early access</span>
-      <h1>Be first in line.</h1>
-      <p class="sub">Be the first to know when Atobbee lands near you. Early sign-ups get access first.</p>
+      <span class="caps" data-i18n="k49">Vroege toegang</span>
+      <h1 data-i18n="k50">Sta vooraan.</h1>
+      <p class="sub" data-i18n="k51">Hoor als eerste wanneer Atobbee bij jou in de buurt komt. Wie zich vroeg aanmeldt, krijgt als eerste toegang.</p>
 
       <form id="form" action="signup.php" method="post" novalidate>
-        <p class="req-note"><abbr class="req" title="required">*</abbr>Required</p>
+        <p class="req-note" data-i18n="k52"><abbr class="req" title="verplicht">*</abbr>Verplicht</p>
+        <input type="hidden" name="lang" id="form-lang" value="nl">
         <div style="position:absolute;left:-9999px" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
         <fieldset>
-          <legend>I want to…<abbr class="req" title="required">*</abbr> <span style="color:var(--dim);font-weight:500">(pick all that fit)</span></legend>
+          <legend data-i18n="k53">Ik wil…<abbr class="req" title="verplicht">*</abbr> <span style="color:var(--dim);font-weight:500">(kies alles wat past)</span></legend>
           <div class="roles">
-            <input type="checkbox" name="roles[]" id="r-send" value="sending"><label for="r-send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5 12 12l9-4.5M12 12v9"/></svg>Send</label>
-            <input type="checkbox" name="roles[]" id="r-drive" value="driving"><label for="r-drive"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 16h14v-4l-2-5H7l-2 5z"/><path d="M5 12h14"/><circle cx="8" cy="16.5" r="1.8"/><circle cx="16" cy="16.5" r="1.8"/></svg>Drive</label>
-            <input type="checkbox" name="roles[]" id="r-host" value="pickup"><label for="r-host"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 10v10h16V10"/><path d="M3 10l2-6h14l2 6z"/><path d="M10 20v-5h4v5"/></svg>Host pickups</label>
+            <input type="checkbox" name="roles[]" id="r-send" value="sending"><label for="r-send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5 12 12l9-4.5M12 12v9"/></svg><span data-i18n="rSend">Versturen</span></label>
+            <input type="checkbox" name="roles[]" id="r-drive" value="driving"><label for="r-drive"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 16h14v-4l-2-5H7l-2 5z"/><path d="M5 12h14"/><circle cx="8" cy="16.5" r="1.8"/><circle cx="16" cy="16.5" r="1.8"/></svg><span data-i18n="rDrive">Rijden</span></label>
+            <input type="checkbox" name="roles[]" id="r-host" value="pickup"><label for="r-host"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 10v10h16V10"/><path d="M3 10l2-6h14l2 6z"/><path d="M10 20v-5h4v5"/></svg><span data-i18n="rHost">Afhaalpunt zijn</span></label>
           </div>
         </fieldset>
-        <div class="shop-field field" id="shopField"><label for="shop">Shop or business name <span class="opt">(optional)</span></label><input type="text" id="shop" name="company" maxlength="120" autocomplete="organization" placeholder="e.g. De Kaashoek, Breda"></div>
+        <div class="shop-field field" id="shopField"><label for="shop" data-i18n="k54">Naam winkel of bedrijf <span class="opt">(optioneel)</span></label><input type="text" id="shop" name="company" maxlength="120" autocomplete="organization" placeholder="bijv. De Kaashoek, Breda" data-i18n-placeholder="a0"></div>
         <div class="name-row">
-          <div class="field"><label for="fname">First name<abbr class="req" title="required">*</abbr></label><input type="text" id="fname" name="first_name" maxlength="60" autocomplete="given-name" placeholder="Anna" required></div>
-          <div class="field"><label for="lname">Surname<abbr class="req" title="required">*</abbr></label><input type="text" id="lname" name="last_name" maxlength="80" autocomplete="family-name" placeholder="de Vries" required></div>
+          <div class="field"><label for="fname" data-i18n="k55">Voornaam<abbr class="req" title="verplicht">*</abbr></label><input type="text" id="fname" name="first_name" maxlength="60" autocomplete="given-name" placeholder="Anna" required></div>
+          <div class="field"><label for="lname" data-i18n="k56">Achternaam<abbr class="req" title="verplicht">*</abbr></label><input type="text" id="lname" name="last_name" maxlength="80" autocomplete="family-name" placeholder="de Vries" required></div>
         </div>
         <fieldset class="loc">
-          <legend>Where are you based?</legend>
+          <legend data-i18n="k57">Waar woon je?</legend>
           <div class="loc-row">
-            <div class="field"><label for="postcode">Postcode<abbr class="req" title="required">*</abbr></label><input type="text" id="postcode" name="postcode" maxlength="12" autocomplete="postal-code" placeholder="4811 AB" required></div>
-            <div class="field"><label for="city">City<abbr class="req" title="required">*</abbr></label><input type="text" id="city" name="city" maxlength="80" autocomplete="address-level2" placeholder="Breda" required></div>
-            <div class="field"><label for="country">Country<abbr class="req" title="required">*</abbr></label><select id="country" name="country" autocomplete="country-name"><option>Netherlands</option><option>Belgium</option><option>Germany</option><option>Other</option></select></div>
+            <div class="field"><label for="postcode" data-i18n="k58">Postcode<abbr class="req" title="verplicht">*</abbr></label><input type="text" id="postcode" name="postcode" maxlength="12" autocomplete="postal-code" placeholder="4811 AB" required></div>
+            <div class="field"><label for="city" data-i18n="k59">Plaats<abbr class="req" title="verplicht">*</abbr></label><input type="text" id="city" name="city" maxlength="80" autocomplete="address-level2" placeholder="Breda" required></div>
+            <div class="field"><label for="country" data-i18n="k60">Land<abbr class="req" title="verplicht">*</abbr></label><select id="country" name="country" autocomplete="country-name"><option value="Netherlands" data-i18n="cNetherlands">Nederland</option><option value="Belgium" data-i18n="cBelgium">België</option><option value="Germany" data-i18n="cGermany">Duitsland</option><option value="Other" data-i18n="cOther">Anders</option></select></div>
           </div>
-          <p class="loc-note">Just your postcode and city, never your street address. It shows us where to launch first.</p>
+          <p class="loc-note" data-i18n="k61">Alleen je postcode en plaats, nooit je straat. Zo zien we waar we het eerst moeten starten.</p>
         </fieldset>
-        <label class="email-label" for="email">Email address<abbr class="req" title="required">*</abbr></label>
+        <label class="email-label" for="email" data-i18n="k62">E-mailadres<abbr class="req" title="verplicht">*</abbr></label>
         <div class="email-row">
-          <input type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com" required>
-          <button class="btn" type="submit">Get early access</button>
+          <input type="email" id="email" name="email" autocomplete="email" placeholder="jij@voorbeeld.nl" data-i18n-placeholder="a1" required>
+          <button class="btn" type="submit" data-i18n="k7">Krijg vroege toegang</button>
         </div>
-        <label class="check"><input type="checkbox" id="consent" name="consent" value="yes"><span>Yes, send me Atobbee news and early-access invites. Unsubscribe anytime. See the <a href="privacy.html" style="color:var(--paper)">privacy statement</a>.<abbr class="req" title="required">*</abbr></span></label>
+        <label class="check"><input type="checkbox" id="consent" name="consent" value="yes"><span data-i18n="k63">Ja, stuur me nieuws van Atobbee en uitnodigingen voor vroege toegang. Altijd af te melden. Zie de <a href="privacy.html" style="color:var(--paper)">privacyverklaring</a>.<abbr class="req" title="verplicht">*</abbr></span></label>
         <p class="msg" id="msg" role="status" aria-live="polite"></p>
       </form>
 
@@ -711,9 +720,9 @@
             <path d="M352 180 l40 30 -40 30 z" fill="#d9c58c"/><circle cx="338" cy="204" r="6.5" fill="#0f1b2e"/>
           </g>
         </svg>
-        <h2>You're on the list.</h2>
-        <p>You'll be the first to know.</p>
-        <a class="back" href="#" data-go="home">← Back to home</a>
+        <h2 data-i18n="k64">Je staat op de lijst.</h2>
+        <p data-i18n="k65">Je hoort het als eerste.</p>
+        <a class="back" href="#" data-go="home" data-i18n="k29">← Terug naar home</a>
       </div>
     </div>
   </div>
@@ -721,22 +730,22 @@
   <div class="ex">
     <section class="ex-band alt">
       <div class="wrap">
-        <div class="ex-head"><span class="caps">Who it's for</span><h2>A platform built for three communities</h2></div>
+        <div class="ex-head"><span class="caps" data-i18n="k66">Voor wie</span><h2 data-i18n="k67">Een platform voor drie groepen</h2></div>
         <div class="ex-grid3">
           <article class="ex-card">
             <div class="ex-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5 12 12l9-4.5M12 12v9"/></svg></div>
-            <h3>Senders</h3><p>Send packages with drivers already heading your way, for a transparent fee: 8%, minimum €1.50. No hidden charges.</p>
-            <a class="btn sm" href="#join" data-go="join" data-role="sending">Join as a sender</a>
+            <h3 data-i18n="k68">Verzenders</h3><p data-i18n="k69">Verstuur pakketten met chauffeurs die toch al jouw kant op gaan, voor een duidelijke vergoeding: 8%, minimaal €1,50. Geen verborgen kosten.</p>
+            <a class="btn sm" href="#join" data-go="join" data-role="sending" data-i18n="k28">Aanmelden als verzender</a>
           </article>
           <article class="ex-card">
             <div class="ex-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 16h14v-4l-2-5H7l-2 5z"/><path d="M5 12h14"/><circle cx="8" cy="16.5" r="1.8"/><circle cx="16" cy="16.5" r="1.8"/></svg></div>
-            <h3>Drivers</h3><p>Earn on journeys you already make. Publish your route, accept matching packages and get paid after delivery.</p>
-            <a class="btn ghost sm" href="#join" data-go="join" data-role="driving">Join as a driver</a>
+            <h3 data-i18n="k70">Chauffeurs</h3><p data-i18n="k71">Verdien op ritten die je toch al maakt. Zet je route online, accepteer pakketten die passen en word betaald na bezorging.</p>
+            <a class="btn ghost sm" href="#join" data-go="join" data-role="driving" data-i18n="k36">Aanmelden als chauffeur</a>
           </article>
           <article class="ex-card">
             <div class="ex-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M4 10v10h16V10"/><path d="M3 10l2-6h14l2 6z"/><path d="M10 20v-5h4v5"/></svg></div>
-            <h3>Businesses</h3><p>Become an Atobbee pickup point and hold packages for neighbours, for €0.99 a month or €10 a year.</p>
-            <a class="btn ghost sm" href="#join" data-go="join" data-role="pickup">Join as a pickup point</a>
+            <h3 data-i18n="k72">Bedrijven</h3><p data-i18n="k73">Word een Atobbee-afhaalpunt en bewaar pakketten voor buren, voor €0,99 per maand of €10 per jaar.</p>
+            <a class="btn ghost sm" href="#join" data-go="join" data-role="pickup" data-i18n="k47">Aanmelden als afhaalpunt</a>
           </article>
         </div>
       </div>
@@ -744,64 +753,64 @@
 
     <section class="ex-band">
       <div class="wrap">
-        <div class="ex-head"><span class="caps">Active routes today</span><h2>Drivers already on the road in your region</h2><p>An example of what you'll see when you post a package.</p></div>
+        <div class="ex-head"><span class="caps" data-i18n="k74">Actieve routes vandaag</span><h2 data-i18n="k75">Chauffeurs die al onderweg zijn in jouw regio</h2><p data-i18n="k76">Een voorbeeld van wat je ziet als je een pakket plaatst.</p></div>
         <div class="ex-grid3">
-          <div class="ex-card ex-route"><div class="ex-route-top"><b>Breda <i>→</i> Rotterdam</b></div><div class="ex-who"><svg class="ex-person" width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="21" fill="#2c4370" stroke="#d8cfae" stroke-width="2"/><circle cx="22" cy="17" r="7" fill="#d4c07f"/><path d="M9.5 37.5c1.6-7 6.5-10.5 12.5-10.5s10.9 3.5 12.5 10.5A20.8 20.8 0 0 1 22 43a20.8 20.8 0 0 1-12.5-5.5z" fill="#d4c07f"/></svg><div><b>Sophie V.</b><span>Tesla Model 3 · Today 15:00–17:00</span></div></div><div class="ex-route-foot"><span class="ex-chip">94% route match</span><span class="ex-price">From €20</span></div></div>
-          <div class="ex-card ex-route"><div class="ex-route-top"><b>Tilburg <i>→</i> Antwerp</b></div><div class="ex-who"><svg class="ex-person" width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="21" fill="#1d2a44" stroke="#d8cfae" stroke-width="2"/><circle cx="22" cy="17" r="7" fill="#d4c07f"/><path d="M9.5 37.5c1.6-7 6.5-10.5 12.5-10.5s10.9 3.5 12.5 10.5A20.8 20.8 0 0 1 22 43a20.8 20.8 0 0 1-12.5-5.5z" fill="#d4c07f"/></svg><div><b>Marco T.</b><span>VW Transporter · Today 16:30</span></div></div><div class="ex-route-foot"><span class="ex-chip">88% route match</span><span class="ex-price">From €28</span></div></div>
-          <div class="ex-card ex-route"><div class="ex-route-top"><b>Eindhoven <i>→</i> Breda</b></div><div class="ex-who"><svg class="ex-person" width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="21" fill="#2f5a48" stroke="#d8cfae" stroke-width="2"/><circle cx="22" cy="17" r="7" fill="#d4c07f"/><path d="M9.5 37.5c1.6-7 6.5-10.5 12.5-10.5s10.9 3.5 12.5 10.5A20.8 20.8 0 0 1 22 43a20.8 20.8 0 0 1-12.5-5.5z" fill="#d4c07f"/></svg><div><b>Lena K.</b><span>Cargo bike · Tomorrow 09:00</span></div></div><div class="ex-route-foot"><span class="ex-chip">82% route match</span><span class="ex-price">From €12</span></div></div>
+          <div class="ex-card ex-route"><div class="ex-route-top"><b>Breda <i>→</i> Rotterdam</b></div><div class="ex-who"><svg class="ex-person" width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="21" fill="#2c4370" stroke="#d8cfae" stroke-width="2"/><circle cx="22" cy="17" r="7" fill="#d4c07f"/><path d="M9.5 37.5c1.6-7 6.5-10.5 12.5-10.5s10.9 3.5 12.5 10.5A20.8 20.8 0 0 1 22 43a20.8 20.8 0 0 1-12.5-5.5z" fill="#d4c07f"/></svg><div><b>Sophie V.</b><span data-i18n="k77">Tesla Model 3 · Vandaag 15:00–17:00</span></div></div><div class="ex-route-foot"><span class="ex-chip" data-i18n="k78">94% routematch</span><span class="ex-price" data-i18n="k79">Vanaf €20</span></div></div>
+          <div class="ex-card ex-route"><div class="ex-route-top"><b data-i18n="k80">Tilburg <i>→</i> Antwerpen</b></div><div class="ex-who"><svg class="ex-person" width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="21" fill="#1d2a44" stroke="#d8cfae" stroke-width="2"/><circle cx="22" cy="17" r="7" fill="#d4c07f"/><path d="M9.5 37.5c1.6-7 6.5-10.5 12.5-10.5s10.9 3.5 12.5 10.5A20.8 20.8 0 0 1 22 43a20.8 20.8 0 0 1-12.5-5.5z" fill="#d4c07f"/></svg><div><b>Marco T.</b><span data-i18n="k81">VW Transporter · Vandaag 16:30</span></div></div><div class="ex-route-foot"><span class="ex-chip" data-i18n="k82">88% routematch</span><span class="ex-price" data-i18n="k83">Vanaf €28</span></div></div>
+          <div class="ex-card ex-route"><div class="ex-route-top"><b>Eindhoven <i>→</i> Breda</b></div><div class="ex-who"><svg class="ex-person" width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="21" fill="#2f5a48" stroke="#d8cfae" stroke-width="2"/><circle cx="22" cy="17" r="7" fill="#d4c07f"/><path d="M9.5 37.5c1.6-7 6.5-10.5 12.5-10.5s10.9 3.5 12.5 10.5A20.8 20.8 0 0 1 22 43a20.8 20.8 0 0 1-12.5-5.5z" fill="#d4c07f"/></svg><div><b>Lena K.</b><span data-i18n="k84">Bakfiets · Morgen 09:00</span></div></div><div class="ex-route-foot"><span class="ex-chip" data-i18n="k85">82% routematch</span><span class="ex-price" data-i18n="k86">Vanaf €12</span></div></div>
         </div>
         <div class="ex-card ex-match">
           <div class="ex-match-intro">
-            <h3>How route match works</h3>
-            <p>Every driver gets a route match score from 0 to 100%. The higher the score, the better the driver fits your delivery. It combines seven factors:</p>
+            <h3 data-i18n="k87">Zo werkt de routematch</h3>
+            <p data-i18n="k88">Elke chauffeur krijgt een routematch-score van 0 tot 100%. Hoe hoger de score, hoe beter de chauffeur bij je bezorging past. De score combineert zeven factoren:</p>
           </div>
           <div class="ex-factors">
-            <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="6" r="2.5"/><path d="M8.5 18H14a4 4 0 0 0 0-8h-4a4 4 0 0 1 0-8h5.5"/></svg><b>Route overlap</b><span>How much of your route the driver already drives</span></div>
-            <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 1.5M9 2h6"/></svg><b>Extra driving time</b><span>The detour to pick up and drop off</span></div>
-            <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg><b>Vehicle space</b><span>Room left in the car, van or bike</span></div>
-            <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5 12 12l9-4.5M12 12v9"/></svg><b>Size &amp; weight</b><span>Your package fits the driver's limits</span></div>
-            <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><b>Pickup &amp; delivery times</b><span>Overlap with your time windows</span></div>
-            <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg><b>Driver preferences</b><span>Categories and items they accept</span></div>
-            <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.4 8 8 9 4.6-1 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg><b>Handling &amp; checks</b><span>Fragile care, PIN, ID or signature you asked for</span></div>
+            <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="6" r="2.5"/><path d="M8.5 18H14a4 4 0 0 0 0-8h-4a4 4 0 0 1 0-8h5.5"/></svg><b data-i18n="k89">Route-overlap</b><span data-i18n="k90">Hoeveel van jouw route de chauffeur al rijdt</span></div>
+            <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 1.5M9 2h6"/></svg><b data-i18n="k91">Extra rijtijd</b><span data-i18n="k92">De omweg om op te halen en af te leveren</span></div>
+            <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg><b data-i18n="k93">Ruimte in het voertuig</b><span data-i18n="k94">Hoeveel plek er nog is in de auto, bus of fiets</span></div>
+            <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5 12 12l9-4.5M12 12v9"/></svg><b data-i18n="k95">Formaat &amp; gewicht</b><span data-i18n="k96">Je pakket past binnen de grenzen van de chauffeur</span></div>
+            <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><b data-i18n="k97">Ophaal- &amp; bezorgtijden</b><span data-i18n="k98">Overlap met jouw tijdvakken</span></div>
+            <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg><b data-i18n="k99">Voorkeuren van de chauffeur</b><span data-i18n="k100">Welke categorieën en spullen ze meenemen</span></div>
+            <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.4 8 8 9 4.6-1 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg><b data-i18n="k101">Behandeling &amp; controles</b><span data-i18n="k102">Voorzichtig met breekbaar, pincode, ID of handtekening als je dat vraagt</span></div>
           </div>
           <div class="ex-match-example">
             <div class="ex-ring" style="--v:94"><b>94%</b></div>
             <div>
-              <span class="caps">For example: 94% route match</span>
-              <p>This driver is already travelling along most of your delivery route, has enough vehicle capacity and can meet your requested pickup and delivery times.</p>
+              <span class="caps" data-i18n="k103">Bijvoorbeeld: 94% routematch</span>
+              <p data-i18n="k104">Deze chauffeur rijdt al het grootste deel van je bezorgroute, heeft genoeg ruimte in het voertuig en kan je gewenste ophaal- en bezorgtijden halen.</p>
             </div>
           </div>
-          <p class="ex-match-note">Rule-based, not AI: you can always see why a driver matches.</p>
+          <p class="ex-match-note" data-i18n="k105">Op basis van vaste regels, geen AI: je ziet altijd waarom een chauffeur past.</p>
         </div>
-        <p class="ex-foot">Example data. Live routes appear once Atobbee launches.</p>
+        <p class="ex-foot" data-i18n="k106">Voorbeelddata. Echte routes verschijnen zodra Atobbee live gaat.</p>
       </div>
     </section>
 
     <section class="ex-band alt">
       <div class="wrap">
-        <div class="ex-head"><span class="caps">Transparent pricing</span><h2>One simple commission</h2><p>No hidden fees.</p></div>
+        <div class="ex-head"><span class="caps" data-i18n="k107">Duidelijke prijzen</span><h2 data-i18n="k108">Eén simpele commissie</h2><p data-i18n="k109">Geen verborgen kosten.</p></div>
         <div class="ex-price-card dz">
-          <span class="caps">Example delivery · Breda → Rotterdam</span>
+          <span class="caps" data-i18n="k110">Voorbeeldbezorging · Breda → Rotterdam</span>
           <dl>
-            <div><dt>Customer delivery price</dt><dd>€20.00</dd></div>
-            <div><dt>Atobbee commission (8%)</dt><dd class="minus">− €1.60</dd></div>
-            <div class="total"><dt>Driver earnings</dt><dd>€18.40</dd></div>
+            <div><dt data-i18n="k111">Bezorgprijs voor de klant</dt><dd data-i18n="k112">€20,00</dd></div>
+            <div><dt data-i18n="k113">Atobbee-commissie (8%)</dt><dd class="minus" data-i18n="k114">− €1,60</dd></div>
+            <div class="total"><dt data-i18n="k115">Verdienste chauffeur</dt><dd data-i18n="k116">€18,40</dd></div>
           </dl>
-          <p>Minimum commission €1.50 · Planned pricing, may change before launch</p>
+          <p data-i18n="k117">Minimale commissie €1,50 · Geplande prijzen, kunnen nog veranderen voor de lancering</p>
         </div>
       </div>
     </section>
 
     <section class="ex-band">
       <div class="wrap">
-        <div class="ex-head"><span class="caps">Proof of delivery</span><h2>Choose how sure you want to be</h2></div>
+        <div class="ex-head"><span class="caps" data-i18n="k118">Bewijs van bezorging</span><h2 data-i18n="k119">Kies hoe zeker je wilt zijn</h2></div>
         <div class="ex-grid3">
-          <div class="ex-card"><div class="ex-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM18 18h3v3h-3z"/></svg></div><h3>PIN &amp; QR confirmation</h3><p>A one-time code. Driver and recipient both confirm the handover.</p></div>
-          <div class="ex-card"><div class="ex-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M3 17c3-1 4-6 6-6s1 5 3 5 3-3 4-3 1 2 2 2M3 21h18"/></svg></div><h3>Signature</h3><p>Signed on screen at delivery. Ideal for valuable or sensitive items.</p></div>
-          <div class="ex-card"><div class="ex-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></div><h3>Photo proof</h3><p>The driver photographs the package in place, with a timestamp.</p></div>
-          <div class="ex-card"><div class="ex-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2.2"/><path d="M5.5 16c.6-1.6 2-2.4 3.5-2.4s2.9.8 3.5 2.4M14 10h4M14 13h3"/></svg></div><h3>ID &amp; age check</h3><p>The driver checks the recipient's ID or minimum age at the door.</p></div>
-          <div class="ex-card"><div class="ex-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div><h3>Recipient only</h3><p>No neighbours. Only handed to the named recipient.</p></div>
-          <div class="ex-card"><div class="ex-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h8l-1 7a3 3 0 0 1-6 0zM12 13v6M9 21h6"/></svg></div><h3>Fragile &amp; upright</h3><p>Handling instructions confirmed at pickup, with a photo.</p></div>
+          <div class="ex-card"><div class="ex-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM18 18h3v3h-3z"/></svg></div><h3 data-i18n="k120">Bevestiging met pincode &amp; QR</h3><p data-i18n="k121">Een eenmalige code. Chauffeur en ontvanger bevestigen allebei de overdracht.</p></div>
+          <div class="ex-card"><div class="ex-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M3 17c3-1 4-6 6-6s1 5 3 5 3-3 4-3 1 2 2 2M3 21h18"/></svg></div><h3 data-i18n="k122">Handtekening</h3><p data-i18n="k123">Op het scherm getekend bij bezorging. Ideaal voor waardevolle of gevoelige spullen.</p></div>
+          <div class="ex-card"><div class="ex-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></div><h3 data-i18n="k124">Fotobewijs</h3><p data-i18n="k125">De chauffeur maakt een foto van het afgeleverde pakket, met tijdstempel.</p></div>
+          <div class="ex-card"><div class="ex-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2.2"/><path d="M5.5 16c.6-1.6 2-2.4 3.5-2.4s2.9.8 3.5 2.4M14 10h4M14 13h3"/></svg></div><h3 data-i18n="k126">ID- &amp; leeftijdscheck</h3><p data-i18n="k127">De chauffeur controleert aan de deur het ID of de minimumleeftijd van de ontvanger.</p></div>
+          <div class="ex-card"><div class="ex-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div><h3 data-i18n="k128">Alleen aan ontvanger</h3><p data-i18n="k129">Niet bij de buren. Alleen aan de genoemde ontvanger.</p></div>
+          <div class="ex-card"><div class="ex-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h8l-1 7a3 3 0 0 1-6 0zM12 13v6M9 21h6"/></svg></div><h3 data-i18n="k130">Breekbaar &amp; rechtop</h3><p data-i18n="k131">Instructies worden bij het ophalen bevestigd, met een foto.</p></div>
         </div>
       </div>
     </section>
@@ -809,21 +818,21 @@
     <section class="ex-band alt">
       <div class="wrap ex-split">
         <div>
-          <span class="caps">Trust &amp; verification</span>
-          <h2 class="ex-h2">Built on transparency</h2>
+          <span class="caps" data-i18n="k132">Vertrouwen &amp; verificatie</span>
+          <h2 class="ex-h2" data-i18n="k133">Gebouwd op transparantie</h2>
           <ul class="ex-checks">
-            <li>Identity checks for drivers and transporters</li>
-            <li>Ratings based only on completed deliveries</li>
-            <li>Secure split payments, held until delivery</li>
-            <li>Timestamped proof of pickup and delivery</li>
-            <li>24 hours to report a problem before the driver is paid</li>
-            <li>Admin review for serious incidents</li>
+            <li data-i18n="k134">Identiteitscontrole voor chauffeurs en vervoerders</li>
+            <li data-i18n="k135">Beoordelingen alleen op basis van afgeronde bezorgingen</li>
+            <li data-i18n="k136">Veilige gesplitste betalingen, vastgehouden tot de bezorging</li>
+            <li data-i18n="k137">Bewijs van ophalen en bezorgen met tijdstempel</li>
+            <li data-i18n="k138">24 uur om een probleem te melden voordat de chauffeur wordt betaald</li>
+            <li data-i18n="k139">Beoordeling door ons team bij ernstige incidenten</li>
           </ul>
         </div>
         <div class="ex-card ex-profile">
-          <div class="ex-who"><svg class="ex-person lg" width="76" height="76" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="21" fill="#2c4370" stroke="#d8cfae" stroke-width="2"/><circle cx="22" cy="17" r="7" fill="#d4c07f"/><path d="M9.5 37.5c1.6-7 6.5-10.5 12.5-10.5s10.9 3.5 12.5 10.5A20.8 20.8 0 0 1 22 43a20.8 20.8 0 0 1-12.5-5.5z" fill="#d4c07f"/></svg><div><b>Sophie van den Berg</b><span>Private driver · Tesla Model 3</span><em class="ex-verified">Identity verified</em></div></div>
-          <div class="ex-stats"><div><b>4.9</b><span>Rating</span></div><div><b>127</b><span>Deliveries</span></div><div><b>98%</b><span>Reliability</span></div></div>
-          <p class="ex-foot" style="margin:14px 0 0">Example driver profile</p>
+          <div class="ex-who"><svg class="ex-person lg" width="76" height="76" viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="21" fill="#2c4370" stroke="#d8cfae" stroke-width="2"/><circle cx="22" cy="17" r="7" fill="#d4c07f"/><path d="M9.5 37.5c1.6-7 6.5-10.5 12.5-10.5s10.9 3.5 12.5 10.5A20.8 20.8 0 0 1 22 43a20.8 20.8 0 0 1-12.5-5.5z" fill="#d4c07f"/></svg><div><b>Sophie van den Berg</b><span data-i18n="k140">Particuliere chauffeur · Tesla Model 3</span><em class="ex-verified" data-i18n="k141">Identiteit geverifieerd</em></div></div>
+          <div class="ex-stats"><div><b>4.9</b><span data-i18n="k142">Beoordeling</span></div><div><b>127</b><span data-i18n="k143">Bezorgingen</span></div><div><b>98%</b><span data-i18n="k144">Betrouwbaarheid</span></div></div>
+          <p class="ex-foot" style="margin:14px 0 0" data-i18n="k145">Voorbeeldprofiel chauffeur</p>
         </div>
       </div>
     </section>
@@ -833,27 +842,27 @@
         <div class="ex-card ex-plan">
           <div class="ex-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M4 10v10h16V10"/><path d="M3 10l2-6h14l2 6z"/><path d="M10 20v-5h4v5"/></svg></div>
           <h3>Atobbee Business</h3>
-          <div class="ex-plan-price">€0.99<small>/month</small></div>
-          <p class="ex-plan-per">or €10 a year · planned</p>
+          <div class="ex-plan-price" data-i18n="k146">€0,99<small>/maand</small></div>
+          <p class="ex-plan-per" data-i18n="k147">of €10 per jaar · gepland</p>
           <ul class="ex-checks">
-            <li>Business pickup point profile</li>
-            <li>Opening hours and daily capacity</li>
-            <li>QR package scanning</li>
-            <li>Dashboard with expected packages</li>
-            <li>Pause availability anytime</li>
+            <li data-i18n="k148">Profiel als zakelijk afhaalpunt</li>
+            <li data-i18n="k149">Openingstijden en dagcapaciteit</li>
+            <li data-i18n="k150">Pakketten scannen met QR</li>
+            <li data-i18n="k151">Dashboard met verwachte pakketten</li>
+            <li data-i18n="k152">Beschikbaarheid altijd pauzeren</li>
           </ul>
-          <a class="btn block" href="#join" data-go="join" data-role="pickup">Join as a pickup point</a>
+          <a class="btn block" href="#join" data-go="join" data-role="pickup" data-i18n="k47">Aanmelden als afhaalpunt</a>
         </div>
         <div>
-          <span class="caps">Pickup points</span>
-          <h2 class="ex-h2">Turn your business into a hub</h2>
-          <p class="ex-lead">Bakeries, corner shops, florists, co-working spaces: any local business can become an Atobbee pickup and drop-off point. Customers collect when it suits them, and you gain foot traffic.</p>
-          <p class="ex-lead">Free for senders to use. The subscription is paid by the business. Simple, transparent, community-first.</p>
+          <span class="caps" data-i18n="k2">Afhaalpunten</span>
+          <h2 class="ex-h2" data-i18n="k153">Maak van je zaak een afhaalpunt</h2>
+          <p class="ex-lead" data-i18n="k154">Bakkers, buurtsupers, bloemisten, flexplekken: elk lokaal bedrijf kan een Atobbee-afhaal- en inleverpunt worden. Klanten halen op wanneer het hen uitkomt, en jij krijgt meer aanloop.</p>
+          <p class="ex-lead" data-i18n="k155">Gratis voor verzenders. Het abonnement wordt betaald door het bedrijf. Simpel, transparant, met de buurt voorop.</p>
         </div>
       </div>
     </section>
 
-    <div class="wrap ex-back"><a class="btn" href="#join" data-go="join">Back to the sign-up form</a></div>
+    <div class="wrap ex-back"><a class="btn" href="#join" data-go="join" data-i18n="k156">Terug naar het aanmeldformulier</a></div>
   </div>
 
 </section>
@@ -862,10 +871,10 @@
 
 <section class="cta-band dz" id="ctaBand">
   <div class="wrap">
-    <h2>Ready to send smarter?</h2>
-    <p>Join the community of senders and drivers making local transport work better.</p>
-    <div class="cta-row"><a class="btn" href="#join" data-go="join">Get early access</a><a class="btn ghost" href="demo.html" data-demo>Peek at the demo</a></div>
-    <p class="cta-note">No passenger transport · Coming soon · Not yet a live service</p>
+    <h2 data-i18n="k157">Klaar om slimmer te versturen?</h2>
+    <p data-i18n="k158">Sluit je aan bij de verzenders en chauffeurs die lokaal vervoer beter maken.</p>
+    <div class="cta-row"><a class="btn" href="#join" data-go="join" data-i18n="k7">Krijg vroege toegang</a><a class="btn ghost" href="demo.html" data-demo data-i18n="k8">Bekijk de demo</a></div>
+    <p class="cta-note" data-i18n="k159">Geen personenvervoer · Binnenkort · Nog geen actieve dienst</p>
   </div>
 </section>
 <footer class="pf">
@@ -873,59 +882,303 @@
     <div class="pf-grid">
       <div>
         <a class="pf-logo" href="#" data-go="home"><img src="assets/logo-mark.svg" alt="Atobbee"><span>Atobbee</span></a>
-        <p class="pf-tag">A to B. Every time.<br>Community-powered delivery for the Netherlands.</p>
-        <p class="pf-legal">Coming soon · Not yet a live service<br>Initial market: Breda–Rotterdam corridor</p>
+        <p class="pf-tag" data-i18n="k160">Van A naar B. Elke keer.<br>Bezorging door de community, voor Nederland.</p>
+        <p class="pf-legal" data-i18n="k161">Binnenkort · Nog geen actieve dienst<br>Eerste markt: corridor Breda–Rotterdam</p>
       </div>
       <div class="pf-links">
         <div class="pf-col">
-          <h4>Platform</h4>
-          <a href="#send" data-go="send">Send a Package</a>
-          <a href="#drive" data-go="drive">Drive &amp; Earn</a>
-          <a href="#host" data-go="host">Business Pickup</a>
-          <a href="demo.html#route" data-demo>Publish a Route</a>
+          <h4 data-i18n="k162">Platform</h4>
+          <a href="#send" data-go="send" data-i18n="k163">Pakket versturen</a>
+          <a href="#drive" data-go="drive" data-i18n="k164">Rijden &amp; verdienen</a>
+          <a href="#host" data-go="host" data-i18n="k165">Zakelijk afhaalpunt</a>
+          <a href="demo.html#route" data-demo data-i18n="k166">Route plaatsen</a>
         </div>
         <div class="pf-col">
-          <h4>Company</h4>
-          <a href="demo.html#trust" data-demo>Trust &amp; Safety</a>
-          <a href="demo.html#admin" data-demo>Admin</a>
-          <a href="#" data-go="home">How It Works</a>
-          <a href="#" class="pf-soon" title="Coming soon">Roadmap</a>
+          <h4 data-i18n="k167">Bedrijf</h4>
+          <a href="demo.html#trust" data-demo data-i18n="k168">Vertrouwen &amp; veiligheid</a>
+          <a href="demo.html#admin" data-demo data-i18n="k169">Beheer</a>
+          <a href="#" data-go="home" data-i18n="k170">Hoe het werkt</a>
+          <a href="#" class="pf-soon" title="Binnenkort" data-i18n-title="a5" data-i18n="k171">Roadmap</a>
         </div>
         <div class="pf-col">
-          <h4>Legal</h4>
-          <a href="#" class="pf-soon" title="Coming soon">Terms of Service</a>
-          <a href="privacy-policy.html">Privacy Policy</a>
-          <a href="cookies.html">Cookie Settings</a>
-          <a href="#" class="pf-soon" title="Coming soon">Liability Notice</a>
+          <h4 data-i18n="k172">Juridisch</h4>
+          <a href="#" class="pf-soon" title="Binnenkort" data-i18n-title="a5" data-i18n="k173">Algemene voorwaarden</a>
+          <a href="privacy-policy.html" data-i18n="k174">Privacybeleid</a>
+          <a href="cookies.html" data-i18n="k175">Cookie-instellingen</a>
+          <a href="#" class="pf-soon" title="Binnenkort" data-i18n-title="a5" data-i18n="k176">Aansprakelijkheid</a>
         </div>
       </div>
     </div>
     <div class="pf-bottom">
-      <span>© 2026 Atobbee · Netherlands</span>
-      <span>A Transportation Federation product</span>
+      <span data-i18n="k177">© 2026 Atobbee · Nederland</span>
+      <span data-i18n="k178">Een product van Transportation Federation</span>
     </div>
-    <p class="pf-legal pf-center">Atobbee will operate a marketplace connecting senders with independent transport providers. Responsibilities, insurance, liability limits and claims procedures will be governed by the final platform terms and applicable law. All legal text requires professional review before launch.</p>
+    <p class="pf-legal pf-center" data-i18n="k179">Atobbee wordt een marktplaats die verzenders verbindt met zelfstandige vervoerders. Verantwoordelijkheden, verzekering, aansprakelijkheidsgrenzen en claimprocedures worden geregeld in de definitieve platformvoorwaarden en de toepasselijke wet. Alle juridische teksten worden voor de lancering professioneel gecontroleerd.</p>
   </div>
 </footer>
 
 <div class="modal" id="demoModal" hidden role="dialog" aria-modal="true" aria-labelledby="demoTitle">
   <div class="modal-card dz">
-    <span class="caps">Heads up</span>
-    <h2 id="demoTitle">This is just a demo.</h2>
+    <span class="caps" data-i18n="k180">Even opletten</span>
+    <h2 id="demoTitle" data-i18n="k181">Dit is alleen een demo.</h2>
     <ul>
-      <li>Every person, package, price and booking in it is example data.</li>
-      <li>Nothing you type or click is saved or sent anywhere.</li>
-      <li>No real deliveries or payments happen.</li>
+      <li data-i18n="k182">Alle personen, pakketten, prijzen en boekingen zijn voorbeelddata.</li>
+      <li data-i18n="k183">Niets wat je typt of aanklikt wordt opgeslagen of verstuurd.</li>
+      <li data-i18n="k184">Er vinden geen echte bezorgingen of betalingen plaats.</li>
     </ul>
     <div class="row">
-      <a class="btn" id="demoGo" href="demo.html">Open the demo</a>
-      <button class="btn ghost" type="button" id="demoCancel">Not now</button>
+      <a class="btn" id="demoGo" href="demo.html" data-i18n="k185">Open de demo</a>
+      <button class="btn ghost" type="button" id="demoCancel" data-i18n="k186">Niet nu</button>
     </div>
   </div>
 </div>
 
 <script>
 (function(){
+
+// ---- Language: Dutch is the default in the HTML, English comes from this dictionary ----
+var EN = {
+"bigEarn": "18.40",
+"k0": "Send",
+"k1": "Drive",
+"k2": "Pickup points",
+"k3": "Open demo",
+"k4": "A to B · Every time",
+"k5": "Your package is going somewhere. <em>Someone already is too.</em>",
+"k6": "Send your package with people already heading your way.",
+"k7": "Get early access",
+"k8": "Peek at the demo",
+"k9": "Post it.",
+"k10": "What, where, when.",
+"k11": "Match it.",
+"k12": "A driver already on the way.",
+"k13": "Done.",
+"k14": "PIN handover. Delivered.",
+"k15": "For senders",
+"k16": "Send it along.",
+"k17": "For drivers",
+"k18": "Your trip, paid for.",
+"k19": "For local shops",
+"k20": "Be the hub.",
+"k21": "First stop",
+"k22": "Launching on the A16 first. Then the rest of the Netherlands.",
+"k23": "Skip the courier. <em>Catch a ride.</em>",
+"k24": "Someone's already driving there. Your package joins them.",
+"k25": "Price upfront",
+"k26": "PIN-locked handover",
+"k27": "Driver paid after delivery",
+"k28": "Join as a sender",
+"k29": "← Back to home",
+"k30": "Pickup PIN",
+"k31": "Your trip. <em>Paid for.</em>",
+"k32": "You're going anyway. Bring a package and earn on the way.",
+"k33": "Routes you already drive",
+"k34": "You pick what fits",
+"k35": "Paid after delivery",
+"k36": "Join as a driver",
+"k37": "for a trip you were making anyway",
+"k38": "<b>You</b> €18.40",
+"k39": "Atobbee 8% · €1.60",
+"k40": "Example: a €20 delivery, Breda → Rotterdam. Pricing may change before launch.",
+"k41": "Your shop. <em>The local hub.</em>",
+"k42": "Neighbours pick up their packages at your counter, and stay for a coffee.",
+"k43": "€0.99/month or €10/year",
+"k44": "More foot traffic",
+"k45": "Your hours, your limits",
+"k46": "Pause anytime",
+"k47": "Join as a pickup point",
+"k48": "3 packages waiting",
+"k49": "Early access",
+"k50": "Be first in line.",
+"k51": "Be the first to know when Atobbee lands near you. Early sign-ups get access first.",
+"k52": "<abbr class=\"req\" title=\"required\">*</abbr>Required",
+"k53": "I want to…<abbr class=\"req\" title=\"required\">*</abbr> <span style=\"color:var(--dim);font-weight:500\">(pick all that fit)</span>",
+"k54": "Shop or business name <span class=\"opt\">(optional)</span>",
+"k55": "First name<abbr class=\"req\" title=\"required\">*</abbr>",
+"k56": "Surname<abbr class=\"req\" title=\"required\">*</abbr>",
+"k57": "Where are you based?",
+"k58": "Postcode<abbr class=\"req\" title=\"required\">*</abbr>",
+"k59": "City<abbr class=\"req\" title=\"required\">*</abbr>",
+"k60": "Country<abbr class=\"req\" title=\"required\">*</abbr>",
+"k61": "Just your postcode and city, never your street address. It shows us where to launch first.",
+"k62": "Email address<abbr class=\"req\" title=\"required\">*</abbr>",
+"k63": "Yes, send me Atobbee news and early-access invites. Unsubscribe anytime. See the <a href=\"privacy.html\" style=\"color:var(--paper)\">privacy statement</a>.<abbr class=\"req\" title=\"required\">*</abbr>",
+"k64": "You're on the list.",
+"k65": "You'll be the first to know.",
+"k66": "Who it's for",
+"k67": "A platform built for three communities",
+"k68": "Senders",
+"k69": "Send packages with drivers already heading your way, for a transparent fee: 8%, minimum €1.50. No hidden charges.",
+"k70": "Drivers",
+"k71": "Earn on journeys you already make. Publish your route, accept matching packages and get paid after delivery.",
+"k72": "Businesses",
+"k73": "Become an Atobbee pickup point and hold packages for neighbours, for €0.99 a month or €10 a year.",
+"k74": "Active routes today",
+"k75": "Drivers already on the road in your region",
+"k76": "An example of what you'll see when you post a package.",
+"k77": "Tesla Model 3 · Today 15:00–17:00",
+"k78": "94% route match",
+"k79": "From €20",
+"k80": "Tilburg <i>→</i> Antwerp",
+"k81": "VW Transporter · Today 16:30",
+"k82": "88% route match",
+"k83": "From €28",
+"k84": "Cargo bike · Tomorrow 09:00",
+"k85": "82% route match",
+"k86": "From €12",
+"k87": "How route match works",
+"k88": "Every driver gets a route match score from 0 to 100%. The higher the score, the better the driver fits your delivery. It combines seven factors:",
+"k89": "Route overlap",
+"k90": "How much of your route the driver already drives",
+"k91": "Extra driving time",
+"k92": "The detour to pick up and drop off",
+"k93": "Vehicle space",
+"k94": "Room left in the car, van or bike",
+"k95": "Size &amp; weight",
+"k96": "Your package fits the driver's limits",
+"k97": "Pickup &amp; delivery times",
+"k98": "Overlap with your time windows",
+"k99": "Driver preferences",
+"k100": "Categories and items they accept",
+"k101": "Handling &amp; checks",
+"k102": "Fragile care, PIN, ID or signature you asked for",
+"k103": "For example: 94% route match",
+"k104": "This driver is already travelling along most of your delivery route, has enough vehicle capacity and can meet your requested pickup and delivery times.",
+"k105": "Rule-based, not AI: you can always see why a driver matches.",
+"k106": "Example data. Live routes appear once Atobbee launches.",
+"k107": "Transparent pricing",
+"k108": "One simple commission",
+"k109": "No hidden fees.",
+"k110": "Example delivery · Breda → Rotterdam",
+"k111": "Customer delivery price",
+"k112": "€20.00",
+"k113": "Atobbee commission (8%)",
+"k114": "− €1.60",
+"k115": "Driver earnings",
+"k116": "€18.40",
+"k117": "Minimum commission €1.50 · Planned pricing, may change before launch",
+"k118": "Proof of delivery",
+"k119": "Choose how sure you want to be",
+"k120": "PIN &amp; QR confirmation",
+"k121": "A one-time code. Driver and recipient both confirm the handover.",
+"k122": "Signature",
+"k123": "Signed on screen at delivery. Ideal for valuable or sensitive items.",
+"k124": "Photo proof",
+"k125": "The driver photographs the package in place, with a timestamp.",
+"k126": "ID &amp; age check",
+"k127": "The driver checks the recipient's ID or minimum age at the door.",
+"k128": "Recipient only",
+"k129": "No neighbours. Only handed to the named recipient.",
+"k130": "Fragile &amp; upright",
+"k131": "Handling instructions confirmed at pickup, with a photo.",
+"k132": "Trust &amp; verification",
+"k133": "Built on transparency",
+"k134": "Identity checks for drivers and transporters",
+"k135": "Ratings based only on completed deliveries",
+"k136": "Secure split payments, held until delivery",
+"k137": "Timestamped proof of pickup and delivery",
+"k138": "24 hours to report a problem before the driver is paid",
+"k139": "Admin review for serious incidents",
+"k140": "Private driver · Tesla Model 3",
+"k141": "Identity verified",
+"k142": "Rating",
+"k143": "Deliveries",
+"k144": "Reliability",
+"k145": "Example driver profile",
+"k146": "€0.99<small>/month</small>",
+"k147": "or €10 a year · planned",
+"k148": "Business pickup point profile",
+"k149": "Opening hours and daily capacity",
+"k150": "QR package scanning",
+"k151": "Dashboard with expected packages",
+"k152": "Pause availability anytime",
+"k153": "Turn your business into a hub",
+"k154": "Bakeries, corner shops, florists, co-working spaces: any local business can become an Atobbee pickup and drop-off point. Customers collect when it suits them, and you gain foot traffic.",
+"k155": "Free for senders to use. The subscription is paid by the business. Simple, transparent, community-first.",
+"k156": "Back to the sign-up form",
+"k157": "Ready to send smarter?",
+"k158": "Join the community of senders and drivers making local transport work better.",
+"k159": "No passenger transport · Coming soon · Not yet a live service",
+"k160": "A to B. Every time.<br>Community-powered delivery for the Netherlands.",
+"k161": "Coming soon · Not yet a live service<br>Initial market: Breda–Rotterdam corridor",
+"k162": "Platform",
+"k163": "Send a Package",
+"k164": "Drive &amp; Earn",
+"k165": "Business Pickup",
+"k166": "Publish a Route",
+"k167": "Company",
+"k168": "Trust &amp; Safety",
+"k169": "Admin",
+"k170": "How It Works",
+"k171": "Roadmap",
+"k172": "Legal",
+"k173": "Terms of Service",
+"k174": "Privacy Policy",
+"k175": "Cookie Settings",
+"k176": "Liability Notice",
+"k177": "© 2026 Atobbee · Netherlands",
+"k178": "A Transportation Federation product",
+"k179": "Atobbee will operate a marketplace connecting senders with independent transport providers. Responsibilities, insurance, liability limits and claims procedures will be governed by the final platform terms and applicable law. All legal text requires professional review before launch.",
+"k180": "Heads up",
+"k181": "This is just a demo.",
+"k182": "Every person, package, price and booking in it is example data.",
+"k183": "Nothing you type or click is saved or sent anywhere.",
+"k184": "No real deliveries or payments happen.",
+"k185": "Open the demo",
+"k186": "Not now",
+"seeHow": "See how",
+"rSend": "Send",
+"rDrive": "Drive",
+"rHost": "Host pickups",
+"pinKnow": "Only you and your driver know it",
+"cNetherlands": "Netherlands",
+"cBelgium": "Belgium",
+"cGermany": "Germany",
+"cOther": "Other",
+"a0": "e.g. De Kaashoek, Breda",
+"a1": "you@example.com",
+"a2": "A bee flying from A to B",
+"a3": "The A16 between Breda and Rotterdam",
+"a4": "A shopfront with packages",
+"a5": "Coming soon"
+};
+var MSG = {"nl": {"role": "Kies minstens één optie.", "name": "Vul je voornaam en achternaam in.", "loc": "Vul je postcode en plaats in.", "email": "Dat e-mailadres klopt niet helemaal.", "consent": "Vink het vakje aan zodat we je mogen mailen.", "oops": "Er ging iets mis. Probeer het zo nog eens.", "title": "Atobbee · Van A naar B. Elke keer."}, "en": {"role": "Pick at least one option.", "name": "Fill in your first name and surname.", "loc": "Fill in your postcode and city.", "email": "That email doesn't look quite right.", "consent": "Tick the box so we can email you.", "oops": "Something went wrong. Please try again in a moment.", "title": "Atobbee · A to B. Every time."}};
+var LANG = 'nl';
+var NL = {}, NLA = {};
+document.querySelectorAll('[data-i18n]').forEach(function(el){ NL[el.dataset.i18n] = el.innerHTML; });
+['placeholder','aria-label','title'].forEach(function(a){
+  document.querySelectorAll('[data-i18n-' + a + ']').forEach(function(el){ NLA[el.getAttribute('data-i18n-' + a)] = el.getAttribute(a); });
+});
+function t(k){ return MSG[LANG][k]; }
+function setLang(l, save){
+  LANG = (l === 'en') ? 'en' : 'nl';
+  document.documentElement.lang = LANG;
+  document.title = t('title');
+  document.querySelectorAll('[data-i18n]').forEach(function(el){
+    var k = el.dataset.i18n; el.innerHTML = LANG === 'en' ? EN[k] : NL[k];
+  });
+  ['placeholder','aria-label','title'].forEach(function(a){
+    document.querySelectorAll('[data-i18n-' + a + ']').forEach(function(el){
+      var k = el.getAttribute('data-i18n-' + a); el.setAttribute(a, LANG === 'en' ? EN[k] : NLA[k]);
+    });
+  });
+  document.querySelectorAll('.lang button').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.lang === LANG ? 'true' : 'false'); });
+  var hl = document.getElementById('form-lang'); if (hl) hl.value = LANG;
+  document.querySelectorAll('a[href^="privacy"],a[href^="cookies"],a[href^="demo.html"],#demoGo').forEach(function(a){
+    var h = a.getAttribute('href'); if (!h) return;
+    h = h.replace(/[?&]lang=en/, '');
+    if (LANG === 'en') h = h.replace(/^([^#?]+)(\?[^#]*)?(#.*)?$/, function(m, p, q, hash){ return p + (q ? q + '&' : '?') + 'lang=en' + (hash || ''); });
+    a.setAttribute('href', h);
+  });
+  if (save) { try { localStorage.setItem('atobbee-lang', LANG); } catch(e){} }
+}
+document.addEventListener('click', function(e){ var b = e.target.closest('.lang button'); if (b) setLang(b.dataset.lang, true); });
+(function(){
+  var q = new URLSearchParams(location.search).get('lang'), saved = null;
+  try { saved = localStorage.getItem('atobbee-lang'); } catch(e){}
+  if (q === 'en' || q === 'nl') setLang(q, true); else if (saved) setLang(saved, false);
+})();
+
   var views = ['home','send','drive','host','join'];
   function show(name, role){
     if (views.indexOf(name) < 0) name = 'home';
@@ -965,11 +1218,11 @@
     var badEmail = !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em.value.trim());
     flag(form.querySelector('.roles'), noRole); flag(f, !f.value.trim()); flag(l, !l.value.trim());
     flag(pc, !pc.value.trim()); flag(c, !c.value.trim()); flag(em, badEmail); flag(form.querySelector('.check'), !form.consent.checked);
-    if (noRole) { msg.textContent = 'Pick at least one option.'; return; }
-    if (!f.value.trim() || !l.value.trim()) { msg.textContent = 'Fill in your first name and surname.'; f.value.trim() ? l.focus() : f.focus(); return; }
-    if (!pc.value.trim() || !c.value.trim()) { msg.textContent = 'Fill in your postcode and city.'; pc.value.trim() ? c.focus() : pc.focus(); return; }
-    if (badEmail) { msg.textContent = "That email doesn't look quite right."; em.focus(); return; }
-    if (!form.consent.checked) { msg.textContent = 'Tick the box so we can email you.'; return; }
+    if (noRole) { msg.textContent = t('role'); return; }
+    if (!f.value.trim() || !l.value.trim()) { msg.textContent = t('name'); f.value.trim() ? l.focus() : f.focus(); return; }
+    if (!pc.value.trim() || !c.value.trim()) { msg.textContent = t('loc'); pc.value.trim() ? c.focus() : pc.focus(); return; }
+    if (badEmail) { msg.textContent = t('email'); em.focus(); return; }
+    if (!form.consent.checked) { msg.textContent = t('consent'); return; }
     msg.textContent = '';
     var btn = form.querySelector('button[type=submit]'); btn.disabled = true;
     fetch(form.action, { method:'POST', body:new FormData(form), headers:{ 'Accept':'application/json' } })
@@ -978,7 +1231,7 @@
         if (d.ok){ form.style.display = 'none'; done.classList.add('on'); }
         else { msg.textContent = d.message; btn.disabled = false; }
       })
-      .catch(function(){ msg.textContent = 'Something went wrong. Please try again in a moment.'; btn.disabled = false; });
+      .catch(function(){ msg.textContent = t('oops'); btn.disabled = false; });
   });
   var qs = new URLSearchParams(location.search);
   if (qs.get('joined')) { show('join'); form.style.display = 'none'; done.classList.add('on'); }
